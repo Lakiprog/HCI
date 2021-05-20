@@ -15,7 +15,9 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <components:NavBar Grid.Row="0" />
-
-        <Frame Padding="0.3cm" Grid.Row="1" Source="/Pages/SigninPage.xaml" />
+    
+        <!--<Frame Padding="0.3cm" Grid.Row="1" Source="/Pages/SigninPage.xaml" />-->
+        <Frame Padding="4cm 0.3cm 4cm 1.5cm" Grid.Row="1" Source="/Pages/RegistrationPage.xaml" />
     </Grid>
 </Window>
+                                                
