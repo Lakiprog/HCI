@@ -42,7 +42,7 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="0 0 1cm 0" Content="Login" Name="loginBtn" />
+            <Button Grid.Column="0" Margin="0 0 1cm 0" Content="Login" Name="loginBtn" Click="loginBtn_Click" />
             <Button Grid.Column="1" Margin="1cm 0 0 0" Content="Registration" Name="registrationBtn" Click="registrationBtn_Click" />
         </Grid>
     </Grid>
