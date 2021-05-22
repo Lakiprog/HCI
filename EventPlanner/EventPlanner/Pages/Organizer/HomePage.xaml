@@ -7,6 +7,26 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage">
+    <Page.Resources>
+        <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="BlueViolet"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9e4fe7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <TabControl>
             <TabItem>
@@ -93,30 +113,8 @@
 
                         <TextBox Grid.Column="0" Name="SearchCollaboratorsInput">
                         </TextBox>
-                        <Button Grid.Column="1" Content="Search" Name="searchCollaboratorsButton" 
-                            Click="SearchCollaboratorsButton_Click">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Background" Value="BlueViolet"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#9e4fe7"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            
-                        </Button>
+                        <Button Grid.Column="1" Style="{StaticResource buttonStyle}" Content="Search" Name="searchCollaboratorsButton" 
+                            Click="SearchCollaboratorsButton_Click" />
                     </Grid>
                     <DataGrid Name="CollaboratorsTable" Grid.Row="1" ItemsSource="{Binding Collaborators}"
                     AlternatingRowBackground="Gainsboro" AlternationCount="2"
@@ -133,29 +131,7 @@
                             <ColumnDefinition Width="5*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-
-                        <Button Grid.Column="1" Content="Add Collaborator" Click="AddCollaboratorButton_Click">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Background" Value="BlueViolet"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#9e4fe7"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                        <Button Grid.Column="1" Style="{StaticResource buttonStyle}" Content="Add Collaborator" Click="AddCollaboratorButton_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>
