@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventPlanner.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -19,7 +20,7 @@ namespace EventPlanner.Pages.Organizer
     /// </summary>
     public partial class HomePage : Page
     {
-        public ObservableCollection<String> Users { get; set; }
+        public ObservableCollection<Collaborator> Collaborators { get; set; }
 
         public HomePage()
         {
@@ -30,6 +31,20 @@ namespace EventPlanner.Pages.Organizer
             UpcomingEventsList.ItemsSource = new List<String> { "Hard-working CNA and Nightingale Award recipient",
             "Personable sales representative who exceeds sales targets by 25%", "Skilled bartender with 4 years’ experience in high-end restaurants",
             "Likable manager and winner of management ABA", "Diplomatic receptionist with deep interpersonal skills"};
+            
+            CollaboratorsTable.DataContext = this;
+            List<Collaborator> collaborators = new List<Collaborator>();
+            collaborators.Add(new Collaborator("Zikina klopa", CollaboratorType.RESTAURANT, "Adresa 1"));
+            collaborators.Add(new Collaborator("Marinini baloni", CollaboratorType.BALLOONS, "Adresa 2"));
+            collaborators.Add(new Collaborator("Pice kod Mice", CollaboratorType.DRINK_STORE, "Adresa 3"));
+            collaborators.Add(new Collaborator("Pice kod Mice", CollaboratorType.DRINK_STORE, "Adresa 3"));
+
+            Collaborators = new ObservableCollection<Collaborator>(collaborators);
+        }
+
+        private void SearchCollaboratorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

@@ -76,6 +76,46 @@
                     </ListView.ItemContainerStyle>
                 </ListView>
             </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Collaborators" />
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7cm" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0" Name="SearchCollaboratorsInput">
+                        </TextBox>
+                        <Button Grid.Column="1" Name="searchCollaboratorsButton" Background="Aquamarine" 
+                            BorderBrush="Black" BorderThickness="1" Click="SearchCollaboratorsButton_Click"
+                            >
+                            Search
+                        </Button>
+                    </Grid>
+                    <DataGrid Name="CollaboratorsTable" Grid.Row="1" ItemsSource="{Binding Collaborators}"
+                    AlternatingRowBackground="Gainsboro" AlternationCount="2"
+                    CanUserResizeColumns="False" CanUserReorderColumns="False"
+                    IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Width="SizeToCells" Binding="{Binding Name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Type" Width="SizeToCells" Binding="{Binding Type}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Address" Width="*" Binding="{Binding Address}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                        <!--<DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="hoho" />
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>-->
+                    </DataGrid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>
