@@ -46,5 +46,11 @@ namespace EventPlanner.Pages.Organizer
         {
             
         }
+
+        private void AddCollaboratorButton_Click(object sender, RoutedEventArgs e)
+        {
+            var AddCollaboratorModal = new Modals.AddCollaboratorModal();
+            AddCollaboratorModal.ShowDialog();
+        }
     }
 }
