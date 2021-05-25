@@ -1,0 +1,29 @@
+﻿<Page x:Class="EventPlanner.Pages.Admin.Homepage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EventPlanner.Pages.Admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Homepage">
+
+    <Grid>
+        <Button x:Name="tutorialButtonHomepageAdmin" Content="view tutorial" HorizontalAlignment="Left" Height="22" Margin="437,10,0,0" VerticalAlignment="Top" Width="92" IsCancel="True"/>
+        <Button x:Name="profileButtonHomepageAdmin" Content="my profile" HorizontalAlignment="Left" Height="22" Margin="567,10,0,0" VerticalAlignment="Top" Width="92" IsCancel="True"/>
+        <Button x:Name="signoutButtonHomepageAdmin" Content="sign out" HorizontalAlignment="Left" Height="22" Margin="698,10,0,0" VerticalAlignment="Top" Width="92" IsCancel="True" Click="tutorialButtonHomepageAdmin_Copy_Click"/>
+        <TextBox x:Name="searchOrganizersTextBox" HorizontalAlignment="Left" Margin="624,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="searchOrganizersLabel" Content="search by name:" HorizontalAlignment="Left" Margin="511,67,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="organizersLable" Content="Organizers:" HorizontalAlignment="Left" Margin="37,67,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="addOrganizerButton" Content="Add" HorizontalAlignment="Left" Margin="125,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.831,-1.02"/>
+        <DataGrid HorizontalAlignment="Left" Height="137" Margin="37,98,0,0" VerticalAlignment="Top" Width="707"/>
+        <Label x:Name="collaboratorsLable" Content="Collaborators:" HorizontalAlignment="Left" Margin="37,262,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="addCollaboratorButton" Content="Add" HorizontalAlignment="Left" Margin="138,262,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.831,-1.02"/>
+        <Label x:Name="searchCollaboratorsLabel" Content="search by name:" HorizontalAlignment="Left" Margin="511,257,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="searchOrganizersTextBox_Copy" HorizontalAlignment="Left" Margin="624,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DataGrid HorizontalAlignment="Left" Height="137" Margin="37,293,0,0" VerticalAlignment="Top" Width="707"/>
+        <ScrollBar x:Name="OrganizersScrollbar" HorizontalAlignment="Left" Margin="749,98,0,0" VerticalAlignment="Top" Height="137" ValueChanged="ScrollBar_ValueChanged"/>
+        <ScrollBar x:Name="CollaboratorsScrollbar" HorizontalAlignment="Left" Margin="749,293,0,0" VerticalAlignment="Top" Height="137"/>
+
+    </Grid>
+</Page>
