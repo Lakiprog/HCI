@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventPlanner.Windows.User;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,12 @@ namespace EventPlanner.Components
         public NavBar()
         {
             InitializeComponent();
+        }
+
+        private void makeRequestNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MakeRequestWindow window = new MakeRequestWindow();
+            window.Show();
         }
     }
 }
