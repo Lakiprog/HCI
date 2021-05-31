@@ -24,7 +24,6 @@ namespace EventPlanner.Pages.Organizer
         public HomePage()
         {
             InitializeComponent();
-            DataContext = new CollaboratorViewModel();
             FreeRequestsListView.ItemsSource = new List<String> { "Resourceful project manager with 10 years of experience", 
             "Engaging high school teacher skilled in ESL and IEPS", "Multi-lingual licensed RN with 5+ years of experience in pediatrics" };
 
