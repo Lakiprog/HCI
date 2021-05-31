@@ -20,7 +20,7 @@ namespace EventPlanner.Modals
         public AddCollaboratorModal()
         {
             InitializeComponent();
-            collaboratorsType.ItemsSource = new List<String> { "Restaurant", "Drink store", "Balloons" };
+            collaboratorsTypeComboBox.ItemsSource = new List<String> { "Restaurant", "Drink store", "Balloons" };
         }
     }
 }
