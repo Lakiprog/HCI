@@ -73,10 +73,10 @@
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Grid.Column="0" Name="SearchCollaboratorsTextBox">
+                        <TextBox Grid.Column="0" x:Name="SearchCollaboratorsTextBox">
                         </TextBox>
                         <Button Grid.Column="1" Content="Search" Name="searchCollaboratorsButton" 
-                            Command="{Binding UpdateListCommand}" />
+                            Command="{Binding UpdateListCommand}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
                     </Grid>
                     <DataGrid Name="CollaboratorsDataGrid" Grid.Row="1" ItemsSource="{Binding Path=Collaborators}"
                     AlternatingRowBackground="Gainsboro" AlternationCount="2"

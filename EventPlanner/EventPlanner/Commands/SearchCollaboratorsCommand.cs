@@ -6,9 +6,9 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    internal class CollaboratorListUpdateCommand : ICommand
+    internal class SearchCollaboratorsCommand : ICommand
     {
-        public CollaboratorListUpdateCommand(CollaboratorViewModel viewModel)
+        public SearchCollaboratorsCommand(CollaboratorViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
@@ -22,12 +22,12 @@ namespace EventPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            return _ViewModel.CanUpdate;
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            _ViewModel.SaveChanges();
+            _ViewModel.SearchCollaborators((string)parameter);
         }
     }
 }

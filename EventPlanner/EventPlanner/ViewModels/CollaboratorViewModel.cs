@@ -9,42 +9,38 @@ using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
-    internal class CollaboratorViewModel : INotifyPropertyChanged
+    class CollaboratorViewModel : ObservableObject
     {
         public CollaboratorViewModel()
         {
+            InitData();
+            InitCommands();
+        }
+        private ObservableCollection<Collaborator> collaborators;
+        private void InitCommands()
+        {
+            UpdateListCommand = new SearchCollaboratorsCommand(this);
+        }
+        private void InitData()
+        {
+            collaborators = new ObservableCollection<Collaborator>();
+            AddOriginalData();
+        }
+        private void AddOriginalData()
+        {
+            this.collaborators.Clear();
             List<Collaborator> collaborators = new List<Collaborator>();
             collaborators.Add(new Collaborator("Zikina klopa", CollaboratorType.RESTAURANT, "Adresa 1"));
             collaborators.Add(new Collaborator("Marinini baloni", CollaboratorType.BALLOONS, "Adresa 2"));
             collaborators.Add(new Collaborator("Pice kod Mice", CollaboratorType.DRINK_STORE, "Adresa 3"));
             collaborators.Add(new Collaborator("Pice kod Mice", CollaboratorType.DRINK_STORE, "Adresa 3"));
-            _Collaborators = new ObservableCollection<Collaborator>(collaborators);
 
-            UpdateListCommand = new CollaboratorListUpdateCommand(this);
+            collaborators.ForEach(this.collaborators.Add);
         }
-        public bool CanUpdate
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        private ObservableCollection<Collaborator> _Collaborators;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<Collaborator> Collaborators
         {
-            get
-            {
-                return _Collaborators;
-            }
-            set
-            {
-                _Collaborators = value;
-                OnPropertyChanged("_Collaborators");
-            }
+            get => collaborators;
         }
 
         public ICommand UpdateListCommand
@@ -53,19 +49,19 @@ namespace EventPlanner.ViewModels
             private set;
         }
 
-        public void SaveChanges()
+        public void SearchCollaborators(string search)
         {
-            _Collaborators.RemoveAt(0); //proba
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if (handler != null)
+            AddOriginalData();
+            if (search.Length > 0)
             {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+                List<Collaborator> collaborators = new List<Collaborator>(Collaborators);
+                this.collaborators.Clear();
+                collaborators.FindAll(collaborator =>
+                    collaborator.Name.Contains(search)
+                    || collaborator.Address.Contains(search)
+                ).ForEach(this.collaborators.Add);
             }
         }
+
     }
 }
