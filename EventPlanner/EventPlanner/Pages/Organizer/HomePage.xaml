@@ -76,9 +76,9 @@
                         <TextBox Grid.Column="0" Name="SearchCollaboratorsTextBox">
                         </TextBox>
                         <Button Grid.Column="1" Content="Search" Name="searchCollaboratorsButton" 
-                            Click="SearchCollaboratorsButton_Click" />
+                            Command="{Binding UpdateListCommand}" />
                     </Grid>
-                    <DataGrid Name="CollaboratorsDataGrid" Grid.Row="1" ItemsSource="{Binding Collaborators}"
+                    <DataGrid Name="CollaboratorsDataGrid" Grid.Row="1" ItemsSource="{Binding Path=Collaborators}"
                     AlternatingRowBackground="Gainsboro" AlternationCount="2"
                     CanUserResizeColumns="False" CanUserReorderColumns="False"
                     IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
