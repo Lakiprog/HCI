@@ -1,0 +1,61 @@
+﻿<Window x:Class="EventPlanner.Windows.User.MakeRequestWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EventPlanner.Windows.User"
+      xmlns:components="clr-namespace:EventPlanner.Components"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      MinHeight="450"
+      MinWidth="770"
+      Title="Make Request" Height="200" Width="483">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Grid.ColumnSpan="4" Content="Making Request" />
+<!--WIP:  -->
+        <Label Grid.Row="1" Content="Title:" VerticalAlignment="Top" />
+        <TextBox Grid.Row="1" Grid.Column="1" Name="titleTextBox" Height="18pt" VerticalAlignment="Top" />
+
+        <Label Grid.Row="2" Content="Type:" VerticalAlignment="Top" />
+        <ComboBox Grid.Row="2" Grid.Column="1" Name="typeComboBox" Height="18pt" VerticalAlignment="Top" />
+
+        <Label Grid.Row="3" Content="Description:" VerticalAlignment="Top" />
+        <TextBox Grid.Row="3" Grid.Column="1" Name="descriptionTextBox" Height="18pt" VerticalAlignment="Top" />
+
+        <Label Grid.Row="4" Content="Date From:" VerticalAlignment="Top" />
+        <TextBox Grid.Row="4" Grid.Column="1" Name="dateFromTextBox" Height="18pt" VerticalAlignment="Top" />
+
+        <Label Grid.Row="5" Content="Date To:" VerticalAlignment="Top" />
+        <TextBox Grid.Row="5" Grid.Column="1" Name="dateToTextBox" Height="18pt" VerticalAlignment="Top" />
+
+        <Label Grid.Row="6" Content="Organizer:" VerticalAlignment="Top" />
+        <TextBox Grid.Row="6" Grid.Column="1" Name="organizerTextBox" IsEnabled="False" Height="18pt" VerticalAlignment="Top" />
+
+        <Label Grid.Row="1" Grid.Column="2" Content="Choose organizer (Optional)" VerticalAlignment="Top" />
+        <TextBox Grid.Row="1" Grid.Column="3" Name="organizerSearchTextBox" Height="18pt" VerticalAlignment="Top" KeyDown="organizerSearchTextBox_KeyDown" />
+
+        <components:RatedOrganizerList x:Name="ratedOrganizerList" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" />
+        <Button Grid.Row="6" Grid.Column="2" Content="Add" />
+
+        <Button Grid.Row="7" Content="Back" Name="backBtn" />
+        <Button Grid.Row="7" Grid.Column="3" Content="Submit" Name="submitBtn" />
+
+    </Grid>
+</Window>
