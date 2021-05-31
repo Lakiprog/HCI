@@ -29,7 +29,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Label Grid.ColumnSpan="4" Content="Making Request" />
-<!--WIP:  -->
+        <!--WIP: Fix layout and scaling of components -->
         <Label Grid.Row="1" Content="Title:" VerticalAlignment="Top" />
         <TextBox Grid.Row="1" Grid.Column="1" Name="titleTextBox" Height="18pt" VerticalAlignment="Top" />
 
