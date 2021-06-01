@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventPlanner.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,15 @@ namespace EventPlanner.Pages
         public ProfilePage()
         {
             InitializeComponent();
+        }
+
+        private void editUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserViewModel viewModel = (UserViewModel)DataContext;
+            if (viewModel != null)
+            {
+                viewModel.CanUpdate = true;
+            }
         }
     }
 }

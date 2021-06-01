@@ -29,22 +29,24 @@
         <Label HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18pt" Content="User information" />
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
             <Label Content="Username:" />
-            <TextBox Name="usernameTextbox" Text="{Binding User.Username}"/>
+            <TextBox Name="usernameTextbox" Text="{Binding User.Username}" IsEnabled="{Binding CanUpdate}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
             <Label Content="First name:" />
-            <TextBox Name="firstNameTextbox" Text="{Binding User.FirstName}"/>
+            <TextBox Name="firstNameTextbox" Text="{Binding User.FirstName}" IsEnabled="{Binding CanUpdate}"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
             <Label Content="Last name:" />
-            <TextBox Name="lastNameTextbox" Text="{Binding User.LastName}"/>
+            <TextBox Name="lastNameTextbox" Text="{Binding User.LastName}" IsEnabled="{Binding CanUpdate}"/>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
             <Label Content="Password:" />
-            <TextBox Name="passwordTextbox" Text="{Binding User.Password}"/>
+            <TextBox Name="passwordTextbox" Text="{Binding User.Password}" IsEnabled="{Binding CanUpdate}"/>
         </StackPanel>
-        <Button Grid.Column="1" Grid.Row="5" Margin="10 10 0 10" Content="Edit" Name="editPersonalDataBtn" />
-
+        <Button Grid.Column="1" Grid.Row="5" Margin="10 10 0 10" Content="Edit"
+            Click="editUserButton_Click"/>
+        <Button Grid.Column="0" Grid.Row="5" Margin="0 10 10 10" Content="Save Changes"
+            Command="{Binding EditUserCmd}" IsEnabled="{Binding CanUpdate}"/>
         
         <StackPanel Grid.Row="1" Grid.Column="2"  Orientation="Horizontal" Margin="100,0,0,12">
             
