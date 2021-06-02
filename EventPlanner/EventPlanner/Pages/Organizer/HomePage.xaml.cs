@@ -1,7 +1,9 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,8 +30,17 @@ namespace EventPlanner.Pages.Organizer
 
         private void AddCollaboratorButton_Click(object sender, RoutedEventArgs e)
         {
-            var AddCollaboratorModal = new Modals.AddCollaboratorModal();
+            var AddCollaboratorModal = new Modals.AddCollaboratorModal(); // TO DO - same as bellow
             AddCollaboratorModal.ShowDialog();
+        }
+
+        private void EventsListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedEvent = ((ListViewItem)sender).Content as Event;
+
+            var eventDetailsModal = new Modals.EventDetailsModal();
+            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent);
+            eventDetailsModal.ShowDialog();
         }
     }
 }

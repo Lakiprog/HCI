@@ -17,7 +17,7 @@
                 <TabItem.Header>
                     <TextBlock Text="Free requests" />
                 </TabItem.Header>
-                <ListView x:Name="EventsListView" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding UpcomingEvents}" SelectedItem="{Binding SelectedEvent}">
+                <ListView x:Name="EventsListView" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding UpcomingEvents}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -25,12 +25,7 @@
                                     <ColumnDefinition Width="5*"/>
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
-                                    <Grid.InputBindings>
-                                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ElementName=EventsListView, Path=DataContext.ShowEventDetailCmd}" />
-                                    </Grid.InputBindings>
-                                    <TextBlock Text="{Binding Path=Title}" FontWeight="Bold" />
-                                </Grid>
+                                <TextBlock Grid.Column="0" Text="{Binding Path=Title}" FontWeight="Bold" />
                                 <Button Grid.Column="1" Content="Accept"/>
                             </Grid>
                         </DataTemplate>
@@ -38,6 +33,7 @@
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <EventSetter Event="MouseDoubleClick" Handler="EventsListViewItem_MouseDoubleClick" />
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>

@@ -13,7 +13,7 @@ namespace EventPlanner.Models
         private string _Description;
         private DateTime _DateFrom;
         private DateTime _DateTo;
-
+        private User _User;
         public String Title
         {
             get => _Title;
@@ -39,13 +39,20 @@ namespace EventPlanner.Models
             get => _DateTo;
             set { _DateTo = value; RaisePropertyChngedEvent("DateTo"); }
         }
-        public Event(string title, EventType type, string description, DateTime dateFrom, DateTime dateTo)
+
+        public User User
+        {
+            get => _User;
+            set { _User = value; RaisePropertyChngedEvent("User"); }
+        }
+        public Event(string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, User user)
         {
             Title = title;
             Type = type;
             Description = description;
             DateFrom = dateFrom;
             DateTo = dateTo;
+            User = user;
         }
     }
 }
