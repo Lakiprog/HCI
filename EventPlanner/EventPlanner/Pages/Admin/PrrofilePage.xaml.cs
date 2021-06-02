@@ -23,17 +23,22 @@ namespace EventPlanner.Pages.Admin
             InitializeComponent();
         }
 
-        private void tutorialButtonHomepageAdmin_Click(object sender, RoutedEventArgs e)
+        private void tutorialButtonProfilePageAdmin_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void tutorialButtonHomepageAdmin_Copy_Click(object sender, RoutedEventArgs e)
+        private void EditProfileButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
         private void profileButtonProfilePageAdmin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void signOutButtonProfilePageAdmin_Click(object sender, RoutedEventArgs e)
         {
 
         }

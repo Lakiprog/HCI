@@ -30,9 +30,9 @@
             <ColumnDefinition Width="3.5cm" />
             <ColumnDefinition Width="3.5cm" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="tutorialButtonProfilePageAdmin" Content="view tutorial" Grid.Row="0" Grid.Column="3" Height="20pt" Width="55pt" Click="tutorialButtonHomepageAdmin_Click"/>
+        <Button x:Name="tutorialButtonProfilePageAdmin" Content="view tutorial" Grid.Row="0" Grid.Column="3" Height="20pt" Width="55pt" Click="tutorialButtonProfilePageAdmin_Click"/>
         <Button x:Name="homepageButtonProfilePageAdmin" Content="Home page" Grid.Row="0" Grid.Column="4" Height="20pt" Width="55pt" Click="profileButtonProfilePageAdmin_Click"/>
-        <Button x:Name="signoutButtonProfilePageAdmin" Content="sign out" Grid.Row="0" Grid.Column="5" Height="20pt" Width="55pt" Click="tutorialButtonHomepageAdmin_Copy_Click"/>
+        <Button x:Name="signoutButtonProfilePageAdmin" Content="sign out" Grid.Row="0" Grid.Column="5" Height="20pt" Width="55pt" Click="signOutButtonProfilePageAdmin_Click"/>
         <Label x:Name="PersonalInformationLabel" Content="Personal Information" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontSize="18"/>
         <Label x:Name="FullNameLabel" Content="Full Name" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <TextBox x:Name="FullNameTextBox" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>

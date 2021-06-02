@@ -28,7 +28,7 @@
         <Label x:Name="UsernameLabel" Content="Username" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <TextBox x:Name="UsernameEditOrganizerModalTextBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap" />
         <Label x:Name="PasswordLabel" Content="Password" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
-        <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="EditProfileButton_Click"/>
+        <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="CancelEditOrganizerButton_Click"/>
         <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="7" Grid.Column="0" Height="20pt" Width="50pt"/>
         <Button x:Name="DeleteEditOrganizerModalButton" Content="Delete" Grid.Row="0" Grid.Column="0" Height="20pt" Width="50pt"/>
         <PasswordBox x:Name="PasswordEditOrganizerPasswordBox" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"/>

@@ -23,7 +23,12 @@ namespace EventPlanner.Pages.Admin
             InitializeComponent();
         }
 
-        private void SaveEditProfileModalButton_Click(object sender, RoutedEventArgs e)
+        private void CancelProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubmitProfileModalButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

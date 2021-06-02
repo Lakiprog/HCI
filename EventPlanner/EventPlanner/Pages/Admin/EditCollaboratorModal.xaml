@@ -30,7 +30,7 @@
         <ComboBox x:Name="TypeEditCollaboratorModalCombobox" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"/>
         <Label x:Name="TypeLabel" Content="Type of company" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <Button Content="Delete" Grid.Row="0" Grid.Column="0" Height="20pt" Width="50pt"/>
-        <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="EditProfileButton_Click"/>
+        <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="CancelEditCollaboratorButton_Click"/>
         <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="7" Grid.Column="0" Height="20pt" Width="50pt" />
 
     </Grid>

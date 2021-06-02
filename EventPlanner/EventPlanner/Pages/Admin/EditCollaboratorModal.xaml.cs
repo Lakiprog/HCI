@@ -22,5 +22,10 @@ namespace EventPlanner.Pages.Admin
         {
             InitializeComponent();
         }
+
+        private void CancelEditCollaboratorButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
