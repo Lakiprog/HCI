@@ -32,5 +32,20 @@ namespace EventPlanner.Pages.Admin
         {
 
         }
+
+        private void EditOrganizer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditCollaborator_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddCollaboratorButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

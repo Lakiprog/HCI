@@ -14,18 +14,13 @@ using System.Windows.Shapes;
 namespace EventPlanner.Pages.Admin
 {
     /// <summary>
-    /// Interaction logic for EditProfileModal.xaml
+    /// Interaction logic for RegisterCollaboratorModal.xaml
     /// </summary>
-    public partial class EditProfileModal : Page
+    public partial class RegisterCollaboratorModal : Window
     {
-        public EditProfileModal()
+        public RegisterCollaboratorModal()
         {
             InitializeComponent();
-        }
-
-        private void EditProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

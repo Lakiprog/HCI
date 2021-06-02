@@ -14,13 +14,18 @@ using System.Windows.Shapes;
 namespace EventPlanner.Pages.Admin
 {
     /// <summary>
-    /// Interaction logic for RegisterCollaboratorModal.xaml
+    /// Interaction logic for EditCollaboratorModal.xaml
     /// </summary>
-    public partial class RegisterCollaboratorModal : Page
+    public partial class EditCollaboratorModal : Window
     {
-        public RegisterCollaboratorModal()
+        public EditCollaboratorModal()
         {
             InitializeComponent();
+        }
+
+        private void CancelEditCollaboratorButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -16,7 +16,7 @@ namespace EventPlanner.Pages.Admin
     /// <summary>
     /// Interaction logic for EditOrganizerModal.xaml
     /// </summary>
-    public partial class EditOrganizerModal : Page
+    public partial class EditOrganizerModal : Window
     {
         public EditOrganizerModal()
         {

@@ -16,7 +16,7 @@ namespace EventPlanner.Pages.Admin
     /// <summary>
     /// Interaction logic for RegisterOrganizerModal.xaml
     /// </summary>
-    public partial class RegisterOrganizerModal : Page
+    public partial class RegisterOrganizerModal : Window
     {
         public RegisterOrganizerModal()
         {

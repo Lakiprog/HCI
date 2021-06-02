@@ -30,17 +30,9 @@ namespace EventPlanner.Pages.Admin
 
         private void EditProfileButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var w = new EditProfileModal();
+            w.ShowDialog();
         }
 
-        private void profileButtonProfilePageAdmin_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void signOutButtonProfilePageAdmin_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
