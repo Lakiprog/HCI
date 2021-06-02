@@ -1,17 +1,38 @@
-﻿using System;
+﻿using EventPlanner.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EventPlanner.Models
 {
-    public class User
+    public class User : ObservableObject
     {
-        public string Username  { get; set; }
-        public string Password  { get; set; }
-        public string FirstName { get; set; }
-        public string LastName  { get; set; }
-        public List<Notification> Notifications { get; set; }
-
+        private string username;
+        private string password;
+        private string firstName;
+        private string lastName;
+        public List<Notification> notifications;
+        public String Username  {
+            get => username;
+            set { username = value; RaisePropertyChngedEvent("Username"); }
+        }
+        public String Password  { 
+            get => password;
+            set { password = value; RaisePropertyChngedEvent("Password"); } 
+        }
+        public String FirstName { 
+            get => firstName;
+            set { firstName = value; RaisePropertyChngedEvent("FirstName"); }
+        }
+        public String LastName  { 
+            get => lastName;
+            set { lastName = value; RaisePropertyChngedEvent("LastName"); } 
+        }
+        public List<Notification> Notifications
+        {
+            get => notifications;
+            set { notifications = value; RaisePropertyChngedEvent("Notifications"); }
+        }
         public User(string username, string password, string firstName, string lastName)
         {
             Username = username;
