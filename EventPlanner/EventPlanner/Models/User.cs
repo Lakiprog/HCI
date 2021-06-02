@@ -10,6 +10,7 @@ namespace EventPlanner.Models
         public string Password  { get; set; }
         public string FirstName { get; set; }
         public string LastName  { get; set; }
+        public List<Notification> Notifications { get; set; }
 
         public User(string username, string password, string firstName, string lastName)
         {
