@@ -5,19 +5,33 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EventPlanner.Pages.Admin"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="370" d:DesignWidth="300"
       Title="EditCollaboratorModal">
 
-    <Grid Margin="0,0,560,127">
-        <Label x:Name="NameLabel" Content="Name of company" HorizontalAlignment="Left" Margin="48,28,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="AdressLabel" Content="Company adress" HorizontalAlignment="Left" Margin="48,110,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="NameEditCollaboratorModalTextBox" HorizontalAlignment="Left" Margin="48,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="AdressEditCollaboratorModalTextBox" HorizontalAlignment="Left" Margin="48,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="TypeEditCollaboratorModalCombobox" HorizontalAlignment="Left" Margin="48,233,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="TypeLabel" Content="Type of company" HorizontalAlignment="Left" Margin="48,190,0,0" VerticalAlignment="Top"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="177,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.084,0.581" Width="53"/>
-        <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" HorizontalAlignment="Left" Margin="120,276,0,0" VerticalAlignment="Top" Width="48" Click="EditProfileButton_Click"/>
-        <Button x:Name="SaveEditOrganizerModalButton" Content="save" HorizontalAlignment="Left" Margin="48,276,0,0" VerticalAlignment="Top" Width="49"/>
+    <Grid MaxWidth="10cm" Margin="0.5cm" MaxHeight="13cm">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3.5cm" />
+            <ColumnDefinition Width="3.5cm" />
+        </Grid.ColumnDefinitions>
+        <Label x:Name="NameLabel" Content="Name of company"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+        <Label x:Name="AdressLabel" Content="Company adress" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="NameEditCollaboratorModalTextBox" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap" />
+        <TextBox x:Name="AdressEditCollaboratorModalTextBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>
+        <ComboBox x:Name="TypeEditCollaboratorModalCombobox" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"/>
+        <Label x:Name="TypeLabel" Content="Type of company" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+        <Button Content="Delete" Grid.Row="0" Grid.Column="0" Height="20pt" Width="50pt"/>
+        <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="EditProfileButton_Click"/>
+        <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="7" Grid.Column="0" Height="20pt" Width="50pt" />
 
     </Grid>
 </Page>

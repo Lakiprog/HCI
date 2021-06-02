@@ -8,22 +8,43 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Homepage">
 
-    <Grid>
-        <Button x:Name="tutorialButtonHomepageAdmin" Content="view tutorial" HorizontalAlignment="Left" Height="22" Margin="437,10,0,0" VerticalAlignment="Top" Width="92" IsCancel="True"/>
-        <Button x:Name="profileButtonHomepageAdmin" Content="my profile" HorizontalAlignment="Left" Height="22" Margin="567,10,0,0" VerticalAlignment="Top" Width="92" IsCancel="True"/>
-        <Button x:Name="signoutButtonHomepageAdmin" Content="sign out" HorizontalAlignment="Left" Height="22" Margin="698,10,0,0" VerticalAlignment="Top" Width="92" IsCancel="True" Click="tutorialButtonHomepageAdmin_Copy_Click"/>
-        <TextBox x:Name="searchOrganizersTextBox" HorizontalAlignment="Left" Margin="624,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="searchOrganizersLabel" Content="search by name:" HorizontalAlignment="Left" Margin="511,67,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="organizersLable" Content="Organizers:" HorizontalAlignment="Left" Margin="37,67,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="addOrganizerButton" Content="Add" HorizontalAlignment="Left" Margin="125,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.831,-1.02"/>
-        <DataGrid HorizontalAlignment="Left" Height="137" Margin="37,98,0,0" VerticalAlignment="Top" Width="707"/>
-        <Label x:Name="collaboratorsLable" Content="Collaborators:" HorizontalAlignment="Left" Margin="37,262,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="addCollaboratorButton" Content="Add" HorizontalAlignment="Left" Margin="138,262,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.831,-1.02"/>
-        <Label x:Name="searchCollaboratorsLabel" Content="search by name:" HorizontalAlignment="Left" Margin="511,257,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="searchOrganizersTextBox_Copy" HorizontalAlignment="Left" Margin="624,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DataGrid HorizontalAlignment="Left" Height="137" Margin="37,293,0,0" VerticalAlignment="Top" Width="707"/>
-        <ScrollBar x:Name="OrganizersScrollbar" HorizontalAlignment="Left" Margin="749,98,0,0" VerticalAlignment="Top" Height="137" ValueChanged="ScrollBar_ValueChanged"/>
-        <ScrollBar x:Name="CollaboratorsScrollbar" HorizontalAlignment="Left" Margin="749,293,0,0" VerticalAlignment="Top" Height="137"/>
+    <Grid MaxWidth="35cm" Margin="0.5cm" MaxHeight="17cm">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3.5cm" />
+            <ColumnDefinition Width="3.5cm" />
+            <ColumnDefinition Width="3.5cm" />
+            <ColumnDefinition Width="3.5cm" />
+            <ColumnDefinition Width="3.5cm" />
+            <ColumnDefinition Width="3.5cm" />
+            <ColumnDefinition Width="3.5cm" />
+            <ColumnDefinition Width="3.5cm" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="tutorialButtonHomepageAdmin" Content="view tutorial" Grid.Row="0" Grid.Column="3" Height="20pt" Width="55pt"/>
+        <Button x:Name="profileButtonHomepageAdmin" Content="my profile" Grid.Row="0" Grid.Column="4" Height="20pt" Width="55pt"/>
+        <Button x:Name="signoutButtonHomepageAdmin" Content="sign out" Grid.Row="0" Grid.Column="5" Height="20pt" Width="55pt" Click="tutorialButtonHomepageAdmin_Copy_Click"/>
+        <TextBox x:Name="searchOrganizersTextBox" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+        <Label x:Name="searchOrganizersLabel" Content="search by name:" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" VerticalAlignment="Bottom"/>
+        <Label x:Name="organizersLable" Content="Organizers:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Bottom"/>
+        <Button x:Name="addOrganizerButton" Content="Add" Grid.Row="1" Grid.Column="1" Height="20pt" Width="55pt" VerticalAlignment="Bottom"/>
+        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="3"/>
+        <Label x:Name="collaboratorsLable" Content="Collaborators:" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Bottom"/>
+        <Button x:Name="addCollaboratorButton" Content="Add" Grid.Row="5" Grid.Column="1" Height="20pt" Width="55pt" VerticalAlignment="Bottom"/>
+        <Label x:Name="searchCollaboratorsLabel" Content="search by name:" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="searchOrganizersTextBox_Copy" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="1" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+        <DataGrid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="3"/>
+        <ScrollBar x:Name="OrganizersScrollbar" Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Margin="0,0,0,0.3" HorizontalAlignment="Left"/>
+        <ScrollBar x:Name="CollaboratorsScrollbar" Grid.Row="6" Grid.Column="5" Grid.RowSpan="3" Margin="0,0,0,0.3" HorizontalAlignment="Left"/>
 
     </Grid>
 </Page>
