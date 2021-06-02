@@ -1,9 +1,11 @@
-﻿using EventPlanner.Models;
+﻿using EventPlanner.Commands;
+using EventPlanner.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
+using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
@@ -16,6 +18,12 @@ namespace EventPlanner.ViewModels
         }
         private ObservableCollection<Event> organizerEvents;
         private ObservableCollection<Event> upcomingEvents;
+        private Event selectedEvent;
+        public ICommand ShowEventDetailCmd
+        {
+            get;
+            private set;
+        }
         public ObservableCollection<Event> OrganizerEvents
         {
             get => organizerEvents;
@@ -26,8 +34,14 @@ namespace EventPlanner.ViewModels
             get => upcomingEvents;
             set { upcomingEvents = value; RaisePropertyChngedEvent("UpcomingEvents"); }
         }
+        public Event SelectedEvent
+        {
+            get => selectedEvent;
+            set { selectedEvent = value; RaisePropertyChngedEvent("SelectedEvent"); }
+        }
         private void InitCommands()
         {
+            ShowEventDetailCmd = new ShowEventDetailCommand(this);
         }
         private void InitData()
         {
