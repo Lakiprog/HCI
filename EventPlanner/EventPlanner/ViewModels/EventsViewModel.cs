@@ -19,11 +19,7 @@ namespace EventPlanner.ViewModels
         private ObservableCollection<Event> organizerEvents;
         private ObservableCollection<Event> upcomingEvents;
         private Event selectedEvent;
-        public ICommand ShowEventDetailCmd
-        {
-            get;
-            private set;
-        }
+        
         public ObservableCollection<Event> OrganizerEvents
         {
             get => organizerEvents;
@@ -41,7 +37,6 @@ namespace EventPlanner.ViewModels
         }
         private void InitCommands()
         {
-            ShowEventDetailCmd = new ShowEventDetailCommand(this);
         }
         private void InitData()
         {

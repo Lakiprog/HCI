@@ -17,7 +17,7 @@
                 <TabItem.Header>
                     <TextBlock Text="Free requests" />
                 </TabItem.Header>
-                <ListView x:Name="EventsListView" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding UpcomingEvents}">
+                <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding UpcomingEvents}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -33,7 +33,7 @@
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <EventSetter Event="MouseDoubleClick" Handler="EventsListViewItem_MouseDoubleClick" />
+                            <EventSetter Event="MouseDoubleClick" Handler="FreeEventsList_MouseDoubleClick" />
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
@@ -58,6 +58,7 @@
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <EventSetter Event="MouseDoubleClick" Handler="OrganizersEventsList_MouseDoubleClick" />
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>

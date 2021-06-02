@@ -34,12 +34,20 @@ namespace EventPlanner.Pages.Organizer
             AddCollaboratorModal.ShowDialog();
         }
 
-        private void EventsListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void FreeEventsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var selectedEvent = ((ListViewItem)sender).Content as Event;
 
             var eventDetailsModal = new Modals.EventDetailsModal();
-            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent);
+            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true);
+            eventDetailsModal.ShowDialog();
+        }
+        private void OrganizersEventsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedEvent = ((ListViewItem)sender).Content as Event;
+
+            var eventDetailsModal = new Modals.EventDetailsModal();
+            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, false);
             eventDetailsModal.ShowDialog();
         }
     }
