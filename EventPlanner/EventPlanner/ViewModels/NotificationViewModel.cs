@@ -9,6 +9,10 @@ namespace EventPlanner.ViewModels
     {
         private Notification _Notification;
 
+        public NotificationViewModel(Notification notification)
+        {
+            Notification = notification;
+        }
         public Notification Notification
         {
             get => _Notification;

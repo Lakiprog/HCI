@@ -11,7 +11,6 @@ namespace EventPlanner.Models
         private string password;
         private string firstName;
         private string lastName;
-        public List<Notification> notifications;
         public String Username  {
             get => username;
             set { username = value; RaisePropertyChngedEvent("Username"); }
@@ -28,11 +27,7 @@ namespace EventPlanner.Models
             get => lastName;
             set { lastName = value; RaisePropertyChngedEvent("LastName"); } 
         }
-        public List<Notification> Notifications
-        {
-            get => notifications;
-            set { notifications = value; RaisePropertyChngedEvent("Notifications"); }
-        }
+        
         public User(string username, string password, string firstName, string lastName)
         {
             Username = username;

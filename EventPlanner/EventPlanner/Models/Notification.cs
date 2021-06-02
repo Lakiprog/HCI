@@ -27,6 +27,12 @@ namespace EventPlanner.Models
             get => _Type;
             set { _Type = value; RaisePropertyChngedEvent("Type"); }
         }
+        public Notification(User user, NotificationElement notificationelement, NotificationType type)
+        {
+            User = user;
+            NotificationElement = notificationelement;
+            Type = type;
+        }
         
     }
 }

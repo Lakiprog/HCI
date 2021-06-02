@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EventPlanner.Models
 {
-    class NotificationElement
+    public class NotificationElement
     {
         public NotificationElement() { }
     }
