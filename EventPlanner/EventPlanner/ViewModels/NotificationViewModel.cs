@@ -22,9 +22,9 @@ namespace EventPlanner.ViewModels
         {
             get
             {
-                if (_Notification.Type == NotificationType.MESSAGE_SENT) return _Notification.User.Username + " sent you a message";
-                else if (_Notification.Type == NotificationType.EVENT_REQUEST) return _Notification.User.Username + " requested you to organize his/hers event.";
-                else return _Notification.User.Username + " changed information about the event.";
+                if (_Notification.Type == NotificationType.MESSAGE_SENT) return _Notification.UserFrom.Username + " sent you a message";
+                else if (_Notification.Type == NotificationType.EVENT_REQUEST) return _Notification.UserFrom.Username + " requested you to organize his/hers event.";
+                else return _Notification.UserFrom.Username + " changed information about the event.";
             }
         }
     }

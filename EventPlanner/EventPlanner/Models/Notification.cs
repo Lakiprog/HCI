@@ -9,7 +9,8 @@ namespace EventPlanner.Models
     public class Notification : ObservableObject
     {
         private long _Id;
-        private User _User;
+        private User _UserFrom;
+        private User _UserTo;
         private NotificationElement _NotificationElement;
         private NotificationType _Type;
 
@@ -18,10 +19,15 @@ namespace EventPlanner.Models
             get => _Id;
             set { _Id = value; RaisePropertyChngedEvent("Id"); }
         }
-        public User User
+        public User UserFrom
         {
-            get => _User;
-            set { _User = value; RaisePropertyChngedEvent("User"); }
+            get => _UserFrom;
+            set { _UserFrom = value; RaisePropertyChngedEvent("UserFrom"); }
+        }
+        public User UserTo
+        {
+            get => _UserTo;
+            set { _UserTo = value; RaisePropertyChngedEvent("UserTo"); }
         }
         public NotificationElement NotificationElement
         {
@@ -36,7 +42,7 @@ namespace EventPlanner.Models
         public Notification(long id, User user, NotificationElement notificationelement, NotificationType type)
         {
             Id = id;
-            User = user;
+            UserFrom = user;
             NotificationElement = notificationelement;
             Type = type;
         }
