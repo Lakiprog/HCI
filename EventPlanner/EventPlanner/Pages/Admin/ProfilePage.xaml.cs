@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace EventPlanner.Pages.Admin
 {
     /// <summary>
-    /// Interaction logic for PrrofilePage.xaml
+    /// Interaction logic for ProfilePage.xaml
     /// </summary>
-    public partial class PrrofilePage : Page
+    public partial class ProfilePage : Page
     {
-        public PrrofilePage()
+        public ProfilePage()
         {
             InitializeComponent();
         }
