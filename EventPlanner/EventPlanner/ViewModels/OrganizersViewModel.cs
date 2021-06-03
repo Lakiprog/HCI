@@ -28,6 +28,12 @@ namespace EventPlanner.ViewModels
             private set;
         }
 
+        public ICommand CreateEditWindowCmd
+        {
+            get;
+            private set;
+        }
+
         public OrganizersViewModel()
         {
             InitData();
@@ -52,6 +58,7 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             FilterOrganizersCmd = new FilterOrganizersCommand(this);
+            CreateEditWindowCmd = new CreateEditWindowsCommand();
         }
 
         private ObservableCollection<Organizer> organizers;
