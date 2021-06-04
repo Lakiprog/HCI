@@ -17,10 +17,10 @@
             <RowDefinition Height="10*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Grid.Column="0" Grid.Row="0" Name="NotificationsListView" ItemsSource="{Binding NotificationViewModels}">
+        <ListView Grid.Column="0" Grid.Row="0" Name="NotificationsListView" ItemsSource="{Binding Notifications}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid DataContext="{Binding}">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition/>
@@ -35,7 +35,7 @@
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Notification.Type}" Value="NotificationType.MESSAGE_SENT">
+                                            <DataTrigger Binding="{Binding Type}" Value="NotificationType.MESSAGE_SENT">
                                                 <Setter Property="Visibility" Value="Hidden"/>
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -46,14 +46,14 @@
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Notification.Type}" Value="{x:Static models:NotificationType.EVENT_REQUEST}">
+                                            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:NotificationType.EVENT_REQUEST}">
                                                 <Setter Property="Visibility" Value="Hidden"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
                             </Button>
-                            <Button Grid.Column="1" Content="Delete" Command="{Binding ElementName=NotificationPageName, Path=DataContext.DeleteNotificationCmd}" CommandParameter="{Binding Notification}" Margin="5,0,0,0" Padding="6,1"/>
+                            <Button Grid.Column="1" Content="Delete" Command="{Binding ElementName=NotificationPageName, Path=DataContext.DeleteNotificationCmd}" CommandParameter="{Binding}" Margin="5,0,0,0" Padding="6,1"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>

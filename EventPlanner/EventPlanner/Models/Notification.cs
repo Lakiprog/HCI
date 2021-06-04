@@ -46,6 +46,15 @@ namespace EventPlanner.Models
             NotificationElement = notificationelement;
             Type = type;
         }
+        public String Description
+        {
+            get
+            {
+                if (_Type == NotificationType.MESSAGE_SENT) return _UserFrom.Username + " sent you a message";
+                else if (_Type == NotificationType.EVENT_REQUEST) return _UserFrom.Username + " requested you to organize his/hers event.";
+                else return _UserFrom.Username + " changed information about the event.";
+            }
+        }
         
     }
 }
