@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -11,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Pages.Admin
+namespace EventPlanner.Modals.Admin
 {
     /// <summary>
     /// Interaction logic for EditOrganizerModal.xaml
@@ -25,7 +27,12 @@ namespace EventPlanner.Pages.Admin
 
         private void CancelEditOrganizerButton_Click(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
 
+        private void SaveEditOrganizerModalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
