@@ -106,7 +106,7 @@
                                 <DataGridTemplateColumn Header="Edit" Width="0.15*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Click="EditCollaborator_Click" Command="{Binding ElementName=CollaboratorsGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">Edit</Button>
+                                            <Button Command="{Binding ElementName=CollaboratorsGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">Edit</Button>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
