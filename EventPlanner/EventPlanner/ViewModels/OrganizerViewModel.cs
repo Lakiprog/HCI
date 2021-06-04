@@ -7,9 +7,9 @@ using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
-    class OneOrganizerViewModel : ObservableObject
+    class OrganizerViewModel : ObservableObject
     {
-        public OneOrganizerViewModel(Organizer o)
+        public OrganizerViewModel(Organizer o)
         {
             organizer = o;
             InitCommands();
@@ -18,8 +18,6 @@ namespace EventPlanner.ViewModels
         private Organizer organizer;
         private void InitCommands()
         {
-            //UpdateListCommand = new SearchCollaboratorsCommand(this);
-            //CreateEditWindowCmd = new CreateEditWindowsCommand();
         }
 
         public Organizer Organizer

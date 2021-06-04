@@ -28,7 +28,7 @@ namespace EventPlanner.Commands
         {
             if(parameter is Organizer){
                 Modals.Admin.EditOrganizerModal window = new Modals.Admin.EditOrganizerModal();
-                window.DataContext = new ViewModels.OneOrganizerViewModel((Organizer)parameter);
+                window.DataContext = new ViewModels.OrganizerViewModel((Organizer)parameter);
                 window.Show();
             }else if(parameter is Collaborator)
             {
