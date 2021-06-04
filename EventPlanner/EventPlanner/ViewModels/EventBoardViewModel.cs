@@ -1,7 +1,9 @@
-﻿using EventPlanner.Models;
+﻿using EventPlanner.Commands;
+using EventPlanner.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
@@ -15,6 +17,7 @@ namespace EventPlanner.ViewModels
         public EventBoardViewModel()
         {
             InitData();
+            InitCommands();
         }
         public ObservableCollection<Task> ToDoTasks
         {
@@ -50,9 +53,18 @@ namespace EventPlanner.ViewModels
             
             AddOriginalData();
         }
+        private void InitCommands()
+        {
+            SelectionChangedCmd = new SelectionChangedCommand(this);
+        }
+        public ICommand SelectionChangedCmd
+        {
+            get;
+            private set;
+        }
         private void AddOriginalData()
         {
-            _ToDoTasks.Clear(); _InProgressTasks.Clear(); _DoneTasks.Clear(); _ToDoTasks.Clear();
+            _ToDoTasks.Clear(); _InProgressTasks.Clear(); _DoneTasks.Clear();
 
             Collaborator collaborator = new Collaborator { Name = "coll1", Address = "addr1", Type = CollaboratorType.FLOWER_SHOP };
             List<Task> toDoTasks = new List<Task>();
@@ -69,6 +81,23 @@ namespace EventPlanner.ViewModels
             allUsersEvents.Add(e);
             allUsersEvents.Add(new Event(2, "title event 2", EventType.BIRTHDAY, "event 1 desc 2", DateTime.Now, DateTime.Now, new User("micko", "micko123", "Mica", "Lakic")));
             allUsersEvents.ForEach(_AllUsersEvents.Add);
+
+            toDoTasks.ForEach(_ToDoTasks.Add);
+            inProgressTasks.ForEach(_InProgressTasks.Add);
+            doneTasks.ForEach(_DoneTasks.Add);
+        }
+        public void ChangeCurrentEvent(Event _event)
+        {
+            Event = _event;
+            _ToDoTasks.Clear(); _InProgressTasks.Clear(); _DoneTasks.Clear();
+            // get new events tasks
+            List<Task> toDoTasks = new List<Task>();
+            List<Task> inProgressTasks = new List<Task>();
+            List<Task> doneTasks = new List<Task>();
+            Collaborator collaborator = new Collaborator { Name = "coll1", Address = "addr1", Type = CollaboratorType.FLOWER_SHOP };
+            toDoTasks.Add(new Task(TaskStatus.TO_DO, 1, "Clean out Tivoli Enterprise Console database", collaborator, TaskType.GENERIC));
+            inProgressTasks.Add(new Task(TaskStatus.TO_DO, 1, "Forward event to the Tivoli Enterprise Console server", collaborator, TaskType.GENERIC));
+            inProgressTasks.Add(new Task(TaskStatus.TO_DO, 1, "Jump Netscape to URL", collaborator, TaskType.GENERIC));
 
             toDoTasks.ForEach(_ToDoTasks.Add);
             inProgressTasks.ForEach(_InProgressTasks.Add);
