@@ -56,8 +56,14 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             SelectionChangedCmd = new SelectionChangedCommand(this);
+            OpenModalCmd = new OpenModalCommand();
         }
         public ICommand SelectionChangedCmd
+        {
+            get;
+            private set;
+        }
+        public ICommand OpenModalCmd
         {
             get;
             private set;

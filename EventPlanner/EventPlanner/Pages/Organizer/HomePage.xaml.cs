@@ -39,7 +39,7 @@ namespace EventPlanner.Pages.Organizer
             var selectedEvent = ((ListViewItem)sender).Content as Event;
 
             var eventDetailsModal = new Modals.EventDetailsModal();
-            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true);
+            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true, false);
             eventDetailsModal.ShowDialog();
         }
         private void OrganizersEventsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -47,7 +47,7 @@ namespace EventPlanner.Pages.Organizer
             var selectedEvent = ((ListViewItem)sender).Content as Event;
 
             var eventDetailsModal = new Modals.EventDetailsModal();
-            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, false);
+            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, false, true);
             eventDetailsModal.ShowDialog();
         }
     }
