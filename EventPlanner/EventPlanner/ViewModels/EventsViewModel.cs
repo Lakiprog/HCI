@@ -49,19 +49,19 @@ namespace EventPlanner.ViewModels
             this.organizerEvents.Clear();
             List<Event> organizerEvents = new List<Event>();
             User user = new User("micko", "micko123", "Mica", "Lakic");
-            organizerEvents.Add(new Event("Resourceful project manager with 10 years of experience", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            organizerEvents.Add(new Event("Engaging high school teacher skilled in ESL and IEPS", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            organizerEvents.Add(new Event("Multi-lingual licensed RN with 5+ years of experience in pediatrics", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            organizerEvents.Add(new Event("Hard-working CNA and Nightingale Award recipient", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
+            organizerEvents.Add(new Event(1,"Resourceful project manager with 10 years of experience", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
+            organizerEvents.Add(new Event(2,"Engaging high school teacher skilled in ESL and IEPS", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
+            organizerEvents.Add(new Event(3,"Multi-lingual licensed RN with 5+ years of experience in pediatrics", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
+            organizerEvents.Add(new Event(4,"Hard-working CNA and Nightingale Award recipient", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
 
             organizerEvents.ForEach(this.organizerEvents.Add);
 
             this.upcomingEvents.Clear();
             List<Event> upcomingEvents = new List<Event>();
-            upcomingEvents.Add(new Event("Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            upcomingEvents.Add(new Event("System.Runtime.Serialization.Formatters.dll", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            upcomingEvents.Add(new Event("EventPlanner.exe", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            upcomingEvents.Add(new Event("Title 24", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
+            upcomingEvents.Add(new Event(5,"Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
+            upcomingEvents.Add(new Event(6,"System.Runtime.Serialization.Formatters.dll", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
+            upcomingEvents.Add(new Event(7,"EventPlanner.exe", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
+            upcomingEvents.Add(new Event(8,"Title 24", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
 
             upcomingEvents.ForEach(this.upcomingEvents.Add);
         }

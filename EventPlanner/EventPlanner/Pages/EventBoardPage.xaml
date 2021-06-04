@@ -1,0 +1,113 @@
+﻿<Page x:Class="EventPlanner.Pages.EventBoardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EventPlanner.Pages" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors"
+      Title="EventBoardPage">
+    <Page.DataContext>
+        <ViewModels:EventBoardViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Label HorizontalAlignment="Left" Content="Choose event" Margin="0,12,0,0"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding AllUsersEvents}" Width="240" Height="25" HorizontalAlignment="Center" SelectedItem="{Binding Event}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button Grid.Row="0" Grid.Column="5" Content="Event information" Height="25"></Button>
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="TO DO" HorizontalAlignment="Center" />
+        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ToDoTasks}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Description}" TextWrapping="Wrap" FontWeight="Bold" />
+                        <Button Grid.Column="1" Content="+" Height="20"/>
+                        <Button Grid.Column="2" Content="-" Height="20"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <!--<Setter Property="Height" Value="30" />-->
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="IN PROGRESS" HorizontalAlignment="Center" />
+        <ListView Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding InProgressTasks}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Description}" TextWrapping="Wrap" FontWeight="Bold" />
+                        <Button Grid.Column="1" Content="+" Height="20"/>
+                        <Button Grid.Column="2" Content="-" Height="20"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Text="DONE" HorizontalAlignment="Center" />
+        <ListView Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding DoneTasks}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Description}" TextWrapping="Wrap" FontWeight="Bold" />
+                        <Button Grid.Column="1" Content="+" Height="20"/>
+                        <Button Grid.Column="2" Content="-" Height="20"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+</Page>
