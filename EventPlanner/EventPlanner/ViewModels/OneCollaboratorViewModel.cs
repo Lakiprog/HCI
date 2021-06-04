@@ -20,8 +20,6 @@ namespace EventPlanner.ViewModels
         private Collaborator collaborator;
         private void InitCommands()
         {
-            //UpdateListCommand = new SearchCollaboratorsCommand(this);
-            //CreateEditWindowCmd = new CreateEditWindowsCommand();
         }
 
         public Collaborator Collaborator
