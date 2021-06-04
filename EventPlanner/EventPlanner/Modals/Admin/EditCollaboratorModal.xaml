@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EventPlanner.Pages.Admin"
       mc:Ignorable="d" 
+      Height="370"
+      Width="300"
       d:DesignHeight="370" d:DesignWidth="300"
       Title="EditCollaboratorModal">
 
@@ -31,7 +33,7 @@
         <Label x:Name="TypeLabel" Content="Type of company" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <Button Content="Delete" Grid.Row="0" Grid.Column="0" Height="20pt" Width="50pt" HorizontalAlignment="Left"/>
         <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="CancelEditCollaboratorButton_Click"/>
-        <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="7" Grid.Column="0" Height="20pt" Width="50pt" />
+        <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="7" Grid.Column="0" Height="20pt" Width="50pt" Click="SaveEditOrganizerModalButton_Click" />
 
     </Grid>
 </Window>

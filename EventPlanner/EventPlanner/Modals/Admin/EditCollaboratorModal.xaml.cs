@@ -1,4 +1,5 @@
 ﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,21 +20,19 @@ namespace EventPlanner.Modals.Admin
     /// </summary>
     public partial class EditCollaboratorModal : Window
     {
-        private Collaborator current;
         public EditCollaboratorModal()
         {
             InitializeComponent();
         }
 
-        public EditCollaboratorModal(Collaborator c)
-        {
-            current = c;
-            InitializeComponent();
-        }
-
         private void CancelEditCollaboratorButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
+        }
+
+        private void SaveEditOrganizerModalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

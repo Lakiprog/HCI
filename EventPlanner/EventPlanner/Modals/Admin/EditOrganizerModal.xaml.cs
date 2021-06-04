@@ -20,22 +20,19 @@ namespace EventPlanner.Modals.Admin
     /// </summary>
     public partial class EditOrganizerModal : Window
     {
-        private Organizer current;
         public EditOrganizerModal()
         {
-            InitializeComponent();
-            //PasswordEditOrganizerPasswordBox.Password = ((OneOrganizerViewModel)this.DataContext).Organizer.Password;
-        }
-
-        public EditOrganizerModal(Organizer o)
-        {
-            current = o;
             InitializeComponent();
         }
 
         private void CancelEditOrganizerButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
+        }
+
+        private void SaveEditOrganizerModalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

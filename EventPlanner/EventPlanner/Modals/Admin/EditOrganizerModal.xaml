@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EventPlanner.Pages.Admin"
       mc:Ignorable="d" 
+      Width="300"
+      Height="400"
       d:DesignHeight="400" d:DesignWidth="300"
       Title="EditOrganizerModal">
 
@@ -33,7 +35,7 @@
         <TextBox x:Name="UsernameEditOrganizerModalTextBox"  Text="{Binding Path=Organizer.Username}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap" />
         <Label x:Name="PasswordLabel" Content="Password" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" Grid.Row="9" Grid.Column="1" Height="20pt" Width="50pt" Click="CancelEditOrganizerButton_Click"/>
-        <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="9" Grid.Column="0" Height="20pt" Width="50pt"/>
+        <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="9" Grid.Column="0" Height="20pt" Width="50pt" Click="SaveEditOrganizerModalButton_Click" />
         <Button x:Name="DeleteEditOrganizerModalButton" Content="Delete" Grid.Row="0" Grid.Column="0" Height="20pt" Width="50pt" HorizontalAlignment="Left"/>
         <PasswordBox x:Name="PasswordEditOrganizerPasswordBox" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"/>
 
