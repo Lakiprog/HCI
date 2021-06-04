@@ -1,0 +1,122 @@
+﻿<Page x:Class="EventPlanner.Pages.Admin.Homepage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EventPlanner.Pages.Admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Homepage">
+
+    <Grid>
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Organizers" />
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7cm" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.7cm" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="searchOrganizersTextBox" Grid.Column="0" />
+                        <Button Grid.Column="1" Content="Search" Name="searchOrganizersButton"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="0.1*" />
+                        </Grid.ColumnDefinitions>
+                        <DataGrid Name="OrganizersDataGrid" Grid.Row="1" Grid.Column="0"
+                    AlternatingRowBackground="Gainsboro" AlternationCount="2"
+                    CanUserResizeColumns="False" CanUserReorderColumns="False"
+                    IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Width="0.5*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Username" Width="0.5*"></DataGridTextColumn>
+                                <DataGridTemplateColumn Header="Edit" Width="0.15*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="EditOrganizer_Click">Edit</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <ScrollBar x:Name="OrganizersScrollbar" Grid.Row="1" Grid.Column="1" />
+                    </Grid>
+                    
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="addOrganizerButton" Content="Add Organizer" Grid.Column="1" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Collaborators" />
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7cm" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0.7cm" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0" x:Name="SearchCollaboratorsTextBox">
+                        </TextBox>
+                        <Button Grid.Column="1" Content="Search" Name="searchCollaboratorsButton" 
+                            Command="{Binding UpdateListCommand}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="0.1*" />
+                        </Grid.ColumnDefinitions>
+                        <DataGrid Name="CollaboratorsDataGrid" Grid.Column="0" ItemsSource="{Binding Path=Collaborators}"
+                    AlternatingRowBackground="Gainsboro" AlternationCount="2"
+                    CanUserResizeColumns="False" CanUserReorderColumns="False"
+                    IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Width="0.3*" Binding="{Binding Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Type" Width="0.3*" Binding="{Binding Type}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Address" Width="0.3*" Binding="{Binding Address}"></DataGridTextColumn>
+                                <DataGridTemplateColumn Header="Edit" Width="0.15*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="EditCollaborator_Click">Edit</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <ScrollBar x:Name="CollaboratorsScrollbar" Grid.Column="1" Grid.RowSpan="3" Margin="0,0,0,0.3" HorizontalAlignment="Left"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Content="Add Collaborator" Click="AddCollaboratorButton_Click"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
+
+    </Grid>
+</Page>
