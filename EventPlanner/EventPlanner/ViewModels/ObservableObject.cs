@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EventPlanner.ViewModels
 {
-    class ObservableObject : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

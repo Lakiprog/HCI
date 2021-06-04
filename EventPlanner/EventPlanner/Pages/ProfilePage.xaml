@@ -1,0 +1,160 @@
+﻿<Page x:Class="EventPlanner.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewModels="clr-namespace:EventPlanner.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="700"
+      Title="ProfilePage">
+    <Page.DataContext>
+        <viewModels:UserViewModel />
+    </Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2.2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18pt" Content="User information" />
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <Label Content="Username:" />
+            <TextBox Name="usernameTextbox" Text="{Binding User.Username}" IsEnabled="{Binding CanUpdate}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <Label Content="First name:" />
+            <TextBox Name="firstNameTextbox" Text="{Binding User.FirstName}" IsEnabled="{Binding CanUpdate}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
+            <Label Content="Last name:" />
+            <TextBox Name="lastNameTextbox" Text="{Binding User.LastName}" IsEnabled="{Binding CanUpdate}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
+            <Label Content="Password:" />
+            <TextBox Name="passwordTextbox" Text="{Binding User.Password}" IsEnabled="{Binding CanUpdate}"/>
+        </StackPanel>
+        <Button Grid.Column="1" Grid.Row="5" Margin="10 10 0 10" Content="Edit"
+            Click="editUserButton_Click"/>
+        <Button Grid.Column="0" Grid.Row="5" Margin="0 10 10 10" Content="Save Changes"
+            Command="{Binding EditUserCmd}" IsEnabled="{Binding CanUpdate}"/>
+        
+        <StackPanel Grid.Row="1" Grid.Column="2"  Orientation="Horizontal" Margin="100,0,0,12">
+            
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsOrganizer}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Label HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14pt" Content="Rating:" Margin="0,0,15,0"/>
+            <Path Stroke="Transparent" StrokeThickness="1" Margin="0,15,0,0"
+                    Data="M 5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6, 9 L 9,11 L 8,7 L 11,4 L 7,4 L 6,0">
+                <Path.Style>
+                    <Style TargetType="{x:Type Path}">
+                        <Setter Property="Fill" Value="Gray" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="1">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="2">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="3">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="4">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="5">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
+            <Path Stroke="Transparent" StrokeThickness="1" Margin="0,15,0,0"
+                                      Data="M 5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6, 9 L 9,11 L 8,7 L 11,4 L 7,4 L 6,0">
+                <Path.Style>
+                    <Style TargetType="{x:Type Path}">
+                        <Setter Property="Fill" Value="Gray" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="2">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="3">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="4">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="5">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
+            <Path Stroke="Transparent" StrokeThickness="1" Margin="0,15,0,0"
+                                      Data="M 5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6, 9 L 9,11 L 8,7 L 11,4 L 7,4 L 6,0">
+                <Path.Style>
+                    <Style TargetType="{x:Type Path}">
+                        <Setter Property="Fill" Value="Gray" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="3">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="4">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="5">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
+            <Path Stroke="Transparent" StrokeThickness="1" Margin="0,15,0,0"
+                                      Data="M 5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6, 9 L 9,11 L 8,7 L 11,4 L 7,4 L 6,0">
+                <Path.Style>
+                    <Style TargetType="{x:Type Path}">
+                        <Setter Property="Fill" Value="Gray" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="4">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="5">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
+            <Path Stroke="Transparent" StrokeThickness="1" Margin="0,15,0,0"
+                                      Data="M 5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6, 9 L 9,11 L 8,7 L 11,4 L 7,4 L 6,0">
+                <Path.Style>
+                    <Style TargetType="{x:Type Path}">
+                        <Setter Property="Fill" Value="Gray" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding User.Rating}" Value="5">
+                                <Setter Property="Fill" Value="Gold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
+        </StackPanel>
+    </Grid>
+</Page>
