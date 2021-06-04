@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EventPlanner.Modals.Admin;
+using EventPlanner.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,9 +20,12 @@ namespace EventPlanner.Pages.Admin
     /// </summary>
     public partial class Homepage : Page
     {
+        private Models.Organizer currentO;
+        private Collaborator currentC;
         public Homepage()
         {
             InitializeComponent();
+            
         }
 
         private void tutorialButtonHomepageAdmin_Copy_Click(object sender, RoutedEventArgs e)
@@ -33,19 +38,28 @@ namespace EventPlanner.Pages.Admin
 
         }
 
+        private void AddOrganizerButton_Click(object sender, RoutedEventArgs e) {
+            var w = new RegisterOrganizerModal();
+            w.ShowDialog();
+        }
+
         private void EditOrganizer_Click(object sender, RoutedEventArgs e)
         {
-
+            //currentO = ((Models.Organizer)(sender as Button).DataContext);
+            //var w = new EditOrganizerModal();
+            //w.ShowDialog();
         }
 
         private void EditCollaborator_Click(object sender, RoutedEventArgs e)
         {
-
+            //var w = new EditCollaboratorModal();
+            //w.ShowDialog();
         }
 
         private void AddCollaboratorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var w = new RegisterCollaboratorModal();
+            w.ShowDialog();
         }
     }
 }
