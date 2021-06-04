@@ -1,7 +1,9 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,18 +26,29 @@ namespace EventPlanner.Pages.Organizer
         public HomePage()
         {
             InitializeComponent();
-            FreeRequestsListView.ItemsSource = new List<String> { "Resourceful project manager with 10 years of experience", 
-            "Engaging high school teacher skilled in ESL and IEPS", "Multi-lingual licensed RN with 5+ years of experience in pediatrics" };
-
-            UpcomingEventsListView.ItemsSource = new List<String> { "Hard-working CNA and Nightingale Award recipient",
-            "Personable sales representative who exceeds sales targets by 25%", "Skilled bartender with 4 years’ experience in high-end restaurants",
-            "Likable manager and winner of management ABA", "Diplomatic receptionist with deep interpersonal skills"};
         }
 
         private void AddCollaboratorButton_Click(object sender, RoutedEventArgs e)
         {
-            var AddCollaboratorModal = new Modals.AddCollaboratorModal();
+            var AddCollaboratorModal = new Modals.AddCollaboratorModal(); // TO DO - same as bellow
             AddCollaboratorModal.ShowDialog();
+        }
+
+        private void FreeEventsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedEvent = ((ListViewItem)sender).Content as Event;
+
+            var eventDetailsModal = new Modals.EventDetailsModal();
+            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true);
+            eventDetailsModal.ShowDialog();
+        }
+        private void OrganizersEventsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedEvent = ((ListViewItem)sender).Content as Event;
+
+            var eventDetailsModal = new Modals.EventDetailsModal();
+            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, false);
+            eventDetailsModal.ShowDialog();
         }
     }
 }
