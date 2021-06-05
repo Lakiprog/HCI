@@ -11,21 +11,31 @@ namespace EventPlanner.Models
         private string password;
         private string firstName;
         private string lastName;
-        public String Username  {
+        private List<Message> messages;
+        public String Username
+        {
             get => username;
             set { username = value; RaisePropertyChngedEvent("Username"); }
         }
-        public String Password  { 
+        public String Password
+        {
             get => password;
-            set { password = value; RaisePropertyChngedEvent("Password"); } 
+            set { password = value; RaisePropertyChngedEvent("Password"); }
         }
-        public String FirstName { 
+        public String FirstName
+        {
             get => firstName;
             set { firstName = value; RaisePropertyChngedEvent("FirstName"); }
         }
-        public String LastName  { 
+        public String LastName
+        {
             get => lastName;
-            set { lastName = value; RaisePropertyChngedEvent("LastName"); } 
+            set { lastName = value; RaisePropertyChngedEvent("LastName"); }
+        }
+        public List<Message> Messages
+        {
+            get => messages;
+            set { messages = value; RaisePropertyChngedEvent("Messages"); }
         }
 
         public User(string username, string password, string firstName, string lastName)
@@ -34,6 +44,7 @@ namespace EventPlanner.Models
             Password = password;
             FirstName = firstName;
             LastName = lastName;
+            messages = new List<Message>();
         }
     }
 }
