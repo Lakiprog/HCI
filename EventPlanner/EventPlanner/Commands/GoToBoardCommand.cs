@@ -8,13 +8,6 @@ namespace EventPlanner.Commands
 {
     class GoToBoardCommand : ICommand
     {
-
-        public GoToBoardCommand(EventsViewModel viewModel)
-        {
-            _ViewModel = viewModel;
-        }
-        private EventsViewModel _ViewModel;
-
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
