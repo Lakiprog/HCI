@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
-    class EventsViewModel : ObservableObject
+    class EventsViewModel : ObservableObject, ISearchable
     {
         public EventsViewModel()
         {
@@ -42,8 +42,17 @@ namespace EventPlanner.ViewModels
             set { selectedEvent = value; RaisePropertyChngedEvent("SelectedEvent"); }
         }
 
-
+        public ICommand SearchCmd
+        {
+            get;
+            private set;
+        }
         public ICommand ShowEventModalCommand
+        {
+            get;
+            private set;
+        }
+        public ICommand GoToBoardCmd
         {
             get;
             private set;
@@ -52,6 +61,8 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             ShowEventModalCommand = new ShowEventModalCommand();
+            SearchCmd = new SearchCommand(this);
+            GoToBoardCmd = new GoToBoardCommand();
         }
         private void InitData()
         {
@@ -92,5 +103,10 @@ namespace EventPlanner.ViewModels
             pastEvents.ForEach(this.pastEvents.Add);
         }
 
+        public void Search(string search)
+        {
+            // TODO: Implement search of events
+            throw new NotImplementedException();
+        }
     }
 }

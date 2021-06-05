@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
-    class OrganizersViewModel : ObservableObject
+    class OrganizersViewModel : ObservableObject, ISearchable
     {
         /// <summary>
         /// Gets the Organizer Collection instance
@@ -22,7 +22,7 @@ namespace EventPlanner.ViewModels
         /// <summary>
         /// Gets the FilterOrganizersCommand for the ViewModel
         /// </summary>
-        public ICommand FilterOrganizersCmd
+        public ICommand SearchCmd
         {
             get;
             private set;
@@ -34,7 +34,7 @@ namespace EventPlanner.ViewModels
             InitCommands();
         }
 
-        public void FilterOrganizers(string search)
+        public void Search(string search)
         {
             AddOriginalData();
             if (search.Length > 0)
@@ -51,7 +51,7 @@ namespace EventPlanner.ViewModels
 
         private void InitCommands()
         {
-            FilterOrganizersCmd = new FilterOrganizersCommand(this);
+            SearchCmd = new SearchCommand(this);
         }
 
         private ObservableCollection<Organizer> organizers;

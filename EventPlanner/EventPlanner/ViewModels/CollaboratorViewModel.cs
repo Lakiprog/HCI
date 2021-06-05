@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
-    class CollaboratorViewModel : ObservableObject
+    class CollaboratorViewModel : ObservableObject, ISearchable
     {
         public CollaboratorViewModel()
         {
@@ -19,7 +19,7 @@ namespace EventPlanner.ViewModels
         private ObservableCollection<Collaborator> collaborators;
         private void InitCommands()
         {
-            UpdateListCommand = new SearchCollaboratorsCommand(this);
+            SearchCmd = new SearchCommand(this);
         }
         private void InitData()
         {
@@ -43,13 +43,13 @@ namespace EventPlanner.ViewModels
             get => collaborators;
         }
 
-        public ICommand UpdateListCommand
+        public ICommand SearchCmd
         {
             get;
             private set;
         }
 
-        public void SearchCollaborators(string search)
+        public void Search(string search)
         {
             AddOriginalData();
             if (search.Length > 0)
@@ -62,6 +62,5 @@ namespace EventPlanner.ViewModels
                 ).ForEach(this.collaborators.Add);
             }
         }
-
     }
 }
