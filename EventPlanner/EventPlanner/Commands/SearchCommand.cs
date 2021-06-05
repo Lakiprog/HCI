@@ -6,16 +6,13 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class FilterOrganizersCommand : ICommand
+    internal class SearchCommand : ICommand
     {
-        public FilterOrganizersCommand(OrganizersViewModel viewModel)
+        public SearchCommand(ISearchable viewModel)
         {
             _ViewModel = viewModel;
         }
-
-        private OrganizersViewModel _ViewModel;
-
-        #region ICommand Members
+        private ISearchable _ViewModel;
 
         public event EventHandler CanExecuteChanged
         {
@@ -30,9 +27,7 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _ViewModel.FilterOrganizers((string)parameter);
+            _ViewModel.Search((string)parameter);
         }
-
-        #endregion
     }
 }
