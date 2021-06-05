@@ -12,12 +12,20 @@ namespace EventPlanner.ViewModels
         public OrganizerViewModel(Organizer o)
         {
             organizer = o;
+            temp = new Organizer(o.Username, o.Password, o.FirstName, o.LastName);
             InitCommands();
         }
 
         private Organizer organizer;
+        private Organizer temp;
         private void InitCommands()
         {
+            SaveCommand = new EditOrganizerCommand(this);
+        }
+
+        public Organizer Temp
+        {
+            get => temp;
         }
 
         public Organizer Organizer
@@ -25,7 +33,19 @@ namespace EventPlanner.ViewModels
             get => organizer;
         }
 
+        public void saveChanges()
+        {
+            organizer.FirstName = temp.FirstName;
+            organizer.LastName = temp.LastName;
+            organizer.Password = temp.Password;
+            organizer.Username = temp.Username;
+        }
 
+        public ICommand SaveCommand
+        {
+            get;
+            private set;
+        }
 
     }
 }
