@@ -33,7 +33,7 @@ namespace EventPlanner.Windows.User
                 OrganizersViewModel viewModel = (OrganizersViewModel)ratedOrganizerList.DataContext;
                 if (viewModel != null)
                 {
-                    viewModel.FilterOrganizersCmd.Execute(organizerSearchTextBox.Text);
+                    viewModel.SearchCmd.Execute(organizerSearchTextBox.Text);
                 }
             }
         }
