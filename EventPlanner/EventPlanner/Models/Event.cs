@@ -14,7 +14,7 @@ namespace EventPlanner.Models
         private DateTime _DateFrom;
         private DateTime _DateTo;
         private User _User;
-        public String Title
+        public string Title
         {
             get => _Title;
             set { _Title = value; RaisePropertyChngedEvent("Title"); }
@@ -24,7 +24,7 @@ namespace EventPlanner.Models
             get => _Type;
             set { _Type = value; RaisePropertyChngedEvent("Type"); }
         }
-        public String Description
+        public string Description
         {
             get => _Description;
             set { _Description = value; RaisePropertyChngedEvent("Description"); }
