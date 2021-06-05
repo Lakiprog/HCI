@@ -1,5 +1,4 @@
-﻿using EventPlanner.Windows.User;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -12,22 +11,28 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Components
+namespace EventPlanner.Pages.Admin
 {
     /// <summary>
-    /// Interaction logic for NavBar.xaml
+    /// Interaction logic for ProfilePage.xaml
     /// </summary>
-    public partial class NavBar : UserControl
+    public partial class ProfilePage : Page
     {
-        public NavBar()
+        public ProfilePage()
         {
             InitializeComponent();
         }
 
-        private void makeRequestNavBtn_Click(object sender, RoutedEventArgs e)
+        private void tutorialButtonProfilePageAdmin_Click(object sender, RoutedEventArgs e)
         {
-            MakeRequestWindow window = new MakeRequestWindow();
-            window.Show();
+
         }
+
+        private void EditProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new EditProfileModal();
+            w.ShowDialog();
+        }
+
     }
 }

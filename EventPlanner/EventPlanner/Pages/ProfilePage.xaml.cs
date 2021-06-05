@@ -1,4 +1,4 @@
-﻿using EventPlanner.Windows.User;
+﻿using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,22 +12,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Components
+namespace EventPlanner.Pages
 {
     /// <summary>
-    /// Interaction logic for NavBar.xaml
+    /// Interaction logic for ProfilePage.xaml
     /// </summary>
-    public partial class NavBar : UserControl
+    public partial class ProfilePage : Page
     {
-        public NavBar()
+        public ProfilePage()
         {
             InitializeComponent();
         }
 
-        private void makeRequestNavBtn_Click(object sender, RoutedEventArgs e)
+        private void editUserButton_Click(object sender, RoutedEventArgs e)
         {
-            MakeRequestWindow window = new MakeRequestWindow();
-            window.Show();
+            UserViewModel viewModel = (UserViewModel)DataContext;
+            if (viewModel != null)
+            {
+                viewModel.CanUpdate = true;
+            }
         }
     }
 }

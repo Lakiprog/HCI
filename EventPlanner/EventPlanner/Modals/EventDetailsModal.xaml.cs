@@ -1,4 +1,4 @@
-﻿using EventPlanner.Windows.User;
+﻿using EventPlanner.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,25 +9,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Components
+namespace EventPlanner.Modals
 {
     /// <summary>
-    /// Interaction logic for NavBar.xaml
+    /// Interaction logic for EventDetailsModal.xaml
     /// </summary>
-    public partial class NavBar : UserControl
+    public partial class EventDetailsModal : Window
     {
-        public NavBar()
+        public EventDetailsModal()
         {
             InitializeComponent();
-        }
-
-        private void makeRequestNavBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MakeRequestWindow window = new MakeRequestWindow();
-            window.Show();
         }
     }
 }

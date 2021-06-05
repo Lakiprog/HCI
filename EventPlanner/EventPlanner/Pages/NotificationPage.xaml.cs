@@ -1,6 +1,8 @@
-﻿using EventPlanner.Windows.User;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,22 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Components
+namespace EventPlanner.Pages
 {
     /// <summary>
-    /// Interaction logic for NavBar.xaml
+    /// Interaction logic for NotificationPage.xaml
     /// </summary>
-    public partial class NavBar : UserControl
+    public partial class NotificationPage : Page
     {
-        public NavBar()
+        public NotificationPage()
         {
             InitializeComponent();
         }
-
-        private void makeRequestNavBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MakeRequestWindow window = new MakeRequestWindow();
-            window.Show();
-        }
+        
     }
 }
