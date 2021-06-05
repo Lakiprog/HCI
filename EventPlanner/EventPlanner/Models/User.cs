@@ -27,7 +27,7 @@ namespace EventPlanner.Models
             get => lastName;
             set { lastName = value; RaisePropertyChngedEvent("LastName"); } 
         }
-        
+
         public User(string username, string password, string firstName, string lastName)
         {
             Username = username;
