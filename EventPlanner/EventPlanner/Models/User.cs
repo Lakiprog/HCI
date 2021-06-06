@@ -1,10 +1,16 @@
 ﻿using EventPlanner.ViewModels;
+using JsonSubTypes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EventPlanner.Models
 {
+    [JsonConverter(typeof(JsonSubtypes), "role")]
+    [JsonSubtypes.KnownSubType(typeof(User), "user")]
+    [JsonSubtypes.KnownSubType(typeof(Admin), "admin")]
+    [JsonSubtypes.KnownSubType(typeof(Organizer), "organizer")]
     public class User : ObservableObject
     {
         private int id;
@@ -13,10 +19,7 @@ namespace EventPlanner.Models
         private string firstName;
         private string lastName;
         private List<Conversation> conversations;
-        public int ID
-        {
-            get => id;
-        }
+        public int ID => id;
         public String Username
         {
             get => username;
@@ -44,7 +47,8 @@ namespace EventPlanner.Models
         }
 
         public string FullName { get { return string.Format("{0} {1}", FirstName, LastName); } }
-
+        [JsonProperty]
+        protected virtual string role { get; } = "user";
         public User(int id, string username, string password, string firstName, string lastName)
         {
             this.id = id;
@@ -54,5 +58,6 @@ namespace EventPlanner.Models
             this.lastName = lastName;
             conversations = new List<Conversation>();
         }
+
     }
 }
