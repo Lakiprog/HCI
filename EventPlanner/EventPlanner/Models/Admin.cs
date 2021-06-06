@@ -7,8 +7,8 @@ namespace EventPlanner.Models
     public class Admin : User
     {
 
-        public Admin(string username, string password, string firstName, string lastName)
-            : base(username, password, firstName, lastName)
+        public Admin(int id, string username, string password, string firstName, string lastName)
+            : base(id, username, password, firstName, lastName)
         {
         }
     }

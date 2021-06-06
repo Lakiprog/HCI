@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Commands;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,18 +19,12 @@ namespace EventPlanner.ViewModels
         {
             InitData();
             InitCommands();
-            InitChildViewModels();
         }
 
         private void InitData()
         {
             // getting logged-in user
-            user = new Organizer("micko", "micko123", "Mica", "Lakic", 3);
-            user.Messages.Add(new Message("Hey, where are you?", 2, DateTime.Now, false));
-            user.Messages.Add(new Message("Hey, hello?", 2, DateTime.Now, true));
-            user.Messages.Add(new Message("I've almost finished this event", 3, DateTime.Now, false));
-            user.Messages.Add(new Message("Hope you're doing ok", 4, DateTime.Now, false));
-            user.Messages.Add(new Message("I saw you the other day.", 1, DateTime.Now, true));
+            user = UserService.Singleton().CurrentUser;
             isOrganizer = true;
             canUpdate = false;
         }
@@ -40,10 +35,6 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             EditUserCmd = new EditUserCommand(this);
-        }
-        private void InitChildViewModels()
-        {
-            UserMessagesViewModel = new UserMessagesViewModel(User);
         }
         public User User
         {
@@ -61,13 +52,6 @@ namespace EventPlanner.ViewModels
             get => canUpdate;
             set { canUpdate = value; RaisePropertyChngedEvent("CanUpdate"); }
         }
-        public UserMessagesViewModel UserMessagesViewModel
-        {
-            get => userMessagesViewModel;
-            set { userMessagesViewModel = value; RaisePropertyChngedEvent("UserMessagesViewModel"); }
-        }
-
-        private UserMessagesViewModel userMessagesViewModel;
         public void SaveChanges()
         {
             Debug.Assert(false, String.Format("{0} is username.", User.Username));

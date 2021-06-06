@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventPlanner.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace EventPlanner
     {
         public MainWindow()
         {
+            UserService.Singleton().Login("marko.markovic", "test");
             InitializeComponent();
         }
     }

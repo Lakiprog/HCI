@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Commands;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,10 +15,10 @@ namespace EventPlanner.ViewModels
         {
             get => messages;
         }
-        public string SenderName
+        public User OtherPerson
         {
-            get => senderName;
-            set { senderName = value; RaisePropertyChngedEvent("SenderName"); }
+            get => otherPerson;
+            set { otherPerson = value; RaisePropertyChngedEvent("OtherPerson"); }
         }
         public string CurrentMessage {
             get => currentMessage;
@@ -29,23 +30,27 @@ namespace EventPlanner.ViewModels
             private set;
         }
 
-        public MessagesViewModel(List<Message> messages, string senderName)
+        public MessagesViewModel(List<Message> messages, int conversationId, User otherPerson)
         {
             this.messages = new ObservableCollection<Message>();
             messages.ForEach(this.messages.Add);
-            this.senderName = senderName;
+            this.conversationId = conversationId;
+            this.otherPerson = otherPerson;
             SendMessageCmd = new SendMessageCommand(this);
         }
         public void SendMessage(string messageContents)
         {
-            Message message = new Message(messageContents, 1, DateTime.Now, true);
+            int currentUserId = UserService.Singleton().CurrentUser.ID;
+            Message message = new Message(conversationId, messageContents, currentUserId, otherPerson.ID, DateTime.Now);
+            ConversationService.Singleton().SaveMessage(message);
             messages.Add(message);
             // Service call to save message to db here
             CurrentMessage = string.Empty;
         }
 
         private ObservableCollection<Message> messages;
-        private string senderName;
+        private User otherPerson;
         private string currentMessage;
+        private int conversationId;
     }
 }

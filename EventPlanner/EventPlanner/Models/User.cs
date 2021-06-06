@@ -7,11 +7,16 @@ namespace EventPlanner.Models
 {
     public class User : ObservableObject
     {
+        private int id;
         private string username;
         private string password;
         private string firstName;
         private string lastName;
-        private List<Message> messages;
+        private List<Conversation> conversations;
+        public int ID
+        {
+            get => id;
+        }
         public String Username
         {
             get => username;
@@ -32,19 +37,22 @@ namespace EventPlanner.Models
             get => lastName;
             set { lastName = value; RaisePropertyChngedEvent("LastName"); }
         }
-        public List<Message> Messages
+        public List<Conversation> Conversations
         {
-            get => messages;
-            set { messages = value; RaisePropertyChngedEvent("Messages"); }
+            get => conversations;
+            set { conversations = value; RaisePropertyChngedEvent("Conversations"); }
         }
 
-        public User(string username, string password, string firstName, string lastName)
+        public string FullName { get { return string.Format("{0} {1}", FirstName, LastName); } }
+
+        public User(int id, string username, string password, string firstName, string lastName)
         {
-            Username = username;
-            Password = password;
-            FirstName = firstName;
-            LastName = lastName;
-            messages = new List<Message>();
+            this.id = id;
+            this.username = username;
+            this.password = password;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            conversations = new List<Conversation>();
         }
     }
 }

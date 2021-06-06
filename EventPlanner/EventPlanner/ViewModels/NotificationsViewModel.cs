@@ -30,8 +30,8 @@ namespace EventPlanner.ViewModels
         private void AddOriginalData()
         {
             // Load user notifications
-            User u1 = new User("micko","micko123","Mica","Lakic");
-            User u2 = new User("stefan", "stefan123", "Stefan", "Stefan");
+            User u1 = new User(1,"micko","micko123","Mica","Lakic");
+            User u2 = new User(2,"stefan", "stefan123", "Stefan", "Stefan");
 
             List<Notification> notifications = new List<Notification>();
             notifications.Add(new Notification(1, u1, new NotificationElement(), NotificationType.MESSAGE_SENT));
