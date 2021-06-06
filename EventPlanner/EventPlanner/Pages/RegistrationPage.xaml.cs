@@ -1,9 +1,6 @@
-﻿using EventPlanner.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,17 +11,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner
+namespace EventPlanner.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RegistrationPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RegistrationPage : Page
     {
-        public MainWindow()
+        public RegistrationPage()
         {
-            UserService.Singleton().Login("marko.markovic", "test");
             InitializeComponent();
+        }
+
+        private void registrationBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
