@@ -50,9 +50,10 @@ namespace EventPlanner.Services
         {
             List<Conversation> conversations = new List<Conversation>();
             using (StreamReader reader = new StreamReader(PATH))
-            {
+            {   
                 string data = reader.ReadToEnd();
                 conversations = JsonConvert.DeserializeObject<List<Conversation>>(data);
+                conversations.ForEach(c => c.Messages.Sort((x, y) => DateTime.Compare(x.TimeStamp, y.TimeStamp)));
             }
             return conversations;
         }
