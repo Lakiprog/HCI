@@ -8,9 +8,10 @@
       xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      x:Name="MessagesPageComponent"
       Title="MessagesPage">
     <Page.DataContext>
-        <viewModels:UserViewModel />
+        <viewModels:UserMessagesViewModel />
     </Page.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,7 +27,7 @@
             <Viewbox MaxWidth="3cm">
                 <TextBlock>Inbox</TextBlock>
             </Viewbox>
-            <ItemsControl x:Name="messageComponent" Grid.Row="1" DataContext="{Binding UserMessagesViewModel}" ItemsSource="{Binding MessagesViewModels}">
+            <ItemsControl x:Name="messageComponent" Grid.Row="1" ItemsSource="{Binding MessagesViewModels}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,0,0,10">
@@ -63,7 +64,7 @@
                                     </Style>
                                 </Rectangle.Style>
                             </Rectangle>
-                            <Label HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" FontSize="18pt" Content="{Binding SenderName}" />
+                            <Label HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" FontSize="18pt" Content="{Binding OtherPerson.FullName}" />
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -72,10 +73,10 @@
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition MaxHeight="84pt" />
+                <RowDefinition MinHeight="24pt" MaxHeight="84pt" />
             </Grid.RowDefinitions>
             <ScrollViewer x:Name="messageScrollViewer">
-                <ItemsControl SizeChanged="ItemsControl_SizeChanged" DataContext="{Binding UserMessagesViewModel.SelectedViewModel}" ItemsSource="{Binding Messages}">
+                <ItemsControl SizeChanged="ItemsControl_SizeChanged" DataContext="{Binding SelectedViewModel}" ItemsSource="{Binding Messages}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border x:Name="borderComponent"
@@ -97,7 +98,24 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
-                                <TextBlock MaxWidth="9cm" Padding="18" TextWrapping="Wrap" Text="{Binding Content}" />
+                                <StackPanel Margin="18">
+                                    <TextBlock MaxWidth="9cm">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCurrentUsersMessage}" Value="True">
+                                                        <Setter Property="Text" Value="You" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsCurrentUsersMessage}" Value="False">
+                                                        <Setter Property="Text" Value="{Binding ElementName=messageComponent,
+                                                            Path=DataContext.SelectedViewModel.OtherPerson.FullName}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock MaxWidth="9cm" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Content}" />
+                                </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -108,9 +126,9 @@
                     <ColumnDefinition />
                     <ColumnDefinition MaxWidth="2cm" />
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="messageTextBox" Text="{Binding UserMessagesViewModel.SelectedViewModel.CurrentMessage, Mode=OneWay}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" KeyDown="messageTextBox_KeyDown">
+                <TextBox x:Name="messageTextBox" Text="{Binding SelectedViewModel.CurrentMessage, Mode=OneWay}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" KeyDown="messageTextBox_KeyDown">
                     <TextBox.InputBindings>
-                        <KeyBinding Command="{Binding UserMessagesViewModel.SelectedViewModel.SendMessageCmd}"
+                        <KeyBinding Command="{Binding SelectedViewModel.SendMessageCmd}"
                                     CommandParameter="{Binding ElementName=messageTextBox, Path=Text}"
                                     Key="Enter" />
                     </TextBox.InputBindings>
@@ -118,7 +136,7 @@
                 <Button Name="sendButton"
                         Content="SEND"
                         Grid.Column="1"
-                        Command="{Binding UserMessagesViewModel.SelectedViewModel.SendMessageCmd}"
+                        Command="{Binding SelectedViewModel.SendMessageCmd}"
                         CommandParameter="{Binding ElementName=messageTextBox, Path=Text}" />
             </Grid>
         </Grid>

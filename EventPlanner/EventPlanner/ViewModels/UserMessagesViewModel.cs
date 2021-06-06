@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using EventPlanner.Commands;
 using System.Windows.Input;
+using EventPlanner.Services;
 
 namespace EventPlanner.ViewModels
 {
@@ -24,10 +25,9 @@ namespace EventPlanner.ViewModels
         {
             get; private set;
         }
-
-        public UserMessagesViewModel(User user)
+        public UserMessagesViewModel()
         {
-            InitData(user);
+            InitData(UserService.Singleton().CurrentUser);
             InitCommands();
         }
 
@@ -35,14 +35,9 @@ namespace EventPlanner.ViewModels
         {
             messagesViewModels = new ObservableCollection<MessagesViewModel>();
 
-            var results = from m in user.Messages
-                          orderby m.TimeStamp ascending
-                          group m by m.SenderId into n
-                          select new { SenderId = n.Key, Messages = n.ToList() };
-
-            results.ToList().ForEach(senderMessages =>
+            user.Conversations.ForEach(conversation =>
             {
-                messagesViewModels.Add(new MessagesViewModel(senderMessages.Messages, "Hernos"));
+                messagesViewModels.Add(new MessagesViewModel(conversation.Messages, conversation.ID, conversation.OtherPerson ));
             });
 
             if (messagesViewModels.Count > 0)

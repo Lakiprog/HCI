@@ -33,7 +33,7 @@ namespace EventPlanner.Pages
 
         private void ItemsControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            messageScrollViewer.ScrollToVerticalOffset(messageScrollViewer.ExtentHeight);
+            messageScrollViewer.ScrollToEnd();
         }
     }
 }

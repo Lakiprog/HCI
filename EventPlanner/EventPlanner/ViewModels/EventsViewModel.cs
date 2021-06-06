@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Commands;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -48,7 +49,7 @@ namespace EventPlanner.ViewModels
         {
             this.organizerEvents.Clear();
             List<Event> organizerEvents = new List<Event>();
-            User user = new User("micko", "micko123", "Mica", "Lakic");
+            User user = UserService.Singleton().CurrentUser;
             organizerEvents.Add(new Event("Resourceful project manager with 10 years of experience", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
             organizerEvents.Add(new Event("Engaging high school teacher skilled in ESL and IEPS", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
             organizerEvents.Add(new Event("Multi-lingual licensed RN with 5+ years of experience in pediatrics", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
