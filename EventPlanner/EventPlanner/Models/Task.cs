@@ -9,12 +9,24 @@ namespace EventPlanner.Models
     public enum TaskType { GENERIC, SEATING }
     public class Task : ObservableObject
     {
+        private int _Id;
+        private string _Title;
         private TaskStatus _Status;
         private int _EventId;
         private string _Description;
         private Collaborator _Collaborator;
         private TaskType _Type;
 
+        public int Id
+        {
+            get => _Id;
+            set { _Id = value; RaisePropertyChngedEvent("Id"); }
+        }
+        public String Title
+        {
+            get => _Title;
+            set { _Title = value; RaisePropertyChngedEvent("Title"); }
+        }
         public TaskStatus Status
         {
             get => _Status;
@@ -40,13 +52,15 @@ namespace EventPlanner.Models
             get => _Type;
             set { _Type = value; RaisePropertyChngedEvent("Type"); }
         }
-        public Task(TaskStatus status, int eventId, string description, Collaborator collaborator, TaskType type)
+        public Task(string title, TaskStatus status, int eventId, string description, Collaborator collaborator, TaskType type)
         {
+            Title = title;
             Status = status;
             EventId = eventId;
             Description = description;
             Collaborator = collaborator;
             Type = type;
         }
+        public Task() { }
     }
 }

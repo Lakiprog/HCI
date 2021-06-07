@@ -1,9 +1,11 @@
-﻿<Page x:Class="EventPlanner.Pages.EventBoardPage"
+﻿
+    <Page x:Class="EventPlanner.Pages.EventBoardPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EventPlanner.Pages" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels"
+      xmlns:models="clr-namespace:EventPlanner.Models"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors"
@@ -42,9 +44,15 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Grid.Row="0" Grid.Column="5" Content="Event information" Height="25" Command="{Binding OpenModalCmd}" CommandParameter="{Binding Event}"></Button>
+        <Button Grid.Row="0" Grid.Column="5" Content="Event information" Height="25" Command="{Binding OpenViewItemModalCmd}" CommandParameter="{Binding Event}"></Button>
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="TO DO" HorizontalAlignment="Center" />
-        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ToDoTasks}">
+        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Name="TaskListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ToDoTasks}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding OpenViewItemModalCmd}" 
+                        CommandParameter="{Binding ElementName=TaskListView, Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -53,7 +61,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Description}" TextWrapping="Wrap" FontWeight="Bold" />
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" FontWeight="Bold" />
                         <Button Grid.Column="1" Content="✓" Height="20"/>
                         <Button Grid.Column="2" Content="✕" Height="20" Width="20"/>
                     </Grid>
@@ -63,9 +71,10 @@
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
+                
             </ListView.ItemContainerStyle>
         </ListView>
-        <Button Grid.Column="1" Grid.Row="3" Content="+" Height="22" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="+" Height="22" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right" Command="{Binding OpenCreateTaskModalCmd}"/>
         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="IN PROGRESS" HorizontalAlignment="Center" />
         <ListView Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding InProgressTasks}">
             <ListView.ItemTemplate>
@@ -76,7 +85,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Description}" TextWrapping="Wrap" FontWeight="Bold" />
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" FontWeight="Bold" />
                         <Button Grid.Column="2" Content="-" Height="20" Width="20" HorizontalAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
@@ -87,7 +96,6 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Button Grid.Column="3" Grid.Row="3" Content="+" Height="22" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right"/>
         <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Text="DONE" HorizontalAlignment="Center" />
         <ListView Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding DoneTasks}">
             <ListView.ItemTemplate>
@@ -98,7 +106,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Description}" TextWrapping="Wrap" FontWeight="Bold" />
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" FontWeight="Bold" />
                         <Button Grid.Column="2" Content="-" Height="20" Width="20" HorizontalAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
@@ -109,6 +117,5 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Button Grid.Column="5" Grid.Row="3" Content="+" Height="22" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right"/>
     </Grid>
 </Page>

@@ -56,17 +56,22 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             SelectionChangedCmd = new SelectionChangedCommand(this);
-            OpenModalCmd = new OpenModalCommand();
+            OpenCreateTaskModalCmd = new OpenCreateTaskModalCommand(this);
+            OpenViewItemModalCmd = new OpenViewItemModalCommand();
         }
         public ICommand SelectionChangedCmd
         {
             get;
             private set;
         }
-        public ICommand OpenModalCmd
+        public ICommand OpenCreateTaskModalCmd
         {
             get;
             private set;
+        }
+        public ICommand OpenViewItemModalCmd
+        {
+            get; private set;
         }
         private void AddOriginalData()
         {
@@ -77,10 +82,10 @@ namespace EventPlanner.ViewModels
             List<Task> inProgressTasks = new List<Task>();
             List<Task> doneTasks = new List<Task>();
             List<Event> allUsersEvents = new List<Event>();
-            toDoTasks.Add(new Task(TaskStatus.TO_DO, 1, "200 red roses at flower shop 'Maria' sdgsfgdf dfg fder ", collaborator, TaskType.GENERIC));
-            toDoTasks.Add(new Task(TaskStatus.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
-            inProgressTasks.Add(new Task(TaskStatus.TO_DO, 1, "task 3", collaborator, TaskType.GENERIC));
-            doneTasks.Add(new Task(TaskStatus.TO_DO, 1, "pice kod mice", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Naslov koji nije toliko dugacak", TaskStatus.TO_DO, 1, "opis koji je dugacak 200 red roses at flower shop 'Maria' sdgsfgdf dfg fder ", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Izbor restorana", TaskStatus.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
+            inProgressTasks.Add(new Task("title 3", TaskStatus.TO_DO, 1, "task 3", collaborator, TaskType.GENERIC));
+            doneTasks.Add(new Task("cvece", TaskStatus.TO_DO, 1, "pice kod mice", collaborator, TaskType.GENERIC));
 
             Event e = new Event(1, "eventic", EventType.BIRTHDAY, "desc 1", DateTime.Now, DateTime.Now, new User("micko", "micko123", "Mica", "Lakic"));
             _Event = e;
@@ -101,9 +106,9 @@ namespace EventPlanner.ViewModels
             List<Task> inProgressTasks = new List<Task>();
             List<Task> doneTasks = new List<Task>();
             Collaborator collaborator = new Collaborator { Name = "coll1", Address = "addr1", Type = CollaboratorType.FLOWER_SHOP };
-            toDoTasks.Add(new Task(TaskStatus.TO_DO, 1, "Clean out Tivoli Enterprise Console database", collaborator, TaskType.GENERIC));
-            inProgressTasks.Add(new Task(TaskStatus.TO_DO, 1, "Forward event to the Tivoli Enterprise Console server", collaborator, TaskType.GENERIC));
-            inProgressTasks.Add(new Task(TaskStatus.TO_DO, 1, "Jump Netscape to URL", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Baloni", TaskStatus.TO_DO, 1, "Clean out Tivoli Enterprise Console database", collaborator, TaskType.GENERIC));
+            inProgressTasks.Add(new Task("Cvece", TaskStatus.TO_DO, 1, "Forward event to the Tivoli Enterprise Console server", collaborator, TaskType.GENERIC));
+            inProgressTasks.Add(new Task("Hrana", TaskStatus.TO_DO, 1, "Jump Netscape to URL", collaborator, TaskType.GENERIC));
 
             toDoTasks.ForEach(_ToDoTasks.Add);
             inProgressTasks.ForEach(_InProgressTasks.Add);
