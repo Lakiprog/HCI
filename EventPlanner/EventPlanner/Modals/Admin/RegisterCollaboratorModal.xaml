@@ -1,4 +1,4 @@
-﻿<Window x:Class="EventPlanner.Pages.Admin.RegisterCollaboratorModal"
+﻿<Window x:Class="EventPlanner.Modals.Admin.RegisterCollaboratorModal"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -24,12 +24,14 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="NameLabel" Content="Name of company"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <Label x:Name="AdressLabel" Content="Company adress"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="NameRegisterCollaboratorModalTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>
-        <TextBox x:Name="AdressRegisterCollaboratorModalTextBox" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>
-        <ComboBox x:Name="TypeRegisterCollaboratorModalCombobox" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"/>
+        <TextBox x:Name="NameRegisterCollaboratorModalTextBox" Text="{Binding Path=Temp.Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>
+        <TextBox x:Name="AdressRegisterCollaboratorModalTextBox" Text="{Binding Path=Temp.Address, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>
+        <ComboBox x:Name="TypeRegisterCollaboratorModalCombobox" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"
+                  ItemsSource="{Binding Source={StaticResource CollaboratorTypeValueConverter}, Path=Strings}" 
+                  SelectedItem="{Binding Temp.Type, Converter={StaticResource CollaboratorTypeValueConverter}}" />
         <Label x:Name="TypeLabel" Content="Type of company" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
-        <Button x:Name="SubmitRegisterCollaboratorModalButton" Content="submit" Grid.Row="6" Grid.Column="0" Height="20pt" Width="50pt"/>
-        <Button x:Name="CancelRegisterCollaboratorModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt"/>
+        <Button x:Name="SubmitRegisterCollaboratorModalButton" Content="submit" Grid.Row="6" Grid.Column="0" Height="20pt" Width="50pt" Click="SubmitRegisterCollaboratorModalButton_Click" Command="{Binding SaveCommand}"/>
+        <Button x:Name="CancelRegisterCollaboratorModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="CancelRegisterCollaboratorModalButton_Click"/>
 
     </Grid>
 </Window>

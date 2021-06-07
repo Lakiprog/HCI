@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Pages.Admin
+namespace EventPlanner.Modals.Admin
 {
     /// <summary>
     /// Interaction logic for RegisterCollaboratorModal.xaml
@@ -21,6 +21,16 @@ namespace EventPlanner.Pages.Admin
         public RegisterCollaboratorModal()
         {
             InitializeComponent();
+        }
+
+        private void SubmitRegisterCollaboratorModalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void CancelRegisterCollaboratorModalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -6,13 +6,13 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    internal class SearchCollaboratorsCommand : ICommand
+    class EditCollaboratorCommand : ICommand
     {
-        public SearchCollaboratorsCommand(CollaboratorViewModel viewModel)
+        public EditCollaboratorCommand(OneCollaboratorViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
-        private CollaboratorViewModel _ViewModel;
+        private OneCollaboratorViewModel _ViewModel;
 
         public event EventHandler CanExecuteChanged
         {
@@ -22,12 +22,13 @@ namespace EventPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _ViewModel.CanUpdate;
         }
 
         public void Execute(object parameter)
         {
-            _ViewModel.SearchCollaborators((string)parameter);
+
+            _ViewModel.saveChanges();
         }
     }
 }
