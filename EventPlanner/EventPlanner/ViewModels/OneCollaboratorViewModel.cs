@@ -47,5 +47,19 @@ namespace EventPlanner.ViewModels
             get;
             private set;
         }
+        public bool CanUpdate { get {
+                if (Temp == null)
+                {
+                    return false;
+                }
+                if (String.IsNullOrWhiteSpace(Temp.Name))
+                {
+                    return false;
+                }else if (String.IsNullOrWhiteSpace(Temp.Address))
+                {
+                    return false;
+                }
+                return true;
+            } }
     }
 }
