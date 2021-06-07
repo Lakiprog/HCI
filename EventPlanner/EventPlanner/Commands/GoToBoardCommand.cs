@@ -6,17 +6,8 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class FilterOrganizersCommand : ICommand
+    class GoToBoardCommand : ICommand
     {
-        public FilterOrganizersCommand(OrganizersViewModel viewModel)
-        {
-            _ViewModel = viewModel;
-        }
-
-        private OrganizersViewModel _ViewModel;
-
-        #region ICommand Members
-
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -30,9 +21,7 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _ViewModel.FilterOrganizers((string)parameter);
+            
         }
-
-        #endregion
     }
 }

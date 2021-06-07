@@ -89,7 +89,7 @@
                         <TextBox Grid.Column="0" x:Name="SearchCollaboratorsTextBox">
                         </TextBox>
                         <Button Grid.Column="1" Content="Search" Name="searchCollaboratorsButton" 
-                            Command="{Binding UpdateListCommand}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
+                            Command="{Binding SearchCmd}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>

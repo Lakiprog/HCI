@@ -6,13 +6,13 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    internal class SearchCollaboratorsCommand : ICommand
+    internal class SearchCommand : ICommand
     {
-        public SearchCollaboratorsCommand(CollaboratorViewModel viewModel)
+        public SearchCommand(ISearchable viewModel)
         {
             _ViewModel = viewModel;
         }
-        private CollaboratorViewModel _ViewModel;
+        private ISearchable _ViewModel;
 
         public event EventHandler CanExecuteChanged
         {
@@ -27,7 +27,7 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _ViewModel.SearchCollaborators((string)parameter);
+            _ViewModel.Search((string)parameter);
         }
     }
 }
