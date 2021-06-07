@@ -46,18 +46,18 @@
 
         <Label Grid.Row="1" Grid.Column="1" Content="Title:" />
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Text="{Binding Temp.Title}" Margin="0,7,0,0" IsEnabled="{Binding IsEditable}"/>
+            <TextBox Text="{Binding Temp.Title}" Margin="0,7,0,0" IsEnabled="{Binding IsEditing}"/>
         </StackPanel>
         <Label Grid.Row="2" Grid.Column="1" Content="Event type:" />
         <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Text="{Binding Temp.Description}" Margin="0,7,0,0" IsEnabled="{Binding IsEditable}" TextWrapping="Wrap" Height="70" VerticalScrollBarVisibility="Visible"/>
+            <TextBox Text="{Binding Temp.Description}" Margin="0,7,0,0" IsEnabled="{Binding IsEditing}" TextWrapping="Wrap" Height="70" VerticalScrollBarVisibility="Visible"/>
         </StackPanel>
         <Label Grid.Row="3" Grid.Column="1" Content="Task Status:" />
         <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
             <TextBox Text="To do" Margin="0,7,0,0" IsEnabled="False" />
         </StackPanel>
         <Label Grid.Row="4" Grid.Column="1" Content="Task Type:" />
-        <ComboBox Grid.Column="2" Grid.Row="4" ItemsSource="{Binding TaskTypes}" Grid.ColumnSpan="2" IsEnabled="{Binding IsEditable}"
+        <ComboBox Grid.Column="2" Grid.Row="4" ItemsSource="{Binding TaskTypes}" Grid.ColumnSpan="2" IsEnabled="{Binding IsEditing}"
             Width="185" Height="25" HorizontalAlignment="Center" SelectedItem="{Binding Temp.Type}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -76,7 +76,7 @@
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsEditable}" Value="True">
+                            <DataTrigger Binding="{Binding IsEditing}" Value="True">
                                 <Setter Property="Visibility" Value="Hidden"/>
                             </DataTrigger>
                         </Style.Triggers>
@@ -87,7 +87,7 @@
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsEditable}" Value="False">
+                            <DataTrigger Binding="{Binding IsEditing}" Value="False">
                                 <Setter Property="Visibility" Value="Hidden"/>
                             </DataTrigger>
                         </Style.Triggers>

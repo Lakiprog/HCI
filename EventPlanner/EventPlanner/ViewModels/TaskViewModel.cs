@@ -45,7 +45,7 @@ namespace EventPlanner.ViewModels
         public Mode Mode
         {
             get => _Mode;
-            set { _Mode = value; RaisePropertyChngedEvent("Mode"); }
+            set { _Mode = value; RaisePropertyChngedEvent("Mode"); RaisePropertyChngedEvent("IsEditing"); }
         }
         public bool IsOrganizer
         {
@@ -55,6 +55,10 @@ namespace EventPlanner.ViewModels
         {
             get => _Temp;
             set { _Temp = value; RaisePropertyChngedEvent("Temp"); }
+        }
+        public bool IsEditing
+        {
+            get => this.Mode != Mode.Viewing;
         }
         public ICommand AddTaskCmd
         {

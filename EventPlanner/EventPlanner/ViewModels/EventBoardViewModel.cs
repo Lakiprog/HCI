@@ -91,10 +91,10 @@ namespace EventPlanner.ViewModels
             inProgressTasks.Add(new Task("title 3", TaskStatus.TO_DO, 1, "task 3", collaborator, TaskType.GENERIC));
             doneTasks.Add(new Task("cvece", TaskStatus.TO_DO, 1, "pice kod mice", collaborator, TaskType.GENERIC));
 
-            Event e = new Event(1, "eventic", EventType.BIRTHDAY, "desc 1", DateTime.Now, DateTime.Now, new User("micko", "micko123", "Mica", "Lakic"));
+            Event e = new Event(1, "eventic", EventType.BIRTHDAY, "desc 1", DateTime.Now, DateTime.Now, new User(1,"micko", "micko123", "Mica", "Lakic"));
             _Event = e;
             allUsersEvents.Add(e);
-            allUsersEvents.Add(new Event(2, "title event 2", EventType.BIRTHDAY, "event 1 desc 2", DateTime.Now, DateTime.Now, new User("micko", "micko123", "Mica", "Lakic")));
+            allUsersEvents.Add(new Event(2, "title event 2", EventType.BIRTHDAY, "event 1 desc 2", DateTime.Now, DateTime.Now, new User(1,"micko", "micko123", "Mica", "Lakic")));
             allUsersEvents.ForEach(_AllUsersEvents.Add);
 
             toDoTasks.ForEach(_ToDoTasks.Add);
