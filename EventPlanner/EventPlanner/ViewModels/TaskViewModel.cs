@@ -8,20 +8,27 @@ using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
+    public enum Mode { Viewing, Editing, Adding }
     class TaskViewModel : ObservableObject
     {
         private Task _Task;
+        private Task _Temp;
         private int _EventId;
+        private Mode _Mode;
         public TaskViewModel(int eventId)
         {
             _Task = new Task();
+            _Temp = new Task(_Task);
             _EventId = eventId;
             _Task.Status = TaskStatus.TO_DO;
+            _Mode = Mode.Adding;
             InitCommands();
         }
         public TaskViewModel(Task task)
         {
             _Task = task;
+            _Temp = new Task(_Task);
+            _Mode = Mode.Viewing;
             InitCommands();
         }
         public Task Task
@@ -34,12 +41,37 @@ namespace EventPlanner.ViewModels
             get => _EventId;
             set { _EventId = value; RaisePropertyChngedEvent("EventId"); }
         }
-        public bool CanUpdate
+        
+        public Mode Mode
+        {
+            get => _Mode;
+            set { _Mode = value; RaisePropertyChngedEvent("Mode"); }
+        }
+        public bool IsOrganizer
         {
             get => true;
-            // is role is organizer return true
+        }
+        public Task Temp
+        {
+            get => _Temp;
+            set { _Temp = value; RaisePropertyChngedEvent("Temp"); }
         }
         public ICommand AddTaskCmd
+        {
+            get;
+            private set;
+        }
+        public ICommand EnableEditingTaskCmd
+        {
+            get;
+            private set;
+        }
+        public ICommand EditTaskCmd
+        {
+            get;
+            private set;
+        }
+        public ICommand CancelEditingTaskCmd
         {
             get;
             private set;
@@ -52,10 +84,17 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             AddTaskCmd = new AddTaskCommand(this);
+            EnableEditingTaskCmd = new EnableEditingTaskCommand(this);
+            EditTaskCmd = new EditTaskCommand(this);
+            CancelEditingTaskCmd = new CancelEditingTaskCommand(this);
         }
         public void AddTask()
         {
             // save Task
+        }
+        public void EditTask()
+        {
+            // edit Task
         }
     }
 }

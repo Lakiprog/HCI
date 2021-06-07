@@ -44,6 +44,10 @@ namespace EventPlanner.ViewModels
             get => _AllUsersEvents;
             set { _AllUsersEvents = value; RaisePropertyChngedEvent("AllUsersEvents"); }
         }
+        public bool IsOrganizer
+        {
+            get => true;
+        }
         private void InitData()
         {
             _ToDoTasks = new ObservableCollection<Task>();

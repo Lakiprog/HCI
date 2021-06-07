@@ -74,7 +74,17 @@
                 
             </ListView.ItemContainerStyle>
         </ListView>
-        <Button Grid.Column="1" Grid.Row="3" Content="+" Height="22" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right" Command="{Binding OpenCreateTaskModalCmd}"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="+" Height="22" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right" Command="{Binding OpenCreateTaskModalCmd}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsOrganizer}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="IN PROGRESS" HorizontalAlignment="Center" />
         <ListView Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding InProgressTasks}">
             <ListView.ItemTemplate>

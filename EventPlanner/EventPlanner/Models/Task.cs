@@ -16,6 +16,7 @@ namespace EventPlanner.Models
         private string _Description;
         private Collaborator _Collaborator;
         private TaskType _Type;
+        private Task task;
 
         public int Id
         {
@@ -62,5 +63,15 @@ namespace EventPlanner.Models
             Type = type;
         }
         public Task() { }
+
+        public Task(Task task)
+        {
+            Title = task.Title;
+            Status = task.Status;
+            EventId = task.EventId;
+            Description = task.Description;
+            Collaborator = task.Collaborator;
+            Type = task.Type;
+        }
     }
 }
