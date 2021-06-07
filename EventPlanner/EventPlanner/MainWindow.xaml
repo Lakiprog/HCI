@@ -19,3 +19,4 @@
         <Frame Padding="0.3cm" Grid.Row="1" Source="/Pages/User/HomePage.xaml" />
     </Grid>
 </Window>
+                                                

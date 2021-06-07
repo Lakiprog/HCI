@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Pages.Admin
+namespace EventPlanner.Modals.Admin
 {
     /// <summary>
     /// Interaction logic for RegisterOrganizerModal.xaml
@@ -25,12 +25,12 @@ namespace EventPlanner.Pages.Admin
 
         private void CancelProfileButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void SubmitProfileModalButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }

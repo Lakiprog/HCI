@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EventPlanner.Modals.Admin;
+using EventPlanner.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -23,29 +25,15 @@ namespace EventPlanner.Pages.Admin
             InitializeComponent();
         }
 
-        private void tutorialButtonHomepageAdmin_Copy_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ScrollBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
-        private void EditOrganizer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditCollaborator_Click(object sender, RoutedEventArgs e)
-        {
-
+        private void AddOrganizerButton_Click(object sender, RoutedEventArgs e) {
+            var w = new RegisterOrganizerModal();
+            w.ShowDialog();
         }
 
         private void AddCollaboratorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var w = new RegisterCollaboratorModal();
+            w.ShowDialog();
         }
     }
 }

@@ -5,7 +5,10 @@ using System.Text;
 
 namespace EventPlanner.Models
 {
-    public enum CollaboratorType { FLOWER_SHOP, RESTAURANT, BALLOONS, DRINK_STORE }
+    public enum CollaboratorType { [Description("Flower Shop")] FLOWER_SHOP, 
+        [Description("Restaurant")]  RESTAURANT,
+        [Description("Balloons")] BALLOONS,
+        [Description("Drink Store")] DRINK_STORE }
     public class Collaborator : INotifyPropertyChanged
     {
         private string _Name;

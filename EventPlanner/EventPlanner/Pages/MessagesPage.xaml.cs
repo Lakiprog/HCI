@@ -11,26 +11,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Modals.Admin
+namespace EventPlanner.Pages
 {
     /// <summary>
-    /// Interaction logic for RegisterCollaboratorModal.xaml
+    /// Interaction logic for MessagesPage.xaml
     /// </summary>
-    public partial class RegisterCollaboratorModal : Window
+    public partial class MessagesPage : Page
     {
-        public RegisterCollaboratorModal()
+        public MessagesPage()
         {
             InitializeComponent();
         }
 
-        private void SubmitRegisterCollaboratorModalButton_Click(object sender, RoutedEventArgs e)
+        private void messageTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            Close();
+            if (e.Key == Key.Enter)
+            {
+                messageTextBox.Text = string.Empty;
+            }
         }
 
-        private void CancelRegisterCollaboratorModalButton_Click(object sender, RoutedEventArgs e)
+        private void ItemsControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Close();
+            messageScrollViewer.ScrollToEnd();
         }
     }
 }
