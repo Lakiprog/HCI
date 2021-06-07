@@ -8,17 +8,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace EventPlanner.Modals
 {
     /// <summary>
-    /// Interaction logic for ForgotPasswordModal.xaml
+    /// Interaction logic for SeatingPlanModal.xaml
     /// </summary>
-    public partial class ForgotPasswordModal : Window
+    public partial class SeatingPlanModal : Window
     {
-        public ForgotPasswordModal()
+        public SeatingPlanModal()
         {
             InitializeComponent();
         }
