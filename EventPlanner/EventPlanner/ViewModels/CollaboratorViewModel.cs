@@ -20,7 +20,6 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             SearchCmd = new SearchCommand(this);
-            UpdateListCommand = new SearchCollaboratorsCommand(this);
             CreateEditWindowCmd = new CreateEditWindowsCommand();
             CreateAddWindowCmd = new CreateAddWindowsCommand();
         }

@@ -16,7 +16,7 @@ namespace EventPlanner.Modals
     /// <summary>
     /// Interaction logic for ForgotPasswordModal.xaml
     /// </summary>
-    public partial class ForgotPasswordModal : Page
+    public partial class ForgotPasswordModal : Window
     {
         public ForgotPasswordModal()
         {
