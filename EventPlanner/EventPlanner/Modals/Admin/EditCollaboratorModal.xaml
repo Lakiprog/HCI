@@ -27,13 +27,15 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="NameLabel" Content="Name of company"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <Label x:Name="AdressLabel" Content="Company adress" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="NameEditCollaboratorModalTextBox" Text="{Binding Path=Collaborator.Name}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap" />
-        <TextBox x:Name="AdressEditCollaboratorModalTextBox" Text="{Binding Path=Collaborator.Address}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>
-        <ComboBox x:Name="TypeEditCollaboratorModalCombobox" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"/>
+        <TextBox x:Name="NameEditCollaboratorModalTextBox" Text="{Binding Path=Temp.Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap" />
+        <TextBox x:Name="AdressEditCollaboratorModalTextBox" Text="{Binding Path=Temp.Address, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>
+        <ComboBox x:Name="TypeEditCollaboratorModalCombobox" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"
+                  ItemsSource="{Binding Source={StaticResource CollaboratorTypeValueConverter}, Path=Strings}" 
+                  SelectedItem="{Binding Temp.Type, Converter={StaticResource CollaboratorTypeValueConverter}}"/>
         <Label x:Name="TypeLabel" Content="Type of company" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <Button Content="Delete" Grid.Row="0" Grid.Column="0" Height="20pt" Width="50pt" HorizontalAlignment="Left"/>
         <Button x:Name="CancelEditOrganizerModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="CancelEditCollaboratorButton_Click"/>
-        <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="7" Grid.Column="0" Height="20pt" Width="50pt" Click="SaveEditOrganizerModalButton_Click" />
+        <Button x:Name="SaveEditOrganizerModalButton" Content="save" Grid.Row="7" Grid.Column="0" Height="20pt" Width="50pt" Click="SaveEditOrganizerModalButton_Click" Command="{Binding SaveCommand}"/>
 
     </Grid>
 </Window>

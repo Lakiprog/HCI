@@ -1,9 +1,9 @@
-﻿using EventPlanner.Services;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,17 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner
+namespace EventPlanner.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for NotificationPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NotificationPage : Page
     {
-        public MainWindow()
+        public NotificationPage()
         {
-            UserService.Singleton().Login("marko.markovic", "test");
             InitializeComponent();
         }
+        
     }
 }

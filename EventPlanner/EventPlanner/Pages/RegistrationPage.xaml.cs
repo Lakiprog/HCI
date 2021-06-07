@@ -11,26 +11,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Modals.Admin
+namespace EventPlanner.Pages
 {
     /// <summary>
-    /// Interaction logic for RegisterCollaboratorModal.xaml
+    /// Interaction logic for RegistrationPage.xaml
     /// </summary>
-    public partial class RegisterCollaboratorModal : Window
+    public partial class RegistrationPage : Page
     {
-        public RegisterCollaboratorModal()
+        public RegistrationPage()
         {
             InitializeComponent();
         }
 
-        private void SubmitRegisterCollaboratorModalButton_Click(object sender, RoutedEventArgs e)
+        private void registrationBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+
         }
 
-        private void CancelRegisterCollaboratorModalButton_Click(object sender, RoutedEventArgs e)
+        private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Commands;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,7 +24,7 @@ namespace EventPlanner.ViewModels
         private void InitData()
         {
             // getting logged-in user
-            user = new Organizer("micko", "micko123", "Mica", "Lakic", 3);
+            user = UserService.Singleton().CurrentUser;
             isOrganizer = true;
             canUpdate = false;
         }
@@ -51,7 +52,6 @@ namespace EventPlanner.ViewModels
             get => canUpdate;
             set { canUpdate = value; RaisePropertyChngedEvent("CanUpdate"); }
         }
-
         public void SaveChanges()
         {
             Debug.Assert(false, String.Format("{0} is username.", User.Username));

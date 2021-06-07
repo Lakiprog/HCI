@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
 {
-    class OrganizersViewModel : ObservableObject
+    class OrganizersViewModel : ObservableObject, ISearchable
     {
         /// <summary>
         /// Gets the Organizer Collection instance
@@ -22,7 +22,7 @@ namespace EventPlanner.ViewModels
         /// <summary>
         /// Gets the FilterOrganizersCommand for the ViewModel
         /// </summary>
-        public ICommand FilterOrganizersCmd
+        public ICommand SearchCmd
         {
             get;
             private set;
@@ -34,13 +34,19 @@ namespace EventPlanner.ViewModels
             private set;
         }
 
+        public ICommand CreateAddWindowCmd
+        {
+            get;
+            private set;
+        }
+
         public OrganizersViewModel()
         {
             InitData();
             InitCommands();
         }
 
-        public void FilterOrganizers(string search)
+        public void Search(string search)
         {
             AddOriginalData();
             if (search.Length > 0)
@@ -57,8 +63,9 @@ namespace EventPlanner.ViewModels
 
         private void InitCommands()
         {
-            FilterOrganizersCmd = new FilterOrganizersCommand(this);
+            SearchCmd = new SearchCommand(this);
             CreateEditWindowCmd = new CreateEditWindowsCommand();
+            CreateAddWindowCmd = new CreateAddWindowsCommand();
         }
 
         private ObservableCollection<Organizer> organizers;
@@ -74,11 +81,11 @@ namespace EventPlanner.ViewModels
             this.organizers.Clear();
             // Call to a service function will return a list of organizers that need to be added here
             List<Organizer> organizers = new List<Organizer>() {
-                new Organizer("jim.halpert", "pam", "Jim", "Halpert", 3),
-                new Organizer("dwight.schrute", "beets", "Dwight", "Schrute", 4),
-                new Organizer("pam.beesley", "pan", "Pam", "Beesley", 5),
-                new Organizer("kevin.malone", "123", "Kevim", "Malone", 1),
-                new Organizer("erin.hannon", "dunder", "Erin", "Hannon", 2)
+                new Organizer(1,"jim.halpert", "pam", "Jim", "Halpert", 3),
+                new Organizer(2,"dwight.schrute", "beets", "Dwight", "Schrute", 4),
+                new Organizer(3,"pam.beesley", "pan", "Pam", "Beesley", 5),
+                new Organizer(4,"kevin.malone", "123", "Kevim", "Malone", 1),
+                new Organizer(5,"erin.hannon", "dunder", "Erin", "Hannon", 2)
             };
 
             organizers.ForEach(this.organizers.Add);

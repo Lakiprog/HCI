@@ -31,7 +31,7 @@ namespace EventPlanner.Models
             get => _Type;
             set { _Type = value; RaisePropertyChngedEvent("Type"); }
         }
-        public String Description
+        public string Description
         {
             get => _Description;
             set { _Description = value; RaisePropertyChngedEvent("Description"); }

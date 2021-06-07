@@ -1,18 +1,19 @@
 ﻿using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    internal class SearchCollaboratorsCommand : ICommand
+    class SendMessageCommand : ICommand
     {
-        public SearchCollaboratorsCommand(CollaboratorViewModel viewModel)
+        public SendMessageCommand(MessagesViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
-        private CollaboratorViewModel _ViewModel;
+        private MessagesViewModel _ViewModel;
 
         public event EventHandler CanExecuteChanged
         {
@@ -27,7 +28,11 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _ViewModel.SearchCollaborators((string)parameter);
+            string message = parameter as string;
+            if (message.Length > 0)
+            {
+                _ViewModel.SendMessage(message);
+            }
         }
     }
 }
