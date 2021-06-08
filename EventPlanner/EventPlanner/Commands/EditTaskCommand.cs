@@ -7,8 +7,14 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class ShowEventModalCommand : ICommand
+    class EditTaskCommand : ICommand
     {
+        public EditTaskCommand(TaskViewModel viewModel)
+        {
+            _ViewModel = viewModel;
+        }
+        private TaskViewModel _ViewModel;
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -17,16 +23,21 @@ namespace EventPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _ViewModel.CanUpdate();
         }
 
         public void Execute(object parameter)
         {
-            Event selectedEvent = (Event) parameter;
+            if(_ViewModel.Mode == Mode.Editing)
+            {
+                _ViewModel.EditTask();
+            } else
+            {
+                _ViewModel.AddTask();
+                // close modal
+            }
 
-            var eventDetailsModal = new Modals.EventDetailsModal();
-            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true, false);
-            eventDetailsModal.ShowDialog();
+            _ViewModel.Mode = Mode.Viewing;
         }
     }
 }

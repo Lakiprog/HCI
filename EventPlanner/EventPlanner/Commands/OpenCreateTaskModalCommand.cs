@@ -1,14 +1,17 @@
 ﻿using EventPlanner.Models;
 using EventPlanner.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class ShowEventModalCommand : ICommand
+    class OpenCreateTaskModalCommand : ICommand
     {
+        public OpenCreateTaskModalCommand(EventBoardViewModel viewModel)
+        {
+            _ViewModel = viewModel;
+        }
+        private EventBoardViewModel _ViewModel;
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -22,11 +25,9 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            Event selectedEvent = (Event) parameter;
-
-            var eventDetailsModal = new Modals.EventDetailsModal();
-            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true, false);
-            eventDetailsModal.ShowDialog();
+            var createTaskModal = new Modals.TaskModal();
+            createTaskModal.DataContext = new TaskViewModel(_ViewModel);
+            createTaskModal.Show();
         }
     }
 }

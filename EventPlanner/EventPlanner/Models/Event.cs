@@ -70,6 +70,7 @@ namespace EventPlanner.Models
 
         public Event(string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, int user, int organizer, List<int> organizers)
         {
+            Id = id;
             Title = title;
             Type = type;
             Description = description;
