@@ -1,19 +1,29 @@
 ﻿using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace EventPlanner.Models
 {
-    public enum EventType { WEDDING, BIRTHDAY }
+    public enum EventType {[Description("Wedding")] WEDDING, [Description("Birthday")] BIRTHDAY }
     public class Event : ObservableObject
     {
+        private int _Id;
         private string _Title;
         private EventType _Type;
         private string _Description;
         private DateTime _DateFrom;
         private DateTime _DateTo;
-        private User _User;
+        private int _UserId;
+        private int _OrganizerId;
+        private List<int> _PotentialOrganizers;
+
+        public int Id
+        {
+            get => _Id;
+            set { _Id = value; RaisePropertyChngedEvent("Id"); }
+        }
         public string Title
         {
             get => _Title;
@@ -40,19 +50,34 @@ namespace EventPlanner.Models
             set { _DateTo = value; RaisePropertyChngedEvent("DateTo"); }
         }
 
-        public User User
+        public int UserId
         {
-            get => _User;
-            set { _User = value; RaisePropertyChngedEvent("User"); }
+            get => _UserId;
+            set { _UserId = value; RaisePropertyChngedEvent("UserId"); }
         }
-        public Event(string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, User user)
+
+        public int OrganizerId
+        {
+            get => _OrganizerId;
+            set { _OrganizerId = value; RaisePropertyChngedEvent("OrganizerId"); }
+        }
+
+        public List<int> PotentialOrganizers
+        {
+            get => _PotentialOrganizers;
+            set { _PotentialOrganizers = value; RaisePropertyChngedEvent("PotentialOrganizers"); }
+        }
+
+        public Event(string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, int user, int organizer, List<int> organizers)
         {
             Title = title;
             Type = type;
             Description = description;
             DateFrom = dateFrom;
             DateTo = dateTo;
-            User = user;
+            UserId = user;
+            OrganizerId = organizer;
+            PotentialOrganizers = organizers;
         }
     }
 }
