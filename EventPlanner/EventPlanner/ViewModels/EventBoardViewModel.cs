@@ -106,7 +106,7 @@ namespace EventPlanner.ViewModels
         {
             _ToDoTasks.Clear(); _InProgressTasks.Clear(); _DoneTasks.Clear();
 
-            Collaborator collaborator = new Collaborator { Name = "coll1", Address = "addr1", Type = CollaboratorType.FLOWER_SHOP };
+            Collaborator collaborator = new Collaborator(CollaboratorService.Singleton().GetLastId(), "coll1", CollaboratorType.FLOWER_SHOP, "addr1");
             List<Task> toDoTasks = new List<Task>();
             List<Task> inProgressTasks = new List<Task>();
             List<Task> doneTasks = new List<Task>();
@@ -136,7 +136,7 @@ namespace EventPlanner.ViewModels
             List<Task> toDoTasks = new List<Task>();
             List<Task> inProgressTasks = new List<Task>();
             List<Task> doneTasks = new List<Task>();
-            Collaborator collaborator = new Collaborator { Name = "coll1", Address = "addr1", Type = CollaboratorType.FLOWER_SHOP };
+            Collaborator collaborator = new Collaborator(CollaboratorService.Singleton().GetLastId(), "coll1", CollaboratorType.FLOWER_SHOP, "addr1");
             toDoTasks.Add(new Task("Baloni", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "Clean out Tivoli Enterprise Console database", collaborator, TaskType.GENERIC));
             inProgressTasks.Add(new Task("Cvece", TaskStatus.ACCEPTED, TaskLevel.IN_PROGRESS, 1, "Forward event to the Tivoli Enterprise Console server", collaborator, TaskType.GENERIC));
             inProgressTasks.Add(new Task("Hrana", TaskStatus.ACCEPTED, TaskLevel.IN_PROGRESS, 1, "Jump Netscape to URL", collaborator, TaskType.GENERIC));
