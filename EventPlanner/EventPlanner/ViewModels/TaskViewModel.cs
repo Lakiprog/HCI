@@ -16,11 +16,12 @@ namespace EventPlanner.ViewModels
         private Task _Temp;
         private int _EventId;
         private Mode _Mode;
-        public TaskViewModel(int eventId)
+        private EventBoardViewModel _EventBoardViewModel;
+        public TaskViewModel(EventBoardViewModel eventBoardViewModel)
         {
             _Task = new Task();
             _Temp = new Task(_Task);
-            _EventId = eventId;
+            _EventBoardViewModel = eventBoardViewModel;
             _Task.Level = TaskLevel.TO_DO;
             _Mode = Mode.Adding;
             InitCommands();
@@ -57,6 +58,10 @@ namespace EventPlanner.ViewModels
             get => _Temp;
             set { _Temp = value; RaisePropertyChngedEvent("Temp"); }
         }
+        public EventBoardViewModel EventBoardViewModel
+        {
+            get => _EventBoardViewModel;
+        }
         public bool IsEditing
         {
             get => this.Mode != Mode.Viewing;
@@ -82,7 +87,6 @@ namespace EventPlanner.ViewModels
             private set;
         }
 
-
         public List<TaskType> TaskTypes
         {
             get => Enum.GetValues(typeof(TaskType)).Cast<TaskType>().ToList();
@@ -96,11 +100,16 @@ namespace EventPlanner.ViewModels
         }
         public void AddTask()
         {
+            EventBoardViewModel.ToDoTasks.Add(_Temp);
             // save Task
         }
         public void EditTask()
         {
             // edit Task
+            _Task.Title = _Temp.Title;
+            _Task.Description = _Temp.Description;
+            _Task.Level = _Temp.Level;
+            
         }
     }
 }

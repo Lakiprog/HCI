@@ -26,7 +26,7 @@ namespace EventPlanner.Commands
         public void Execute(object parameter)
         {
             var createTaskModal = new Modals.TaskModal();
-            createTaskModal.DataContext = new TaskViewModel(_ViewModel.Event.Id);
+            createTaskModal.DataContext = new TaskViewModel(_ViewModel);
             createTaskModal.Show();
         }
     }

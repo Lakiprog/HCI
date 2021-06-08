@@ -28,8 +28,15 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _ViewModel.EditTask();
-            _ViewModel.Task = new Task(_ViewModel.Temp);
+            if(_ViewModel.Mode == Mode.Editing)
+            {
+                _ViewModel.EditTask();
+            } else
+            {
+                _ViewModel.AddTask();
+                // close modal
+            }
+
             _ViewModel.Mode = Mode.Viewing;
         }
     }

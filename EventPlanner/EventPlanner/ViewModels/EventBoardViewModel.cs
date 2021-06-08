@@ -4,6 +4,7 @@ using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
@@ -139,9 +140,13 @@ namespace EventPlanner.ViewModels
         }
         public void DeleteTask(Task task)
         {
-            if (_ToDoTasks.Contains(task)) _ToDoTasks.Remove(task);
-            else if (_InProgressTasks.Contains(task)) _InProgressTasks.Remove(task);
-            else _DoneTasks.Remove(task);
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                if (_ToDoTasks.Contains(task)) _ToDoTasks.Remove(task);
+                else if (_InProgressTasks.Contains(task)) _InProgressTasks.Remove(task);
+                else _DoneTasks.Remove(task);
+            }
         }
         public void AcceptTask(Task task)
         {
