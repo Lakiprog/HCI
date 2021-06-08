@@ -1,4 +1,6 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Services;
+using EventPlanner.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -68,7 +70,13 @@ namespace EventPlanner.Models
             set { _PotentialOrganizers = value; RaisePropertyChngedEvent("PotentialOrganizers"); }
         }
 
-        public Event(string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, int user, int organizer, List<int> organizers)
+        [JsonIgnore]
+        public User User
+        {
+            get => UserService.Singleton().GetUserInfo(UserId);
+        }
+
+        public Event(int id, string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, int user, int organizer, List<int> organizers)
         {
             Id = id;
             Title = title;
