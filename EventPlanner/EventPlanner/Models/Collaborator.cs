@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventPlanner.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -9,13 +10,14 @@ namespace EventPlanner.Models
         [Description("Restaurant")]  RESTAURANT,
         [Description("Balloons")] BALLOONS,
         [Description("Drink Store")] DRINK_STORE }
-    public class Collaborator : INotifyPropertyChanged
+    public class Collaborator : ObservableObject
     {
+        private int id;
         private string _Name;
         private string _Address;
         private CollaboratorType _Type;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public int ID => id;
 
         public String Name {
             get {
@@ -23,7 +25,7 @@ namespace EventPlanner.Models
             }
             set {
                 _Name = value;
-                OnPropertyChanged("Name");
+                RaisePropertyChngedEvent("Name");
             }
         }
 
@@ -36,7 +38,7 @@ namespace EventPlanner.Models
             set
             {
                 _Address = value;
-                OnPropertyChanged("Address");
+                RaisePropertyChngedEvent("Address");
             }
         }
 
@@ -48,27 +50,17 @@ namespace EventPlanner.Models
             set
             {
                 _Type = value;
-                OnPropertyChanged("Type");
+                RaisePropertyChngedEvent("Type");
             }
         }
 
-        public Collaborator(string name, CollaboratorType type, string address)
+        public Collaborator(int id, string name, CollaboratorType type, string address)
         {
             Name = name;
             Type = type;
             Address = address;
+            this.id = id;
         }
 
-        public Collaborator() { }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if(handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }
