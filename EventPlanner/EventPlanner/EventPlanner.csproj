@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\collaborators.json" />
     <None Remove="Data\messages.json" />
     <None Remove="Data\users.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\collaborators.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\messages.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
