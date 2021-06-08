@@ -22,7 +22,7 @@ namespace EventPlanner.ViewModels
             _Task = new Task();
             _Temp = new Task(_Task);
             _EventBoardViewModel = eventBoardViewModel;
-            _Task.Level = TaskLevel.TO_DO;
+            //_Task.Level = TaskLevel.TO_DO;
             _Mode = Mode.Adding;
             InitCommands();
         }
@@ -100,6 +100,7 @@ namespace EventPlanner.ViewModels
         }
         public void AddTask()
         {
+            _Temp.Level = TaskLevel.TO_DO;
             EventBoardViewModel.ToDoTasks.Add(_Temp);
             // save Task
         }

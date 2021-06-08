@@ -54,7 +54,7 @@
         </StackPanel>
         <Label Grid.Row="3" Grid.Column="1" Content="Task Level:" />
         <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Text="To do" Margin="0,7,0,0" IsEnabled="False" />
+            <TextBox Text="{Binding Temp.Level}" Margin="0,7,0,0" IsEnabled="False" />
         </StackPanel>
         <Label Grid.Row="4" Grid.Column="1" Content="Task Type:" />
         <ComboBox Grid.Column="2" Grid.Row="4" ItemsSource="{Binding TaskTypes}" Grid.ColumnSpan="2" IsEnabled="{Binding IsEditing}"

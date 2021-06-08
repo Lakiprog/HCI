@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors"
-      Title="EventBoardPage">
+      Title="EventBoardPage" MouseLeftButtonUp="Page_MouseLeftButtonUp">
     <Page.DataContext>
         <ViewModels:EventBoardViewModel/>
     </Page.DataContext>
@@ -46,7 +46,10 @@
         </ComboBox>
         <Button Grid.Row="0" Grid.Column="5" Content="Event information" Height="25" Command="{Binding OpenViewItemModalCmd}" CommandParameter="{Binding Event}"></Button>
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="TO DO" HorizontalAlignment="Center" />
-        <ListView Padding="-2,-2,-2,-2" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Name="ToDoTaskListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ToDoTasks}">
+        <ListView Padding="-2,-2,-2,-2" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Name="ToDoTaskListView"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ToDoTasks}"
+            PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove"
+            AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding OpenViewItemModalCmd}" 
@@ -55,7 +58,8 @@
             </i:Interaction.Triggers>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition/>
@@ -119,7 +123,10 @@
             </Button.Style>
         </Button>
         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="IN PROGRESS" HorizontalAlignment="Center" />
-        <ListView Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Name="InProgressTaskListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding InProgressTasks}">
+        <ListView Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Name="InProgressTaskListView"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            ItemsSource="{Binding InProgressTasks}" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove" 
+            AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding OpenViewItemModalCmd}" 
@@ -128,7 +135,7 @@
             </i:Interaction.Triggers>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="8*"/>
                             <ColumnDefinition/>
@@ -156,7 +163,11 @@
             </ListView.ItemContainerStyle>
         </ListView>
         <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Text="DONE" HorizontalAlignment="Center" />
-        <ListView Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Name="DoneTaskListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding DoneTasks}">
+        <ListView Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Name="DoneTaskListView" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            ItemsSource="{Binding DoneTasks}"
+            PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove" 
+            AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding OpenViewItemModalCmd}" 
@@ -165,7 +176,7 @@
             </i:Interaction.Triggers>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="8*"/>
                             <ColumnDefinition/>

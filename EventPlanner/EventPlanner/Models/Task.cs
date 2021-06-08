@@ -76,6 +76,7 @@ namespace EventPlanner.Models
         {
             Title = task.Title;
             Status = task.Status;
+            Level = task.Level;
             EventId = task.EventId;
             Description = task.Description;
             Collaborator = task.Collaborator;
