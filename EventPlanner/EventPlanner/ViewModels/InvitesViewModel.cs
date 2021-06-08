@@ -1,6 +1,7 @@
 ﻿using EventPlanner.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace EventPlanner.ViewModels
@@ -14,11 +15,18 @@ namespace EventPlanner.ViewModels
         }
 
         private Invites invites;
+        private SeatingPlan seatingPlan;
 
         public Invites Invites
         {
             get => invites;
             set { invites = value; RaisePropertyChngedEvent("Invites"); }
+        }
+
+        public SeatingPlan SeatingPlan
+        {
+            get => seatingPlan;
+            set { seatingPlan = value; RaisePropertyChngedEvent("SeatingPlan"); }
         }
 
         private void InitCommands()

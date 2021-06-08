@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EventPlanner.Modals" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels"
+        xmlns:local="clr-namespace:EventPlanner.Modals" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels" xmlns:s="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Seating plan" Height="450" Width="800">
     <Window.DataContext>
@@ -11,32 +11,65 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.66*"/>
+            <RowDefinition Height="0.25*"/>
             <RowDefinition Height="5*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.25*"/>
             <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.67*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="36*"/>
+                    <RowDefinition Height="359*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1" Margin="6 6 6 6">Add table</Button>
+                </Grid>
+                <Label FontSize="15">Tables</Label>
+                <Grid Grid.Row="1">
+                    <ListView>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ListView ItemsSource="{Binding SeatingPlan.Tables}">
+                                    <Setter Property="ScrollViewer.CanContentScroll">
+                                        <Setter.Value>
+                                            <s:Boolean>False</s:Boolean>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label HorizontalAlignment="Center" FontSize="15" Grid.Row="0">All invites</Label>
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding Invites.AllInvites}">
+                <Label HorizontalAlignment="Left" FontSize="15" Grid.Row="0">All invites</Label>
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Invites.AllInvites}" Margin="10 10 10 10">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                
                                 <TextBlock Text="{Binding}"/>
                             </Grid>
                         </DataTemplate>
@@ -45,19 +78,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.Row="1" Margin="10,5,10,5" Content="Close"></Button>
+
         </Grid>
     </Grid>
 </Window>
