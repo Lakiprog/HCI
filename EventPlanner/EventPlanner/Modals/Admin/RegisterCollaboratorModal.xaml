@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:EventPlanner.Pages.Admin"
       mc:Ignorable="d"
       d:DesignHeight="370" d:DesignWidth="300"
+      Height="370" Width="300"
       Title="RegisterCollaboratorModal">
 
     <Grid MaxWidth="10cm" Margin="0.5cm" MaxHeight="13cm">

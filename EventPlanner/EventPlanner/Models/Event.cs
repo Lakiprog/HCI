@@ -20,6 +20,7 @@ namespace EventPlanner.Models
         private int _UserId;
         private int _OrganizerId;
         private List<int> _PotentialOrganizers;
+        private List<Task> _Tasks;
 
         public int Id
         {
@@ -70,13 +71,20 @@ namespace EventPlanner.Models
             set { _PotentialOrganizers = value; RaisePropertyChngedEvent("PotentialOrganizers"); }
         }
 
+        public List<Task> Tasks
+        {
+            get => _Tasks;
+            set { _Tasks = value; RaisePropertyChngedEvent("Tasks"); }
+        }
+
         [JsonIgnore]
         public User User
         {
             get => UserService.Singleton().GetUserInfo(UserId);
         }
 
-        public Event(int id, string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, int user, int organizer, List<int> organizers)
+        public Event(int id, string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, int user, int organizer, List<int> organizers
+            , List<Task> t)
         {
             Id = id;
             Title = title;
@@ -87,6 +95,7 @@ namespace EventPlanner.Models
             UserId = user;
             OrganizerId = organizer;
             PotentialOrganizers = organizers;
+            Tasks = t;
         }
     }
 }

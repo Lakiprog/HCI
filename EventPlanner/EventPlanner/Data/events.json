@@ -8,7 +8,8 @@
     "DateTo": "2021-06-13 3:00",
     "UserId": "1",
     "OrganizerId": "2",
-    "PotentialOrganizers": ["2", "3"]
+    "PotentialOrganizers": [ "2", "3" ],
+    "Tasks": []
   },
   {
     "Id": 2,
@@ -19,6 +20,7 @@
     "DateTo": "2021-06-22 22:00",
     "UserId": "1",
     "OrganizerId": "-1",
-    "PotentialOrganizers": [ "2" ]
+    "PotentialOrganizers": [ "2" ],
+    "Tasks": []
   }
 ]
