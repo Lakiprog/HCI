@@ -1,5 +1,4 @@
-﻿using EventPlanner.Models;
-using EventPlanner.ViewModels;
+﻿using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,8 +6,14 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class ShowEventModalCommand : ICommand
+    class DeleteOrganizerCommand : ICommand
     {
+        public DeleteOrganizerCommand(OrganizerViewModel viewModel)
+        {
+            _ViewModel = viewModel;
+        }
+        private OrganizerViewModel _ViewModel;
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -22,11 +27,8 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            Event selectedEvent = (Event) parameter;
 
-            var eventDetailsModal = new Modals.EventDetailsModal();
-            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true, false);
-            eventDetailsModal.ShowDialog();
+            _ViewModel.delete();
         }
     }
 }

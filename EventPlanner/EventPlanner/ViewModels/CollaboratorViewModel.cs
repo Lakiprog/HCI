@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Commands;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,7 +21,7 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             SearchCmd = new SearchCommand(this);
-            CreateEditWindowCmd = new CreateEditWindowsCommand();
+            CreateEditWindowCmd = new CreateEditWindowsCommand(this);
             CreateAddWindowCmd = new CreateAddWindowsCommand();
         }
         private void InitData()
@@ -31,11 +32,8 @@ namespace EventPlanner.ViewModels
         private void AddOriginalData()
         {
             this.collaborators.Clear();
-            List<Collaborator> collaborators = new List<Collaborator>();
-            collaborators.Add(new Collaborator("Zikina klopa", CollaboratorType.RESTAURANT, "Adresa 1"));
-            collaborators.Add(new Collaborator("Marinini baloni", CollaboratorType.BALLOONS, "Adresa 2"));
-            collaborators.Add(new Collaborator("Pice kod Mice", CollaboratorType.DRINK_STORE, "Adresa 3"));
-            collaborators.Add(new Collaborator("Pice kod Mice", CollaboratorType.DRINK_STORE, "Adresa 3"));
+            CollaboratorService service = CollaboratorService.Singleton();
+            List<Collaborator> collaborators =  service.GetCollaborators();
 
             collaborators.ForEach(this.collaborators.Add);
         }
