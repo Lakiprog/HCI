@@ -57,6 +57,13 @@ namespace EventPlanner.Services
             return events;
         }
 
+        public List<Event> GetUsersEvents(int id)
+        {
+            List<Event> events = GetEvents();
+            events.RemoveAll(e => e.UserId != id);
+            return events;
+        }
+
         public List<Event> GetUpcomingEventsForOrganizer(int id)
         {
             List<Event> events = GetEventsForOrganizer(id);
