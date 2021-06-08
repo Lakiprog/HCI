@@ -110,7 +110,11 @@ namespace EventPlanner.ViewModels
             List<Task> toDoTasks = new List<Task>();
             List<Task> inProgressTasks = new List<Task>();
             List<Task> doneTasks = new List<Task>();
-            List<Event> allUsersEvents = new List<Event>();
+            User user = UserService.Singleton().CurrentUser;
+            EventService es = EventService.Singleton();
+            List<Event> allUsersEvents = (user is Organizer) ? es.GetEventsForOrganizer(user.ID) : es.GetUsersEvents(user.ID);
+            allUsersEvents.ForEach(_AllUsersEvents.Add);
+
             toDoTasks.Add(new Task("Naslov koji nije toliko dugacak", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "opis koji je dugacak 200 red roses at flower shop 'Maria' sdgsfgdf dfg fder ", collaborator, TaskType.GENERIC));
             toDoTasks.Add(new Task("Izbor restorana", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
             toDoTasks.Add(new Task("Izbor restorana 2", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
@@ -118,11 +122,7 @@ namespace EventPlanner.ViewModels
             inProgressTasks.Add(new Task("title 3", TaskStatus.WAITING, TaskLevel.IN_PROGRESS, 1, "task 3", collaborator, TaskType.GENERIC));
             doneTasks.Add(new Task("cvece", TaskStatus.WAITING, TaskLevel.DONE, 1, "pice kod mice", collaborator, TaskType.GENERIC));
 
-            Event e = new Event(1, "eventic", EventType.BIRTHDAY, "desc 1", DateTime.Now, DateTime.Now, new User(1,"micko", "micko123", "Mica", "Lakic"));
-            _Event = e;
-            allUsersEvents.Add(e);
-            allUsersEvents.Add(new Event(2, "title event 2", EventType.BIRTHDAY, "event 1 desc 2", DateTime.Now, DateTime.Now, new User(1,"micko", "micko123", "Mica", "Lakic")));
-            allUsersEvents.ForEach(_AllUsersEvents.Add);
+            _Event = allUsersEvents.Count > 0 ? allUsersEvents[0] : null;
 
             toDoTasks.ForEach(_ToDoTasks.Add);
             inProgressTasks.ForEach(_InProgressTasks.Add);

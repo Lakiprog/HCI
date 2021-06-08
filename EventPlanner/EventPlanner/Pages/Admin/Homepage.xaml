@@ -33,28 +33,25 @@
                                 Command="{Binding SearchCmd}" CommandParameter="{Binding Text, ElementName=searchOrganizersTextBox}"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*" />
-                            <ColumnDefinition Width="0.1*" />
-                        </Grid.ColumnDefinitions>
-                        <DataGrid Name="OrganizersDataGrid" Grid.Row="1" Grid.Column="0"
+                        <ScrollViewer x:Name="scrollViewerOrganizers">
+                            <DataGrid Name="OrganizersDataGrid" Grid.Row="1" Grid.Column="0" 
                     AlternatingRowBackground="Gainsboro" AlternationCount="2"
                     CanUserResizeColumns="False" CanUserReorderColumns="False"
                     IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=Organizers}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="First Name" Width="0.5*" Binding="{Binding FirstName}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Last Name" Width="0.5*" Binding="{Binding LastName}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Username" Width="0.5*" Binding="{Binding Username}"></DataGridTextColumn>
-                                <DataGridTemplateColumn Header="Edit" Width="0.15*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Command="{Binding ElementName=OrganizersGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">Edit</Button>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <ScrollBar x:Name="OrganizersScrollbar" Grid.Row="1" Grid.Column="1" />
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="First Name" Width="0.5*" Binding="{Binding FirstName}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Last Name" Width="0.5*" Binding="{Binding LastName}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Username" Width="0.5*" Binding="{Binding Username}"></DataGridTextColumn>
+                                    <DataGridTemplateColumn Header="Edit" Width="0.15*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Command="{Binding ElementName=OrganizersGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">Edit</Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
                     </Grid>
                     
                     <Grid Grid.Row="2">
@@ -92,28 +89,25 @@
                             Command="{Binding SearchCmd}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*" />
-                            <ColumnDefinition Width="0.1*" />
-                        </Grid.ColumnDefinitions>
-                        <DataGrid Name="CollaboratorsDataGrid" Grid.Column="0" ItemsSource="{Binding Path=Collaborators}"
+                        <ScrollViewer x:Name="scrollViewerCollaborators">
+                            <DataGrid Name="CollaboratorsDataGrid" Grid.Column="0" ItemsSource="{Binding Path=Collaborators}"
                     AlternatingRowBackground="Gainsboro" AlternationCount="2"
                     CanUserResizeColumns="False" CanUserReorderColumns="False"
                     IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Width="0.5*" Binding="{Binding Name}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Type" Width="0.5*" Binding="{Binding Type}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Address" Width="0.5*" Binding="{Binding Address}"></DataGridTextColumn>
-                                <DataGridTemplateColumn Header="Edit" Width="0.15*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Command="{Binding ElementName=CollaboratorsGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">Edit</Button>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <ScrollBar x:Name="CollaboratorsScrollbar" Grid.Column="1" Grid.RowSpan="3" Margin="0,0,0,0.3" HorizontalAlignment="Left"/>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name" Width="0.5*" Binding="{Binding Name}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Type" Width="0.5*" Binding="{Binding Type}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Address" Width="0.5*" Binding="{Binding Address}"></DataGridTextColumn>
+                                    <DataGridTemplateColumn Header="Edit" Width="0.15*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Command="{Binding ElementName=CollaboratorsGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">Edit</Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
                     </Grid>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>

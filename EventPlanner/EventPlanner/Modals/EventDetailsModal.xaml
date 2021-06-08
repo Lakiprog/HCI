@@ -49,7 +49,7 @@
         </StackPanel>
         <Label Grid.Row="6" Grid.Column="1" Content="User:" />
         <StackPanel Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Name="userTextbox" Text="{Binding EventDetails.User.Username}" Margin="0,7,0,0"/>
+            <TextBox Name="userTextbox" Text="{Binding EventDetails.User.Username}" IsReadOnly="True" Margin="0,7,0,0"/>
         </StackPanel>
         <Button Grid.Row="7" Grid.Column="3" Height="30" Content="Accept" VerticalAlignment="Top" Margin="10,10,10,0">
             <Button.Style>
