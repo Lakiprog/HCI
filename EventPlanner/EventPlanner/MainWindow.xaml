@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <components:NavBar Grid.Row="0" />
 
-        <Frame Padding="0.3cm" Grid.Row="1" Source="/Pages/User/HomePage.xaml" />
+        <Frame Padding="0.3cm" Grid.Row="1" Source="/Pages/Admin/HomePage.xaml" />
     </Grid>
 </Window>
                                                 

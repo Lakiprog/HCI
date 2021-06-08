@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Commands;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             SearchCmd = new SearchCommand(this);
-            CreateEditWindowCmd = new CreateEditWindowsCommand();
+            CreateEditWindowCmd = new CreateEditWindowsCommand(this);
             CreateAddWindowCmd = new CreateAddWindowsCommand();
         }
 
@@ -79,14 +80,8 @@ namespace EventPlanner.ViewModels
         private void AddOriginalData()
         {
             this.organizers.Clear();
-            // Call to a service function will return a list of organizers that need to be added here
-            List<Organizer> organizers = new List<Organizer>() {
-                new Organizer(1,"jim.halpert", "pam", "Jim", "Halpert", 3),
-                new Organizer(2,"dwight.schrute", "beets", "Dwight", "Schrute", 4),
-                new Organizer(3,"pam.beesley", "pan", "Pam", "Beesley", 5),
-                new Organizer(4,"kevin.malone", "123", "Kevim", "Malone", 1),
-                new Organizer(5,"erin.hannon", "dunder", "Erin", "Hannon", 2)
-            };
+            UserService service = UserService.Singleton();
+            List<Organizer> organizers = service.GetOrganizers();
 
             organizers.ForEach(this.organizers.Add);
         }

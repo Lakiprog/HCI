@@ -1,4 +1,5 @@
 ﻿using EventPlanner.Models;
+using EventPlanner.Services;
 using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,14 +32,15 @@ namespace EventPlanner.Commands
             if (parameter is OrganizersViewModel)
             {
                 Modals.Admin.RegisterOrganizerModal window = new Modals.Admin.RegisterOrganizerModal();
-                //TODO need some way to get the last id
-                window.DataContext = new ViewModels.OrganizerViewModel(new Organizer(1, "", "", "", "", 0), true);
+                window.DataContext = new ViewModels.OrganizerViewModel(new Organizer(UserService.Singleton().GetLastId(), "", "", "", "", 0), 
+                    true, (OrganizersViewModel)parameter);
                 window.Show();
             }
             else if (parameter is CollaboratorViewModel)
             {
                 Modals.Admin.RegisterCollaboratorModal window = new Modals.Admin.RegisterCollaboratorModal();
-                window.DataContext = new ViewModels.OneCollaboratorViewModel(new Collaborator("", CollaboratorType.RESTAURANT, ""));
+                window.DataContext = new ViewModels.OneCollaboratorViewModel(new Collaborator(CollaboratorService.Singleton().GetLastId(), "", CollaboratorType.RESTAURANT, ""), 
+                    (CollaboratorViewModel)parameter);
                 window.Show();
             }
             else if (parameter is UserViewModel)
