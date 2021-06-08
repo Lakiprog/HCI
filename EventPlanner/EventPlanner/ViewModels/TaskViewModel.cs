@@ -111,5 +111,10 @@ namespace EventPlanner.ViewModels
             _Task.Level = _Temp.Level;
             
         }
+        public bool CanUpdate()
+        {
+            if (String.IsNullOrWhiteSpace(_Temp.Title) || String.IsNullOrWhiteSpace(_Temp.Description)) return false;
+            return true;
+        }
     }
 }

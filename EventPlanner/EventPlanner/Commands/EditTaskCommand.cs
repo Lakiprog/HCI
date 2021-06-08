@@ -23,7 +23,7 @@ namespace EventPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _ViewModel.CanUpdate();
         }
 
         public void Execute(object parameter)
