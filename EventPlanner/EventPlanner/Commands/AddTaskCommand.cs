@@ -1,5 +1,4 @@
-﻿using EventPlanner.Models;
-using EventPlanner.ViewModels;
+﻿using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,8 +6,14 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class ShowEventModalCommand : ICommand
+    class AddTaskCommand : ICommand
     {
+        public AddTaskCommand(TaskViewModel viewModel)
+        {
+            _ViewModel = viewModel;
+        }
+        private TaskViewModel _ViewModel;
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -17,16 +22,12 @@ namespace EventPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _ViewModel.CanUpdate();
         }
 
         public void Execute(object parameter)
         {
-            Event selectedEvent = (Event) parameter;
-
-            var eventDetailsModal = new Modals.EventDetailsModal();
-            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true, false);
-            eventDetailsModal.ShowDialog();
+            _ViewModel.AddTask();
         }
     }
 }

@@ -8,13 +8,20 @@ namespace EventPlanner.Models
     public enum EventType { WEDDING, BIRTHDAY }
     public class Event : ObservableObject
     {
+        private int _Id;
         private string _Title;
         private EventType _Type;
         private string _Description;
         private DateTime _DateFrom;
         private DateTime _DateTo;
         private User _User;
-        public string Title
+
+        public int Id
+        {
+            get => _Id;
+            set { _Id = value; RaisePropertyChngedEvent("Id"); }
+        }
+        public String Title
         {
             get => _Title;
             set { _Title = value; RaisePropertyChngedEvent("Title"); }
@@ -45,8 +52,9 @@ namespace EventPlanner.Models
             get => _User;
             set { _User = value; RaisePropertyChngedEvent("User"); }
         }
-        public Event(string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, User user)
+        public Event(int id, string title, EventType type, string description, DateTime dateFrom, DateTime dateTo, User user)
         {
+            Id = id;
             Title = title;
             Type = type;
             Description = description;

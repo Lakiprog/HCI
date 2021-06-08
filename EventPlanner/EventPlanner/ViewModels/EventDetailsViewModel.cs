@@ -11,10 +11,10 @@ namespace EventPlanner.ViewModels
         private bool _IsFree;
         private bool _IsOrganizersEvent;
 
-        public EventDetailsViewModel(Event eventDetails, bool isFree) {
+        public EventDetailsViewModel(Event eventDetails, bool isFree, bool isOrganizersEvent) {
             EventDetails = eventDetails;
             IsFree = isFree;
-            IsOrganizersEvent = !isFree;
+            IsOrganizersEvent = isOrganizersEvent;
         }
 
         public Event EventDetails
