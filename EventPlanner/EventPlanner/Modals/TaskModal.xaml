@@ -48,11 +48,11 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
             <TextBox Text="{Binding Temp.Title}" Margin="0,7,0,0" IsEnabled="{Binding IsEditing}"/>
         </StackPanel>
-        <Label Grid.Row="2" Grid.Column="1" Content="Event type:" />
+        <Label Grid.Row="2" Grid.Column="1" Content="Description:" />
         <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
             <TextBox Text="{Binding Temp.Description}" Margin="0,7,0,0" IsEnabled="{Binding IsEditing}" TextWrapping="Wrap" Height="70" VerticalScrollBarVisibility="Visible"/>
         </StackPanel>
-        <Label Grid.Row="3" Grid.Column="1" Content="Task Status:" />
+        <Label Grid.Row="3" Grid.Column="1" Content="Task Level:" />
         <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
             <TextBox Text="To do" Margin="0,7,0,0" IsEnabled="False" />
         </StackPanel>
@@ -72,7 +72,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Content="Edit" Height="30" Margin="0,10,0,0" Command="{Binding EnableEditingTaskCmd}">
+            <Button Grid.Row="0" Grid.Column="0" Content="Edit" Height="30" Margin="0,10,10,0" Command="{Binding EnableEditingTaskCmd}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>
@@ -83,7 +83,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Row="0" Grid.Column="0" Content="Save Changes" Height="30" Margin="0,10,0,0" Command="{Binding EditTaskCmd}">
+            <Button Grid.Row="0" Grid.Column="0" Content="Save Changes" Height="30" Margin="0,10,10,0" Command="{Binding EditTaskCmd}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>
@@ -94,7 +94,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Row="0" Grid.Column="1" Content="Cancel" Command="{Binding CancelEditingTaskCmd}" Height="30" Margin="0,10,0,0"/>
+            <Button Grid.Row="0" Grid.Column="1" Content="Cancel" Command="{Binding CancelEditingTaskCmd}" Height="30" Margin="10,10,0,0"/>
             <Grid.Style>
                 <Style TargetType="{x:Type Grid}">
                     <Style.Triggers>

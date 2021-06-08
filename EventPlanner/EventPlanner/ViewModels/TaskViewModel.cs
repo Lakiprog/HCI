@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Commands;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace EventPlanner.ViewModels
             _Task = new Task();
             _Temp = new Task(_Task);
             _EventId = eventId;
-            _Task.Status = TaskStatus.TO_DO;
+            _Task.Level = TaskLevel.TO_DO;
             _Mode = Mode.Adding;
             InitCommands();
         }
@@ -49,7 +50,7 @@ namespace EventPlanner.ViewModels
         }
         public bool IsOrganizer
         {
-            get => true;
+            get => UserService.Singleton().CurrentUser is Organizer;
         }
         public Task Temp
         {
@@ -80,6 +81,7 @@ namespace EventPlanner.ViewModels
             get;
             private set;
         }
+
 
         public List<TaskType> TaskTypes
         {

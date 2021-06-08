@@ -1,12 +1,14 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Services;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EventPlanner.Models
 {
-    public enum TaskStatus { TO_DO, IN_PROGRESS, DONE }
+    public enum TaskLevel { TO_DO, IN_PROGRESS, DONE }
     public enum TaskType { GENERIC, SEATING }
+    public enum TaskStatus { WAITING, ACCEPTED, REJECTED }
     public class Task : ObservableObject
     {
         private int _Id;
@@ -16,7 +18,7 @@ namespace EventPlanner.Models
         private string _Description;
         private Collaborator _Collaborator;
         private TaskType _Type;
-        private Task task;
+        private TaskLevel _Level;
 
         public int Id
         {
@@ -31,7 +33,12 @@ namespace EventPlanner.Models
         public TaskStatus Status
         {
             get => _Status;
-            set { _Status = value; RaisePropertyChngedEvent("Status"); }
+            set { _Status = value; RaisePropertyChngedEvent("Status"); RaisePropertyChngedEvent("CanAcceptOrReject"); }
+        }
+        public TaskLevel Level
+        {
+            get => _Level;
+            set { _Level = value; RaisePropertyChngedEvent("TaskLevel"); }
         }
         public int EventId
         {
@@ -53,10 +60,11 @@ namespace EventPlanner.Models
             get => _Type;
             set { _Type = value; RaisePropertyChngedEvent("Type"); }
         }
-        public Task(string title, TaskStatus status, int eventId, string description, Collaborator collaborator, TaskType type)
+        public Task(string title, TaskStatus status, TaskLevel level, int eventId, string description, Collaborator collaborator, TaskType type)
         {
             Title = title;
             Status = status;
+            Level = level;
             EventId = eventId;
             Description = description;
             Collaborator = collaborator;
@@ -72,6 +80,10 @@ namespace EventPlanner.Models
             Description = task.Description;
             Collaborator = task.Collaborator;
             Type = task.Type;
+        }
+        public bool CanAcceptOrReject
+        {
+            get => !(UserService.Singleton().CurrentUser is Organizer || _Status == TaskStatus.ACCEPTED || _Status == TaskStatus.REJECTED);
         }
     }
 }

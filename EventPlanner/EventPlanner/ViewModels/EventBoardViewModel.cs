@@ -1,5 +1,6 @@
 ﻿using EventPlanner.Commands;
 using EventPlanner.Models;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,8 +47,9 @@ namespace EventPlanner.ViewModels
         }
         public bool IsOrganizer
         {
-            get => true;
+            get => UserService.Singleton().CurrentUser is Organizer;
         }
+        
         private void InitData()
         {
             _ToDoTasks = new ObservableCollection<Task>();
@@ -62,6 +64,9 @@ namespace EventPlanner.ViewModels
             SelectionChangedCmd = new SelectionChangedCommand(this);
             OpenCreateTaskModalCmd = new OpenCreateTaskModalCommand(this);
             OpenViewItemModalCmd = new OpenViewItemModalCommand();
+            DeleteTaskCmd = new DeleteTaskCommand(this);
+            AcceptTaskCmd = new AcceptTaskCommand(this);
+            RejectTaskCmd = new RejectTaskCommand(this);
         }
         public ICommand SelectionChangedCmd
         {
@@ -77,6 +82,18 @@ namespace EventPlanner.ViewModels
         {
             get; private set;
         }
+        public ICommand DeleteTaskCmd
+        {
+            get; private set;
+        }
+        public ICommand AcceptTaskCmd
+        {
+            get; private set;
+        }
+        public ICommand RejectTaskCmd
+        {
+            get; private set;
+        }
         private void AddOriginalData()
         {
             _ToDoTasks.Clear(); _InProgressTasks.Clear(); _DoneTasks.Clear();
@@ -86,10 +103,12 @@ namespace EventPlanner.ViewModels
             List<Task> inProgressTasks = new List<Task>();
             List<Task> doneTasks = new List<Task>();
             List<Event> allUsersEvents = new List<Event>();
-            toDoTasks.Add(new Task("Naslov koji nije toliko dugacak", TaskStatus.TO_DO, 1, "opis koji je dugacak 200 red roses at flower shop 'Maria' sdgsfgdf dfg fder ", collaborator, TaskType.GENERIC));
-            toDoTasks.Add(new Task("Izbor restorana", TaskStatus.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
-            inProgressTasks.Add(new Task("title 3", TaskStatus.TO_DO, 1, "task 3", collaborator, TaskType.GENERIC));
-            doneTasks.Add(new Task("cvece", TaskStatus.TO_DO, 1, "pice kod mice", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Naslov koji nije toliko dugacak", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "opis koji je dugacak 200 red roses at flower shop 'Maria' sdgsfgdf dfg fder ", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Izbor restorana", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Izbor restorana 2", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Izbor restorana 3", TaskStatus.REJECTED, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
+            inProgressTasks.Add(new Task("title 3", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "task 3", collaborator, TaskType.GENERIC));
+            doneTasks.Add(new Task("cvece", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "pice kod mice", collaborator, TaskType.GENERIC));
 
             Event e = new Event(1, "eventic", EventType.BIRTHDAY, "desc 1", DateTime.Now, DateTime.Now, new User(1,"micko", "micko123", "Mica", "Lakic"));
             _Event = e;
@@ -110,13 +129,27 @@ namespace EventPlanner.ViewModels
             List<Task> inProgressTasks = new List<Task>();
             List<Task> doneTasks = new List<Task>();
             Collaborator collaborator = new Collaborator { Name = "coll1", Address = "addr1", Type = CollaboratorType.FLOWER_SHOP };
-            toDoTasks.Add(new Task("Baloni", TaskStatus.TO_DO, 1, "Clean out Tivoli Enterprise Console database", collaborator, TaskType.GENERIC));
-            inProgressTasks.Add(new Task("Cvece", TaskStatus.TO_DO, 1, "Forward event to the Tivoli Enterprise Console server", collaborator, TaskType.GENERIC));
-            inProgressTasks.Add(new Task("Hrana", TaskStatus.TO_DO, 1, "Jump Netscape to URL", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Baloni", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "Clean out Tivoli Enterprise Console database", collaborator, TaskType.GENERIC));
+            inProgressTasks.Add(new Task("Cvece", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "Forward event to the Tivoli Enterprise Console server", collaborator, TaskType.GENERIC));
+            inProgressTasks.Add(new Task("Hrana", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "Jump Netscape to URL", collaborator, TaskType.GENERIC));
 
             toDoTasks.ForEach(_ToDoTasks.Add);
             inProgressTasks.ForEach(_InProgressTasks.Add);
             doneTasks.ForEach(_DoneTasks.Add);
+        }
+        public void DeleteTask(Task task)
+        {
+            if (_ToDoTasks.Contains(task)) _ToDoTasks.Remove(task);
+            else if (_InProgressTasks.Contains(task)) _InProgressTasks.Remove(task);
+            else _DoneTasks.Remove(task);
+        }
+        public void AcceptTask(Task task)
+        {
+            task.Status = TaskStatus.ACCEPTED;
+        }
+        public void RejectTask(Task task)
+        {
+            task.Status = TaskStatus.REJECTED;
         }
     }
 }
