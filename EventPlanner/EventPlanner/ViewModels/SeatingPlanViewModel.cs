@@ -15,6 +15,7 @@ namespace EventPlanner.ViewModels
         private ObservableCollection<TableViewModel> _Tables;
         private ObservableCollection<string> _Invitations;
         private string _NewTableName;
+        private string _NewInvitationName;
         bool firstCreation;
         public SeatingPlanViewModel(int taskId)
         {
@@ -44,6 +45,11 @@ namespace EventPlanner.ViewModels
             get => _NewTableName;
             set { _NewTableName = value; RaisePropertyChngedEvent("NewTableName"); }
         }
+        public String NewInvitationName
+        {
+            get => _NewInvitationName;
+            set { _NewInvitationName = value; RaisePropertyChngedEvent("NewInvitationName"); }
+        }
         public ICommand AddTableCmd
         {
             get; private set;
@@ -56,11 +62,16 @@ namespace EventPlanner.ViewModels
         {
             get; private set;
         }
+        public ICommand AddInvitationCmd
+        {
+            get; private set;
+        }
         private void InitCommands()
         {
             AddTableCmd = new AddTableCommand(this);
             RemoveTableCmd = new RemoveTableCommand(this);
             SaveSeatingPlanCmd = new SaveSeatingPlanCommand(this);
+            AddInvitationCmd = new AddInvitationCommand(this);
         }
         private void InitData(int taskId)
         {
@@ -95,14 +106,20 @@ namespace EventPlanner.ViewModels
                 invitations.ForEach(_Invitations.Add);
             }
         }
-        public bool CanUpdate()
+        public bool CanUpdate(string name)
         {
-            if (String.IsNullOrWhiteSpace(_NewTableName)) return false;
+            if (String.IsNullOrWhiteSpace(name)) return false;
             return true;
         }
         public void AddTable()
         {
             _Tables.Add(new TableViewModel(new Table(_NewTableName, new List<string>())));
+            NewTableName = "";
+        }
+        public void AddInvitation()
+        {
+            _Invitations.Add(_NewInvitationName);
+            NewInvitationName = "";
         }
         public void SaveSeatingPlan()
         {
