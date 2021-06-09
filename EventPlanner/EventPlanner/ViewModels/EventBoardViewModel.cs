@@ -118,7 +118,7 @@ namespace EventPlanner.ViewModels
             toDoTasks.Add(new Task("Naslov koji nije toliko dugacak", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "opis koji je dugacak 200 red roses at flower shop 'Maria' sdgsfgdf dfg fder ", collaborator, TaskType.GENERIC));
             toDoTasks.Add(new Task("Izbor restorana", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
             toDoTasks.Add(new Task("Izbor restorana 2", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
-            toDoTasks.Add(new Task("Izbor restorana 3", TaskStatus.REJECTED, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
+            toDoTasks.Add(new Task("Izbor restorana 3", TaskStatus.REJECTED, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.SEATING));
             inProgressTasks.Add(new Task("title 3", TaskStatus.WAITING, TaskLevel.IN_PROGRESS, 1, "task 3", collaborator, TaskType.GENERIC));
             doneTasks.Add(new Task("cvece", TaskStatus.WAITING, TaskLevel.DONE, 1, "pice kod mice", collaborator, TaskType.GENERIC));
 
