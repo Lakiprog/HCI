@@ -1,4 +1,5 @@
 ﻿using EventPlanner.Windows.User;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EventPlanner.Models;
 
 namespace EventPlanner.Components
 {
@@ -28,6 +30,44 @@ namespace EventPlanner.Components
         {
             MakeRequestWindow window = new MakeRequestWindow();
             window.Show();
+        }
+
+        private void notificationsNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Services.NavigationService.Singleton().ChangePage("Pages/NotificationPage.xaml");
+        }
+
+        private void signOutNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            UserService.Singleton().Logout();
+            Services.NavigationService.Singleton().ChangePage("Pages/SigninPage.xaml");
+        }
+
+        private void homeNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            User currentUser = UserService.Singleton().CurrentUser;
+            if (currentUser is Admin)
+            {
+                Services.NavigationService.Singleton().ChangePage("Pages/Admin/Homepage.xaml");
+            }
+            else if (currentUser is Organizer)
+            {
+                Services.NavigationService.Singleton().ChangePage("Pages/Organizer/Homepage.xaml");
+            }
+            else
+            {
+                Services.NavigationService.Singleton().ChangePage("Pages/User/Homepage.xaml");
+            }
+        }
+
+        private void profileNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Services.NavigationService.Singleton().ChangePage("Pages/ProfilePage.xaml");
+        }
+
+        private void inboxNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Services.NavigationService.Singleton().ChangePage("Pages/MessagesPage.xaml");
         }
     }
 }

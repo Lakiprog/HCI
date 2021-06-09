@@ -60,8 +60,9 @@ namespace EventPlanner.Models
             get => _Type;
             set { _Type = value; RaisePropertyChngedEvent("Type"); }
         }
-        public Task(string title, TaskStatus status, TaskLevel level, int eventId, string description, Collaborator collaborator, TaskType type)
+        public Task(int id, string title, TaskStatus status, TaskLevel level, int eventId, string description, Collaborator collaborator, TaskType type)
         {
+            Id = id;
             Title = title;
             Status = status;
             Level = level;
@@ -74,6 +75,7 @@ namespace EventPlanner.Models
 
         public Task(Task task)
         {
+            Id = task.Id;
             Title = task.Title;
             Status = task.Status;
             Level = task.Level;
