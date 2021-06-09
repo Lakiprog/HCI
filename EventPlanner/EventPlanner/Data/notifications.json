@@ -19,5 +19,19 @@
     "UserToId": 1,
     "ElementId": 3,
     "Type": "EVENT_CHANGED"
+  },
+  {
+    "ID": 1,
+    "UserFromId": 2,
+    "UserToId": 1,
+    "ElementId": 4,
+    "Type": "MESSAGE_SENT"
+  },
+  {
+    "ID": 1,
+    "UserFromId": 3,
+    "UserToId": 1,
+    "ElementId": 5,
+    "Type": "MESSAGE_SENT"
   }
 ]
