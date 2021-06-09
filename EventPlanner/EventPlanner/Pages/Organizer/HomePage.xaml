@@ -84,7 +84,7 @@
 
                         <TextBox Grid.Column="0" x:Name="SearchCollaboratorsTextBox"/>
                         <Button Grid.Column="1" Content="Search" Name="searchCollaboratorsButton" 
-                            Command="{Binding SearchCmd}" Style="{StaticResource MaterialDesignFlatMidBgButton}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
+                            Command="{Binding SearchCmd}" Style="{StaticResource MaterialDesignRaisedButton}" Foreground="White" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
                     </Grid>
                     <DataGrid Name="CollaboratorsDataGrid" Grid.Row="1" ItemsSource="{Binding Path=Collaborators}"
                      AlternationCount="2"
@@ -97,7 +97,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <DockPanel Grid.Row="2">
-                        <Button Grid.Column="1" Content="Add Collaborator" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Click="AddCollaboratorButton_Click"/>
+                        <Button Grid.Column="1" Content="Add Collaborator" Style="{StaticResource MaterialDesignRaisedButton}" Foreground="White" HorizontalAlignment="Right" Click="AddCollaboratorButton_Click"/>
                     </DockPanel>
                 </Grid>
             </TabItem>

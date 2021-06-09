@@ -44,7 +44,7 @@
                                     <DataGridTemplateColumn Width="*">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ElementName=OrganizersGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">
+                                                <Button Margin="-30,0" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ElementName=OrganizersGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">
                                                     <materialDesign:PackIcon Kind="Pencil" Margin="0,8,0,0" Foreground="#00BCD4"/>
                                                 </Button>
                                             </DataTemplate>
@@ -107,7 +107,7 @@
                                     <DataGridTemplateColumn Width="*">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ElementName=CollaboratorsGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">
+                                                <Button Margin="-30,0" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ElementName=CollaboratorsGrid, Path=DataContext.CreateEditWindowCmd}" CommandParameter="{Binding}">
                                                     <materialDesign:PackIcon Kind="Pencil" Margin="0,8,0,0" Foreground="#00BCD4"/>
                                                 </Button>
                                             </DataTemplate>
