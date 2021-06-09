@@ -115,6 +115,7 @@ namespace EventPlanner.ViewModels
             if (firstCreation)
             {
                 SeatingPlanService.Singleton().Add(_SeatingPlan);
+                firstCreation = false;
             }
             else
             {
