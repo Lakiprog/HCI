@@ -13,34 +13,35 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="2.5*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18pt" Content="Sign in" />
-        <StackPanel Grid.Row="1">
+        <Label Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18pt" Content="Sign in" />
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="Username:" />
             <TextBox Name="usernameTextbox" />
         </StackPanel>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="Password:" />
             <PasswordBox Name="passwordTextBox" />
             <Label>
                 <Hyperlink>Forgot password?</Hyperlink>
             </Label>
         </StackPanel>
-        <Grid Grid.Row="4">
-            <Grid.Resources>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Margin" Value="1cm,0,1cm,0" />
-                </Style>
-            </Grid.Resources>
-
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Registration" Name="registrationBtn" Click="registrationBtn_Click" />
-            <Button Grid.Column="1" Content="Login" Name="loginBtn" Click="loginBtn_Click" />
+            <Button Grid.Column="0" Content="Registration" Name="registrationBtn" Click="registrationBtn_Click" Margin="0,0,10,0" Foreground="White"/>
+            <Button Grid.Column="1" Content="Login" Name="loginBtn" Click="loginBtn_Click" Margin="10,0,0,0" Foreground="White"/>
         </Grid>
     </Grid>
 </Page>
