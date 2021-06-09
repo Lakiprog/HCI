@@ -30,7 +30,7 @@ namespace EventPlanner.Pages
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Services.NavigationService.Singleton().ChangePage("Pages/SigninPage.xaml");
         }
     }
 }
