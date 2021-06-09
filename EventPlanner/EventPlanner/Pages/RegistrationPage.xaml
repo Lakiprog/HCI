@@ -10,40 +10,47 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.7*" />
+            <RowDefinition Height="1.4*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18pt" Content="Registration" />
-        <StackPanel Grid.Row="1">
+        <Label Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18pt" Content="Registration" />
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="Full name:" />
             <TextBox Name="fullNameTextbox" />
         </StackPanel>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="Username:" />
             <TextBox Name="usernameTextbox" />
         </StackPanel>
-        <StackPanel Grid.Row="3">
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="Password:" />
             <PasswordBox Name="passwordTextBox" />
         </StackPanel>
-        <StackPanel Grid.Row="4">
+        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="Retype Password:" />
             <PasswordBox Name="retypePasswordTextBox" />
         </StackPanel>
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="0 0 1cm 0" Content="Login" Name="loginBtn" Click="loginBtn_Click" />
-            <Button Grid.Column="1" Margin="1cm 0 0 0" Content="Registration" Name="registrationBtn" Click="registrationBtn_Click" />
+            <Button Grid.Column="0" Margin="0 0 1cm 0" Content="Login" Foreground="White" Name="loginBtn" Click="loginBtn_Click" />
+            <Button Grid.Column="1" Margin="1cm 0 0 0" Content="Registration" Foreground="White"  Name="registrationBtn" Click="registrationBtn_Click" />
         </Grid>
     </Grid>
 </Page>
