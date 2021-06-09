@@ -35,7 +35,6 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             SaveCommand = new EditCollaboratorCommand(this);
-            DeleteCommand = new DeleteCollaboratorCommand(this);
         }
 
         public Collaborator Temp
@@ -71,47 +70,12 @@ namespace EventPlanner.ViewModels
             }
         }
 
-        public void delete()
-        {
-            MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-            MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-            MessageBoxResult rsltMessageBox = MessageBox.Show("Are you sure you wish to delete this collaborator permanently?",
-                "Event Planner", btnMessageBox, icnMessageBox);
-
-            switch (rsltMessageBox)
-            {
-                case MessageBoxResult.Yes:
-                    CollaboratorService service = CollaboratorService.Singleton();
-                    service.Delete(collaborator);
-                    parent.Collaborators.Clear();
-                    List<Collaborator> collaborators = service.GetCollaborators();
-                    collaborators.ForEach(parent.Collaborators.Add);
-
-                    foreach (Window item in Application.Current.Windows)
-                    {
-                        if (item.DataContext == this) item.Close();
-                    }
-
-                    break;
-
-                case MessageBoxResult.No:
-                    /* ... */
-                    break;
-            }
-        }
-
         public ICommand SaveCommand
         {
             get;
             private set;
         }
 
-        public ICommand DeleteCommand
-        {
-            get;
-            private set;
-        }
 
         public bool CanUpdate { get {
                 if (Temp == null)

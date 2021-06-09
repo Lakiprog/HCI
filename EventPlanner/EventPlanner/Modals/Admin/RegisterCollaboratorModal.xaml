@@ -17,7 +17,7 @@
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.4*"/>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.4*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
@@ -31,8 +31,8 @@
                   ItemsSource="{Binding Source={StaticResource CollaboratorTypeValueConverter}, Path=Strings}" 
                   SelectedItem="{Binding Temp.Type, Converter={StaticResource CollaboratorTypeValueConverter}}" />
         <Label x:Name="TypeLabel" Content="Type of company" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
-        <Button x:Name="SubmitRegisterCollaboratorModalButton" Content="submit" Grid.Row="6" Grid.Column="0" Height="20pt" Width="50pt" Click="SubmitRegisterCollaboratorModalButton_Click" Command="{Binding SaveCommand}"/>
-        <Button x:Name="CancelRegisterCollaboratorModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Height="20pt" Width="50pt" Click="CancelRegisterCollaboratorModalButton_Click"/>
+        <Button x:Name="SubmitRegisterCollaboratorModalButton" Content="submit" Grid.Row="6" Grid.Column="0" Click="SubmitRegisterCollaboratorModalButton_Click" Foreground="White" Margin="0,0,10,0" Command="{Binding SaveCommand}"/>
+        <Button x:Name="CancelRegisterCollaboratorModalButton" Content="cancel" Grid.Row="7" Grid.Column="1" Click="CancelRegisterCollaboratorModalButton_Click" Foreground="White" Margin="10,0,0,0"/>
 
     </Grid>
 </Window>
