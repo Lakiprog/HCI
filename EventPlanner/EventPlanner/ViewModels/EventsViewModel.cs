@@ -96,17 +96,18 @@ namespace EventPlanner.ViewModels
             this.organizerEvents.Clear();
             List<Event> organizerEvents = new List<Event>();
             User user = UserService.Singleton().CurrentUser;
-            organizerEvents = EventService.Singleton().GetPotentialEventsForOrganizer(user.ID);
+            EventService es = EventService.Singleton();
+            organizerEvents = es.GetPotentialEventsForOrganizer(user.ID);
             organizerEvents.ForEach(this.organizerEvents.Add);
 
             this.upcomingEvents.Clear();
             List<Event> upcomingEvents = new List<Event>();
-            organizerEvents = EventService.Singleton().GetUpcomingEventsForOrganizer(user.ID);
+            upcomingEvents = user is Organizer ? es.GetUpcomingEventsForOrganizer(user.ID) : es.GetUpcomingEventsForUser(user.ID);
             upcomingEvents.ForEach(this.upcomingEvents.Add);
 
             this.pastEvents.Clear();
             List<Event> pastEvents = new List<Event>();
-            pastEvents = EventService.Singleton().GetPastEventsForOrganizer(user.ID);
+            pastEvents = user is Organizer ? es.GetPastEventsForOrganizer(user.ID) : es.GetPastEventsForUser(user.ID);
             pastEvents.ForEach(this.pastEvents.Add);
         }
 
