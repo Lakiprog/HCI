@@ -14,6 +14,7 @@ namespace EventPlanner.ViewModels
         private User user;
         public bool isOrganizer;
         public bool canUpdate;
+        private User newUser;
 
         public UserViewModel()
         {
@@ -24,17 +25,31 @@ namespace EventPlanner.ViewModels
         private void InitData()
         {
             // getting logged-in user
+            newUser = new User(0, "","","","");
             user = UserService.Singleton().CurrentUser;
             isOrganizer = true;
             canUpdate = false;
         }
+
+        public User NewUser
+        {
+            get => newUser;
+            set { newUser = value; RaisePropertyChngedEvent("NewUser"); }
+        }
+
         public ICommand EditUserCmd
+        {
+            get; private set;
+        }
+
+        public ICommand RegisterUserCmd
         {
             get; private set;
         }
         private void InitCommands()
         {
             EditUserCmd = new EditUserCommand(this);
+            RegisterUserCmd = new RegisterCommand(this);
         }
         public User User
         {

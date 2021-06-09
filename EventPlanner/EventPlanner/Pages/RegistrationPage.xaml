@@ -3,14 +3,17 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:EventPlanner.Pages"
+      xmlns:local="clr-namespace:EventPlanner.Pages" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels" xmlns:components="clr-namespace:PasswordBoxMVVM.Components"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RegistrationPage">
-
+    <Page.DataContext>
+        <ViewModels:UserViewModel />
+    </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.7*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
@@ -20,22 +23,26 @@
 
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18pt" Content="Registration" />
         <StackPanel Grid.Row="1">
-            <Label Content="Full name:" />
-            <TextBox Name="fullNameTextbox" />
+            <Label Content="First name:" />
+            <TextBox Name="firstNameTextbox" Text="{Binding NewUser.FirstName}"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
-            <Label Content="Username:" />
-            <TextBox Name="usernameTextbox" />
+            <Label Content="Last name:" />
+            <TextBox Name="lastNameTextbox" Text="{Binding NewUser.LastName}"/>
         </StackPanel>
         <StackPanel Grid.Row="3">
-            <Label Content="Password:" />
-            <PasswordBox Name="passwordTextBox" />
+            <Label Content="Username:" />
+            <TextBox Name="usernameTextbox" Text="{Binding NewUser.Username}"/>
         </StackPanel>
         <StackPanel Grid.Row="4">
-            <Label Content="Retype Password:" />
-            <PasswordBox Name="retypePasswordTextBox" />
+            <Label Content="Password:" />
+            <components:BindablePasswordBox x:Name="passwordTextBox" Password="{Binding NewUser.Password}"/>
         </StackPanel>
-        <Grid Grid.Row="5">
+        <StackPanel Grid.Row="5">
+            <Label Content="Retype Password:" />
+            <components:BindablePasswordBox x:Name="retypePasswordTextBox" />
+        </StackPanel>
+        <Grid Grid.Row="6">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
@@ -43,7 +50,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Margin="0 0 1cm 0" Content="Login" Name="loginBtn" Click="loginBtn_Click" />
-            <Button Grid.Column="1" Margin="1cm 0 0 0" Content="Registration" Name="registrationBtn" Click="registrationBtn_Click" />
+            <Button Grid.Column="1" Margin="1cm 0 0 0" Content="Registration" Name="registrationBtn" Command="{Binding Path=RegisterUserCmd}" />
         </Grid>
     </Grid>
 </Page>

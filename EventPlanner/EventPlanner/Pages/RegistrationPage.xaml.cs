@@ -25,7 +25,7 @@ namespace EventPlanner.Pages
 
         private void registrationBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
