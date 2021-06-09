@@ -41,7 +41,19 @@ namespace EventPlanner.ViewModels
         public Event Event
         {
             get => _Event;
-            set { _Event = value; RaisePropertyChngedEvent("Event"); }
+            set {
+                _Event = value;
+                _ToDoTasks.Clear();
+                _InProgressTasks.Clear();
+                _DoneTasks.Clear();
+                if (value != null)
+                {
+                    _Event.Tasks.FindAll(task => task.Level == TaskLevel.TO_DO).ForEach(_ToDoTasks.Add);
+                    _Event.Tasks.FindAll(task => task.Level == TaskLevel.IN_PROGRESS).ForEach(_InProgressTasks.Add);
+                    _Event.Tasks.FindAll(task => task.Level == TaskLevel.DONE).ForEach(_DoneTasks.Add);
+                }
+                RaisePropertyChngedEvent("Event");
+            }
         }
         public ObservableCollection<Event> AllUsersEvents
         {
@@ -107,43 +119,16 @@ namespace EventPlanner.ViewModels
             _ToDoTasks.Clear(); _InProgressTasks.Clear(); _DoneTasks.Clear();
 
             Collaborator collaborator = new Collaborator(CollaboratorService.Singleton().GetLastId(), "coll1", CollaboratorType.FLOWER_SHOP, "addr1");
-            List<Task> toDoTasks = new List<Task>();
-            List<Task> inProgressTasks = new List<Task>();
-            List<Task> doneTasks = new List<Task>();
             User user = UserService.Singleton().CurrentUser;
             EventService es = EventService.Singleton();
             List<Event> allUsersEvents = (user is Organizer) ? es.GetEventsForOrganizer(user.ID) : es.GetUsersEvents(user.ID);
             allUsersEvents.ForEach(_AllUsersEvents.Add);
 
-            toDoTasks.Add(new Task("Naslov koji nije toliko dugacak", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "opis koji je dugacak 200 red roses at flower shop 'Maria' sdgsfgdf dfg fder ", collaborator, TaskType.GENERIC));
-            toDoTasks.Add(new Task("Izbor restorana", TaskStatus.WAITING, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
-            toDoTasks.Add(new Task("Izbor restorana 2", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.GENERIC));
-            toDoTasks.Add(new Task("Izbor restorana 3", TaskStatus.REJECTED, TaskLevel.TO_DO, 1, "task 2", collaborator, TaskType.SEATING));
-            inProgressTasks.Add(new Task("title 3", TaskStatus.WAITING, TaskLevel.IN_PROGRESS, 1, "task 3", collaborator, TaskType.GENERIC));
-            doneTasks.Add(new Task("cvece", TaskStatus.WAITING, TaskLevel.DONE, 1, "pice kod mice", collaborator, TaskType.GENERIC));
-
-            _Event = allUsersEvents.Count > 0 ? allUsersEvents[0] : null;
-
-            toDoTasks.ForEach(_ToDoTasks.Add);
-            inProgressTasks.ForEach(_InProgressTasks.Add);
-            doneTasks.ForEach(_DoneTasks.Add);
+            Event = allUsersEvents.Count > 0 ? allUsersEvents[0] : null;
         }
         public void ChangeCurrentEvent(Event _event)
         {
             Event = _event;
-            _ToDoTasks.Clear(); _InProgressTasks.Clear(); _DoneTasks.Clear();
-            // get new events tasks
-            List<Task> toDoTasks = new List<Task>();
-            List<Task> inProgressTasks = new List<Task>();
-            List<Task> doneTasks = new List<Task>();
-            Collaborator collaborator = new Collaborator(CollaboratorService.Singleton().GetLastId(), "coll1", CollaboratorType.FLOWER_SHOP, "addr1");
-            toDoTasks.Add(new Task("Baloni", TaskStatus.ACCEPTED, TaskLevel.TO_DO, 1, "Clean out Tivoli Enterprise Console database", collaborator, TaskType.GENERIC));
-            inProgressTasks.Add(new Task("Cvece", TaskStatus.ACCEPTED, TaskLevel.IN_PROGRESS, 1, "Forward event to the Tivoli Enterprise Console server", collaborator, TaskType.GENERIC));
-            inProgressTasks.Add(new Task("Hrana", TaskStatus.ACCEPTED, TaskLevel.IN_PROGRESS, 1, "Jump Netscape to URL", collaborator, TaskType.GENERIC));
-
-            toDoTasks.ForEach(_ToDoTasks.Add);
-            inProgressTasks.ForEach(_InProgressTasks.Add);
-            doneTasks.ForEach(_DoneTasks.Add);
         }
         public void DeleteTask(Task task)
         {
