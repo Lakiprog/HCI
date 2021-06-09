@@ -1,16 +1,14 @@
-﻿using EventPlanner.Models;
-using EventPlanner.ViewModels;
+﻿using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class AddTableCommand : ICommand
+    class AddInvitationCommand : ICommand
     {
-        public AddTableCommand(SeatingPlanViewModel viewModel)
+        public AddInvitationCommand(SeatingPlanViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
@@ -29,7 +27,7 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _ViewModel.AddTable();
+            _ViewModel.AddInvitation();
         }
     }
 }
