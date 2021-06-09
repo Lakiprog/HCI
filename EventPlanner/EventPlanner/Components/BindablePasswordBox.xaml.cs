@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace PasswordBoxMVVM.Components
+namespace EventPlanner.Components
 {
     public partial class BindablePasswordBox : UserControl
     {
