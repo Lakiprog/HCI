@@ -21,59 +21,51 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="3cm" />
+                <RowDefinition MaxHeight="1cm" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Viewbox MaxWidth="3cm">
-                <TextBlock>Inbox</TextBlock>
-            </Viewbox>
-            <ItemsControl x:Name="messageComponent" Grid.Row="1" ItemsSource="{Binding MessagesViewModels}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,0,0,10">
-                            <Grid.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding 
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Padding="10,5" Background="#00BCD4" Foreground="White" Text="Inbox"/>
+            <ScrollViewer Grid.Row="1">
+                <ItemsControl x:Name="messageComponent" ItemsSource="{Binding MessagesViewModels}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding 
                                         RelativeSource={
                                             RelativeSource Mode=FindAncestor,
                                             AncestorType=ItemsControl
                                         },
                                         Path=DataContext.SelectUsersMessageCmd}" CommandParameter="{Binding}" />
-                            </Grid.InputBindings>
-                            <Rectangle x:Name="borderComponent"
-                                       Stroke="Black"
-                                       StrokeThickness="0.5"
-                                       RadiusX="{Binding ElementName=borderComponent,
-                                                 Path=ActualHeight,
-                                                 Converter={StaticResource MathConverter},
-                                                 ConverterParameter=@VALUE*0.5}"
-                                       RadiusY="{Binding RelativeSource={RelativeSource Mode=Self}, Path=RadiusX}"
-                            >
-                                <Rectangle.Style>
-                                    <Style TargetType="Rectangle">
-                                        <Style.Triggers>
-                                            <DataTrigger Value="True">
-                                                <DataTrigger.Binding>
-                                                    <MultiBinding Converter="{StaticResource MultiValueEqualityConverter}">
-                                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" Path="DataContext.SelectedViewModel" Mode="OneWay" />
-                                                        <Binding RelativeSource="{RelativeSource Mode=Self}" Path="DataContext" Mode="OneWay" />
-                                                    </MultiBinding>
-                                                </DataTrigger.Binding>
-                                                <Setter Property="Fill" Value="Aqua" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Rectangle.Style>
-                            </Rectangle>
-                            <Label HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" FontSize="18pt" Content="{Binding OtherPerson.FullName}" />
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                </Grid.InputBindings>
+                                <Rectangle x:Name="borderComponent">
+                                    <Rectangle.Style>
+                                        <Style TargetType="Rectangle">
+                                            <Style.Triggers>
+                                                <DataTrigger Value="True">
+                                                    <DataTrigger.Binding>
+                                                        <MultiBinding Converter="{StaticResource MultiValueEqualityConverter}">
+                                                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" Path="DataContext.SelectedViewModel" Mode="OneWay" />
+                                                            <Binding RelativeSource="{RelativeSource Mode=Self}" Path="DataContext" Mode="OneWay" />
+                                                        </MultiBinding>
+                                                    </DataTrigger.Binding>
+                                                    <Setter Property="Fill" Value="#eee" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Rectangle.Style>
+                                </Rectangle>
+                                <Label Style="{StaticResource MaterialDesignLabel}" HorizontalAlignment="Stretch" FontSize="11pt" Content="{Binding OtherPerson.FullName}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition MinHeight="24pt" MaxHeight="84pt" />
+                <RowDefinition MinHeight="24pt" MaxHeight="60pt" />
             </Grid.RowDefinitions>
             <ScrollViewer x:Name="messageScrollViewer">
                 <ItemsControl SizeChanged="ItemsControl_SizeChanged" DataContext="{Binding SelectedViewModel}" ItemsSource="{Binding Messages}">
@@ -81,7 +73,6 @@
                         <DataTemplate>
                             <Border x:Name="borderComponent"
                                     Margin="0,0,0,10"
-                                    BorderBrush="Black"
                                     Padding="10"
                                     BorderThickness="0.5"
                                     CornerRadius="20"
@@ -91,9 +82,12 @@
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding IsCurrentUsersMessage}" Value="False">
                                                 <Setter Property="HorizontalAlignment" Value="Left" />
+                                                <Setter Property="Background" Value="#eee"/>
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding IsCurrentUsersMessage}" Value="True">
                                                 <Setter Property="HorizontalAlignment" Value="Right" />
+                                                <Setter Property="Background" Value="#00BCD4"/>
+                                                <Setter Property="BorderBrush" Value="#00BCD4"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -105,6 +99,7 @@
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsCurrentUsersMessage}" Value="True">
                                                         <Setter Property="Text" Value="You" />
+                                                        <Setter Property="Foreground" Value="white"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding IsCurrentUsersMessage}" Value="False">
                                                         <Setter Property="Text" Value="{Binding ElementName=messageComponent,
@@ -114,7 +109,17 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <TextBlock MaxWidth="9cm" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Content}" />
+                                    <TextBlock MaxWidth="9cm" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Content}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCurrentUsersMessage}" Value="True">
+                                                        <Setter Property="Foreground" Value="white"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -137,7 +142,9 @@
                         Content="SEND"
                         Grid.Column="1"
                         Command="{Binding SelectedViewModel.SendMessageCmd}"
-                        CommandParameter="{Binding ElementName=messageTextBox, Path=Text}" />
+                        CommandParameter="{Binding ElementName=messageTextBox, Path=Text}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Foreground="White" VerticalAlignment="Bottom"/>
             </Grid>
         </Grid>
     </Grid>
