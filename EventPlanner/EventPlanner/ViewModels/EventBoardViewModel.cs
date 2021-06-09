@@ -118,7 +118,6 @@ namespace EventPlanner.ViewModels
         {
             _ToDoTasks.Clear(); _InProgressTasks.Clear(); _DoneTasks.Clear();
 
-            Collaborator collaborator = new Collaborator(CollaboratorService.Singleton().GetLastId(), "coll1", CollaboratorType.FLOWER_SHOP, "addr1");
             User user = UserService.Singleton().CurrentUser;
             EventService es = EventService.Singleton();
             List<Event> allUsersEvents = (user is Organizer) ? es.GetEventsForOrganizer(user.ID) : es.GetUsersEvents(user.ID);
@@ -138,15 +137,22 @@ namespace EventPlanner.ViewModels
                 if (_ToDoTasks.Contains(task)) _ToDoTasks.Remove(task);
                 else if (_InProgressTasks.Contains(task)) _InProgressTasks.Remove(task);
                 else _DoneTasks.Remove(task);
+                if (Event.Tasks.Contains(task))
+                {
+                    Event.Tasks.RemoveAll(el => task.Id == el.Id);
+                }
+                EventService.Singleton().Modify(Event);
             }
         }
         public void AcceptTask(Task task)
         {
             task.Status = TaskStatus.ACCEPTED;
+            EventService.Singleton().Modify(Event);
         }
         public void RejectTask(Task task)
         {
             task.Status = TaskStatus.REJECTED;
+            EventService.Singleton().Modify(Event);
         }
         public void MoveTask(dynamic moveTask)
         {
@@ -159,7 +165,10 @@ namespace EventPlanner.ViewModels
             else _DoneTasks.Add(moveTask.Task);
 
             moveTask.Task.Level = moveTask.ListToLevel;
+            Task task = Event.Tasks.Find(t => t.Id == moveTask.Task.Id);
+            task.Level = moveTask.ListToLevel;
             // update task
+            EventService.Singleton().Modify(Event);
         }
     }
 }
