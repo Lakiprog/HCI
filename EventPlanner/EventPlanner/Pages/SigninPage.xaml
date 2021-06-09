@@ -39,8 +39,8 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Registration" Name="registrationBtn" />
-            <Button Grid.Column="1" Content="Login" Name="loginBtn" />
+            <Button Grid.Column="0" Content="Registration" Name="registrationBtn" Click="registrationBtn_Click" />
+            <Button Grid.Column="1" Content="Login" Name="loginBtn" Click="loginBtn_Click" />
         </Grid>
     </Grid>
 </Page>

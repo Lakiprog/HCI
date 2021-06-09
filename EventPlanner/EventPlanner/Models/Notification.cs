@@ -12,8 +12,6 @@ namespace EventPlanner.Models
     public class Notification : ObservableObject
     {
         private int _Id;
-        private User _UserFrom;
-        private User _UserTo;
         private int _UserFromId;
         private int _UserToId;
         private int _elementId;
@@ -92,9 +90,9 @@ namespace EventPlanner.Models
         {
             get
             {
-                if (_Type == NotificationType.MESSAGE_SENT) return _UserFrom.Username + " sent you a message";
-                else if (_Type == NotificationType.EVENT_REQUEST) return _UserFrom.Username + " requested you to organize his/hers event.";
-                else return _UserFrom.Username + " changed information about the event.";
+                if (_Type == NotificationType.MESSAGE_SENT) return UserFrom.Username + " sent you a message";
+                else if (_Type == NotificationType.EVENT_REQUEST) return UserFrom.Username + " requested you to organize his/hers event.";
+                else return UserFrom.Username + " changed information about the event.";
             }
         }
         

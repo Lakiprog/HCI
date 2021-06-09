@@ -7,8 +7,8 @@
         xmlns:components="clr-namespace:EventPlanner.Components"
         mc:Ignorable="d"
         MinHeight="450"
-        MinWidth="770"
-        Title="MainWindow" Height="200" Width="483">
+        MinWidth="800"
+        Title="MainWindow" Height="200" Width="800">
     <Grid Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5cm" />
@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <components:NavBar Grid.Row="0" />
 
-        <Frame Padding="0.3cm" Grid.Row="1" Source="/Pages/EventBoardPage.xaml" />
+        <Frame Navigating="MainPageFrame_Navigating" x:Name="MainPageFrame" NavigationUIVisibility="Hidden" Padding="0.3cm" Grid.Row="1" Source="/Pages/SigninPage.xaml" />
     </Grid>
 </Window>
                                                 
