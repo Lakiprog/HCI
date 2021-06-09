@@ -1,6 +1,4 @@
-﻿using EventPlanner.Models;
-using EventPlanner.Services;
-using EventPlanner.ViewModels;
+﻿using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +6,14 @@ using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class GoToBoardCommand : ICommand
+    class SaveSeatingPlanCommand : ICommand
     {
+        public SaveSeatingPlanCommand(SeatingPlanViewModel viewModel)
+        {
+            _ViewModel = viewModel;
+        }
+        private SeatingPlanViewModel _ViewModel;
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -23,7 +27,7 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            NavigationService.Singleton().ChangePage("Pages/EventBoardPage.xaml", parameter as Event);
+            _ViewModel.SaveSeatingPlan();
         }
     }
 }

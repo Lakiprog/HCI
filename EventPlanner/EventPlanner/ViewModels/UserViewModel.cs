@@ -25,7 +25,6 @@ namespace EventPlanner.ViewModels
         {
             // getting logged-in user
             user = UserService.Singleton().CurrentUser;
-            isOrganizer = true;
             canUpdate = false;
         }
         public ICommand EditUserCmd
@@ -39,13 +38,22 @@ namespace EventPlanner.ViewModels
         public User User
         {
             get => user;
-            set { user = value; RaisePropertyChngedEvent("User"); }
+            set
+            {
+                user = value;
+                RaisePropertyChngedEvent("User");
+                RaisePropertyChngedEvent("IsOrganizer");
+                RaisePropertyChngedEvent("Rating");
+            }
+        }
+        public int Rating
+        {
+            get { return (user is Organizer) ? ((Organizer)user).Rating : 0; }
         }
 
         public bool IsOrganizer
         {
-            get => isOrganizer;
-            set { isOrganizer = value; RaisePropertyChngedEvent("IsOrganizer"); }
+            get => user is Organizer;
         }
         public bool CanUpdate
         {
@@ -54,7 +62,6 @@ namespace EventPlanner.ViewModels
         }
         public void SaveChanges()
         {
-            Debug.Assert(false, String.Format("{0} is username.", User.Username));
             // Successfully got modified data (stored in User)
             CanUpdate = false;
         }

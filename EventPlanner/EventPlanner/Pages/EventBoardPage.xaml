@@ -88,6 +88,17 @@
                             </Grid.Style>
                         </Grid>
                         <Button Grid.Column="2" Content="-" HorizontalAlignment="Right" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
+                        <!--<Button Grid.Column="1" Content="Seating plan" Height="20" Width="20" HorizontalAlignment="Right" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TaskStatus.ACCEPTED}">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>-->
                             <Button.Style>
                                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatAccentButton}">
                                     <Style.Triggers>

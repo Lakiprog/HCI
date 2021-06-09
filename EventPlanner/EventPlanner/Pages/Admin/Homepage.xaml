@@ -18,6 +18,11 @@
                     <Grid.DataContext>
                         <ViewModels:OrganizersViewModel/>
                     </Grid.DataContext>
+                    <Grid.InputBindings>
+                        <KeyBinding Modifiers="Control"
+                                    Key="A"
+                                    Command="{Binding ElementName=OrganizersGrid, Path=DataContext.CreateAddWindowCmd}" CommandParameter="{Binding}"/>
+                    </Grid.InputBindings>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.2*" />
                         <RowDefinition Height="*" />
@@ -79,6 +84,11 @@
                     <Grid.DataContext>
                         <ViewModels:CollaboratorViewModel/>
                     </Grid.DataContext>
+                    <Grid.InputBindings>
+                        <KeyBinding Modifiers="Control"
+                                    Key="A"
+                                    Command="{Binding ElementName=CollaboratorsGrid, Path=DataContext.CreateAddWindowCmd}" CommandParameter="{Binding}"/>
+                    </Grid.InputBindings>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.2*" />
                         <RowDefinition Height="*" />

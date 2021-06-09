@@ -18,11 +18,16 @@ namespace EventPlanner.Services
         {
             return singleton ??= new UserService();
         }
+        public event EventHandler LoggedInUserChanged;
         public User CurrentUser { get { return GetCurrentUser(); } }
         public bool Login(string username, string password)
         {
             User user = GetUsers().SingleOrDefault(user => user.Username.Equals(username) && user.Password.Equals(password));
             this.username = user?.Username ?? string.Empty;
+            if (this.username.Length > 0)
+            {
+                LoggedInUserChanged?.Invoke(this, null);
+            }
 
             return this.username.Length != 0;
         }
@@ -30,6 +35,7 @@ namespace EventPlanner.Services
         public void Logout()
         {
             username = string.Empty;
+            LoggedInUserChanged?.Invoke(this, null);
         }
 
         private User GetCurrentUser()

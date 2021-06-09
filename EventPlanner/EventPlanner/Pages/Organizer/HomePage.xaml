@@ -42,7 +42,7 @@
                 <TabItem.Header>
                     <TextBlock Style="{StaticResource MaterialDesignTextBlock}" Text="My upcoming events" />
                 </TabItem.Header>
-                <ListView Style="{StaticResource MaterialDesignListView}" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding OrganizerEvents}">
+                <ListView x:Name="upcomingEventsComponent" Style="{StaticResource MaterialDesignListView}" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding OrganizerEvents}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -51,7 +51,7 @@
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="Bold" Padding="0,10" />
-                                <Button Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Content="Go to board"/>
+                                <Button Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Content="Go to board" Command="{Binding ElementName=upcomingEventsComponent, Path=DataContext.GoToBoardCmd}" CommandParameter="{Binding}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

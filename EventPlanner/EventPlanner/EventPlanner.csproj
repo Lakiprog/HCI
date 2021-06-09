@@ -11,6 +11,7 @@
     <None Remove="Data\events.json" />
     <None Remove="Data\messages.json" />
     <None Remove="Data\notifications.json" />
+    <None Remove="Data\seatingplans.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +44,12 @@
     <Resource Include="Fonts\password.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\seatingplans.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
