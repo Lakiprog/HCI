@@ -7,8 +7,8 @@
       xmlns:local="clr-namespace:EventPlanner.Pages" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels"
       xmlns:models="clr-namespace:EventPlanner.Models"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors"
+      d:DesignHeight="500" d:DesignWidth="800"
+      xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       Title="EventBoardPage" MouseLeftButtonUp="Page_MouseLeftButtonUp">
     <Page.DataContext>
         <ViewModels:EventBoardViewModel/>
@@ -16,9 +16,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1.2*"/>
             <RowDefinition Height="6*"/>
-            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.85*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -29,7 +29,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Label HorizontalAlignment="Left" Content="Choose event" Margin="0,12,0,0"/>
+        <Label HorizontalAlignment="Left" Content="Choose event:" Margin="0,12,0,0" Style="{StaticResource MaterialDesignLabel}" FontSize="13"/>
         <ComboBox Name="AllUsersEventsComboBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding AllUsersEvents}" Width="240" Height="25" HorizontalAlignment="Center" SelectedItem="{Binding Event}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
@@ -44,9 +44,11 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button Grid.Row="0" Grid.Column="5" Content="Event information" Height="25" Command="{Binding OpenViewItemModalCmd}" CommandParameter="{Binding Event}"></Button>
-        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="TO DO" HorizontalAlignment="Center" />
-        <ListView Padding="-2,-2,-2,-2" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Name="ToDoTaskListView"
+        <Grid Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2">
+            <Button HorizontalAlignment="Right" Content="Event information" Foreground="White" Command="{Binding OpenViewItemModalCmd}" CommandParameter="{Binding Event}"></Button>
+        </Grid>
+        <TextBox Grid.Row="1" Grid.Column="0" IsReadOnly="True" Grid.ColumnSpan="2" Padding="0,10,0,0" Margin="0,0,0,10" Foreground="#00BCD4" Text="TO DO" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+        <ListView Style="{StaticResource MaterialDesignCardsListBox}" Padding="-2,-2,-2,-2" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Name="ToDoTaskListView"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ToDoTasks}"
             PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove"
             AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
@@ -59,19 +61,22 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-                        
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="1.5*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" FontWeight="Bold" />
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" />
                         <Grid Grid.Column="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="✓" Height="20" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.AcceptTaskCmd}" CommandParameter="{Binding}"/>
-                            <Button Grid.Column="1" Content="✕" Height="20" Width="20" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.RejectTaskCmd}" CommandParameter="{Binding}"/>
+                            <Button Grid.Column="0" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.AcceptTaskCmd}" CommandParameter="{Binding}">
+                                <materialDesign:PackIcon Kind="Check" Margin="0,0,-20,0" Foreground="#00BCD4"/>
+                            </Button>
+                            <Button Grid.Column="1" Style="{StaticResource MaterialDesignFlatAccentButton}" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.RejectTaskCmd}" CommandParameter="{Binding}">
+                                <materialDesign:PackIcon Kind="Close" Margin="0,0,0,0" Foreground="Crimson"/>
+                            </Button>
                             <Grid.Style>
                                 <Style TargetType="{x:Type Grid}">
                                     <Style.Triggers>
@@ -82,9 +87,9 @@
                                 </Style>
                             </Grid.Style>
                         </Grid>
-                        <Button Grid.Column="2" Content="-" Height="20" Width="20" HorizontalAlignment="Right" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
+                        <Button Grid.Column="2" Content="-" HorizontalAlignment="Right" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
                             <Button.Style>
-                                <Style TargetType="{x:Type Button}">
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatAccentButton}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding ElementName=ToDoTaskListView, Path=DataContext.IsOrganizer}" Value="False">
                                             <Setter Property="Visibility" Value="Hidden"/>
@@ -102,18 +107,18 @@
                     <Setter Property="Margin" Value="-1,-1,-1,-1"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TaskStatus.REJECTED}">
-                            <Setter Property="Background" Value="#fcdfd8"/>
+                            <Setter Property="Foreground" Value="Crimson"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TaskStatus.ACCEPTED}">
-                            <Setter Property="Background" Value="#c3efc6"/>
+                            <Setter Property="Foreground" Value="#00BCD4"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Button Grid.Column="1" Grid.Row="3" Content="+" Height="22" VerticalAlignment="Top" Width="30" HorizontalAlignment="Right" Command="{Binding OpenCreateTaskModalCmd}">
+        <Button Grid.Column="1" Grid.Row="3" Content="+" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Right" Command="{Binding OpenCreateTaskModalCmd}">
             <Button.Style>
-                <Style TargetType="{x:Type Button}">
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsOrganizer}" Value="False">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -122,8 +127,8 @@
                 </Style>
             </Button.Style>
         </Button>
-        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="IN PROGRESS" HorizontalAlignment="Center" />
-        <ListView Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Name="InProgressTaskListView"
+        <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Padding="0,10,0,0" HorizontalAlignment="Stretch" Margin="0,0,0,10"  Foreground="#00BCD4" Text="IN PROGRESS" HorizontalContentAlignment="Center" IsReadOnly="True"/>
+        <ListView Style="{StaticResource MaterialDesignCardsListBox}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Name="InProgressTaskListView"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             ItemsSource="{Binding InProgressTasks}" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove" 
             AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
@@ -137,14 +142,13 @@
                 <DataTemplate>
                     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="5*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" FontWeight="Bold" />
-                        <Button Grid.Column="2" Content="-" Height="20" Width="20" HorizontalAlignment="Right" Command="{Binding ElementName=InProgressTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" />
+                        <Button Grid.Column="2" Content="-" HorizontalAlignment="Right" Command="{Binding ElementName=InProgressTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
                             <Button.Style>
-                                <Style TargetType="{x:Type Button}">
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatAccentButton}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding ElementName=InProgressTaskListView, Path=DataContext.IsOrganizer}" Value="False">
                                             <Setter Property="Visibility" Value="Hidden"/>
@@ -162,8 +166,8 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Text="DONE" HorizontalAlignment="Center" />
-        <ListView Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Name="DoneTaskListView" 
+        <TextBox Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Padding="0,10,0,0" HorizontalAlignment="Stretch" Margin="0,0,0,10" Text="DONE" Foreground="#00BCD4" HorizontalContentAlignment="Center" IsReadOnly="True"/>
+        <ListView Style="{StaticResource MaterialDesignCardsListBox}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Name="DoneTaskListView" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             ItemsSource="{Binding DoneTasks}"
             PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove" 
@@ -178,14 +182,13 @@
                 <DataTemplate>
                     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="5*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" FontWeight="Bold" />
-                        <Button Grid.Column="2" Content="-" Height="20" Width="20" HorizontalAlignment="Right" Command="{Binding ElementName=DoneTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" TextWrapping="Wrap" />
+                        <Button Grid.Column="2" Content="-" HorizontalAlignment="Right" Command="{Binding ElementName=DoneTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
                             <Button.Style>
-                                <Style TargetType="{x:Type Button}">
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatAccentButton}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding ElementName=DoneTaskListView, Path=DataContext.IsOrganizer}" Value="False">
                                             <Setter Property="Visibility" Value="Hidden"/>
