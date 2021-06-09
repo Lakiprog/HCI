@@ -48,16 +48,19 @@ namespace EventPlanner.Modals
                 Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
             {
                 // Get the dragged ListViewItem
-                ListView listView = sender as ListView;
+                ListView listView = 
+                    FindAncestor<ListView>((DependencyObject)e.OriginalSource);
                 ListViewItem listViewItem =
                     FindAncestor<ListViewItem>((DependencyObject)e.OriginalSource);
-                Console.WriteLine(e.OriginalSource.ToString());
                 // Find the data behind the ListViewItem
 
-                if (listViewItem != null)
+                if (listViewItem is ListViewItem)
                 {
-                    string invitation = (string)listView.ItemContainerGenerator.
-                    ItemFromContainer(listViewItem);
+                    string invitation = listViewItem.Content as string;
+                    if (invitation == null)
+                    {
+                        return;
+                    }
                     // Initialize the drag & drop operation
                     DataObject dragData = new DataObject("invitationFormat", invitation);
                     DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
@@ -126,6 +129,12 @@ namespace EventPlanner.Modals
         private void Grid_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
             isDraggingElement1 = true;
+        }
+
+        private void ListView_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            e.Handled = true;
+            mainScrollViewer.ScrollToVerticalOffset(mainScrollViewer.VerticalOffset - e.Delta);
         }
     }
 }
