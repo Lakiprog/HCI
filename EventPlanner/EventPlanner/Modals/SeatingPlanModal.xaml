@@ -16,9 +16,14 @@
             <ColumnDefinition Width="0.8*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
-            <Button Content="Add table" Width="100" Height="28" Command="{Binding AddTableCmd}"/>
-        </StackPanel>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Add table" Height="28" Command="{Binding AddTableCmd}"/>
+            <TextBox Grid.Column="1" Text="{Binding NewTableName}"/>
+        </Grid>
         <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
             <StackPanel>
                 <ListView x:Name="TableViewModelsListView" ItemsSource="{Binding Tables}">
@@ -30,22 +35,23 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <DockPanel Grid.Row="0">
-                                    <TextBlock  Text="{Binding Table.Name}" Padding="5"/>
+                                    <TextBlock  Text="{Binding Name}" FontWeight="Bold" Padding="5"/>
                                     <Button Content="Remove" Width="50" HorizontalAlignment="Right" Command="{Binding ElementName=TableViewModelsListView, Path=DataContext.RemoveTableCmd}" CommandParameter="{Binding}"/>
                                 </DockPanel>
-                                <ListView Grid.Row="1" ItemsSource="{Binding Table.Invites}" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop"
+                                <ListView Grid.Row="1" ItemsSource="{Binding Invites}" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop"
                                     PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown"
                                     MouseMove="ListView_MouseMove" >
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown_1">
-                                                <TextBlock Grid.Row="0" Text="{Binding}" TextWrapping="Wrap" FontWeight="Bold" />
+                                                <TextBlock Grid.Row="0" Text="{Binding}" TextWrapping="Wrap" />
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                         </Style>
                                     </ListView.ItemContainerStyle>
                                 </ListView>
@@ -70,8 +76,13 @@
                     <RowDefinition Height="0.12*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Invitations" HorizontalAlignment="Center"/>
-                <ListView Grid.Row="1" ItemsSource="{Binding Invitations}" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Text="Invitations" HorizontalAlignment="Left"/>
+                <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Height="28" Content="Save plan" Padding="10,0,10,0" Command="{Binding SaveSeatingPlanCmd}"/>
+                <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Invitations}" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown"
                 MouseMove="ListView_MouseMove" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -80,6 +91,11 @@
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                 </ListView>
             </Grid>
         </ScrollViewer>

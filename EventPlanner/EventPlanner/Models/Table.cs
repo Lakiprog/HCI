@@ -9,20 +9,20 @@ namespace EventPlanner.Models
     public class Table : ObservableObject
     {
         private string _Name;
-        private ObservableCollection<string> _Invites;
+        private List<string> _Invites;
 
         public String Name
         {
             get => _Name;
-            set { _Name = value; RaisePropertyChngedEvent("Name"); }
+            set { _Name = value; }
         }
-        public ObservableCollection<string> Invites
+        public List<string> Invites
         {
             get => _Invites;
-            set { _Invites = value; RaisePropertyChngedEvent("Invites"); }
+            set { _Invites = value; }
         }
 
-        public Table(string name, ObservableCollection<string> invites)
+        public Table(string name, List<string> invites)
         {
             Name = name;
             Invites = invites;

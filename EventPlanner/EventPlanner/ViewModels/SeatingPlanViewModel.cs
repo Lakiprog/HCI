@@ -13,6 +13,7 @@ namespace EventPlanner.ViewModels
         private SeatingPlan _SeatingPlan;
         private ObservableCollection<TableViewModel> _Tables;
         private ObservableCollection<string> _Invitations;
+        private string _NewTableName;
         public SeatingPlanViewModel(int taskId)
         {
             _Tables = new ObservableCollection<TableViewModel>();
@@ -36,6 +37,11 @@ namespace EventPlanner.ViewModels
             get => _Invitations;
             set { _Invitations = value; RaisePropertyChngedEvent("Invitations"); }
         }
+        public String NewTableName
+        {
+            get => _NewTableName;
+            set { _NewTableName = value; RaisePropertyChngedEvent("NewTableName"); }
+        }
         public ICommand AddTableCmd
         {
             get; private set;
@@ -44,30 +50,55 @@ namespace EventPlanner.ViewModels
         {
             get; private set;
         }
+        public ICommand SaveSeatingPlanCmd
+        {
+            get; private set;
+        }
         private void InitCommands()
         {
             AddTableCmd = new AddTableCommand(this);
             RemoveTableCmd = new RemoveTableCommand(this);
+            SaveSeatingPlanCmd = new SaveSeatingPlanCommand(this);
         }
         private void InitData(int taskId)
         {
-            Table t1 = new Table("table 1", new ObservableCollection<string> {"pera peric", "mika mikic", "seka sekic" });
-            Table t2 = new Table("table 2", new ObservableCollection<string> { "saska", "zoki", "steki" });
-            Table t3 = new Table("table 3", new ObservableCollection<string> { "pani", "veverica", "slon" });
+            _Tables.Clear(); _Invitations.Clear();
+            Table t1 = new Table("table 1", new List<string> { "pera peric", "mika mikic", "seka sekic" });
+            Table t2 = new Table("table 2", new List<string> { "saska", "zoki", "steki" });
+            Table t3 = new Table("table 3", new List<string> { "pani", "veverica", "slon" });
             List<Table> tables = new List<Table>();
+            List<TableViewModel> tableViewModels = new List<TableViewModel>();
             tables.Add(t1); tables.Add(t2); tables.Add(t3);
-            
+
             // get SeatingPlan from database by taskId
             SeatingPlan seatingPlan = new SeatingPlan(1, tables, taskId);
+            _SeatingPlan = seatingPlan;
 
-            foreach(Table table in seatingPlan.Tables)
+            foreach (Table table in seatingPlan.Tables)
             {
-                _Tables.Add(new TableViewModel(table));
+                tableViewModels.Add(new TableViewModel(table));
             }
-            _Invitations.Add("invitation 1");
-            _Invitations.Add("invitation 2");
-            _Invitations.Add("invitation 3");
+            tableViewModels.ForEach(_Tables.Add);
+            List<string> invitations = new List<string> { "invitation 1", "invitation 2", "invitation 3" };
+            invitations.ForEach(_Invitations.Add);
         }
-
+        public bool CanUpdate()
+        {
+            if (String.IsNullOrWhiteSpace(_NewTableName)) return false;
+            return true;
+        }
+        public void AddTable()
+        {
+            _Tables.Add(new TableViewModel(new Table(_NewTableName, new List<string>())));
+        }
+        public void SaveSeatingPlan()
+        {
+            _SeatingPlan.Tables.Clear();
+            foreach (TableViewModel viewModel in _Tables)
+            {
+                _SeatingPlan.Tables.Add(new Table(viewModel.Name, new List<string>(viewModel.Invites)));
+            }
+            // save seating plan to file
+        }
     }
 }

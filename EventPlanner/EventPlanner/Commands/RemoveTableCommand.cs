@@ -3,6 +3,7 @@ using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
@@ -28,11 +29,15 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            foreach(string invitation in ((TableViewModel)parameter).Table.Invites)
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
             {
-                _ViewModel.Invitations.Add(invitation);
+                foreach (string invitation in ((TableViewModel)parameter).Invites)
+                {
+                    _ViewModel.Invitations.Add(invitation);
+                }
+                _ViewModel.Tables.Remove((TableViewModel)parameter);
             }
-            _ViewModel.Tables.Remove((TableViewModel)parameter);
         }
     }
 }

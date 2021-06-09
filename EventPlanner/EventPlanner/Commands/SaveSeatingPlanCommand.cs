@@ -1,16 +1,14 @@
-﻿using EventPlanner.Models;
-using EventPlanner.ViewModels;
+﻿using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class AddTableCommand : ICommand
+    class SaveSeatingPlanCommand : ICommand
     {
-        public AddTableCommand(SeatingPlanViewModel viewModel)
+        public SaveSeatingPlanCommand(SeatingPlanViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
@@ -24,12 +22,12 @@ namespace EventPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            return _ViewModel.CanUpdate();
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            _ViewModel.AddTable();
+            _ViewModel.SaveSeatingPlan();
         }
     }
 }

@@ -99,10 +99,10 @@ namespace EventPlanner.Modals
                 {
                     ((SeatingPlanViewModel)referenceDataContext).Invitations.Remove(invitation);
                     TableViewModel viewModel = (TableViewModel)((ListView)e.Source).DataContext;
-                    viewModel.Table.Invites.Add(invitation);
+                    viewModel.Invites.Add(invitation);
                 } else
                 {
-                    ((TableViewModel)referenceDataContext).Table.Invites.Remove(invitation);
+                    ((TableViewModel)referenceDataContext).Invites.Remove(invitation);
                     if(((ListView)e.Source).DataContext is SeatingPlanViewModel)
                     {
                         SeatingPlanViewModel viewModel = (SeatingPlanViewModel)((ListView)e.Source).DataContext;
@@ -110,7 +110,7 @@ namespace EventPlanner.Modals
                     } else
                     {
                         TableViewModel viewModel = (TableViewModel)((ListView)e.Source).DataContext;
-                        viewModel.Table.Invites.Add(invitation);
+                        viewModel.Invites.Add(invitation);
                     }
                     
                 }
