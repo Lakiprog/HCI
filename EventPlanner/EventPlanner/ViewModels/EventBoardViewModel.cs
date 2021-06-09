@@ -110,7 +110,7 @@ namespace EventPlanner.ViewModels
             List<Task> toDoTasks = new List<Task>();
             List<Task> inProgressTasks = new List<Task>();
             List<Task> doneTasks = new List<Task>();
-            User user = UserService.Singleton().CurrentUser;
+            User user = UserService.Singleton().GetUsers()[1];
             EventService es = EventService.Singleton();
             List<Event> allUsersEvents = (user is Organizer) ? es.GetEventsForOrganizer(user.ID) : es.GetUsersEvents(user.ID);
             allUsersEvents.ForEach(_AllUsersEvents.Add);
