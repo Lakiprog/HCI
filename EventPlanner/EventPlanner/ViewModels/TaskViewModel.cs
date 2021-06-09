@@ -19,9 +19,12 @@ namespace EventPlanner.ViewModels
         private EventBoardViewModel _EventBoardViewModel;
         public TaskViewModel(EventBoardViewModel eventBoardViewModel)
         {
-            _Task = new Task();
-            _Temp = new Task(_Task);
             _EventBoardViewModel = eventBoardViewModel;
+            _EventId = EventBoardViewModel.Event.Id;
+            var e = EventService.Singleton().GetEventInfo(EventId);
+            int newId = e.Tasks.Count()+1;
+            _Task = new Task(newId, "", TaskStatus.WAITING, TaskLevel.TO_DO, EventId, "", null, TaskType.GENERIC);
+            _Temp = new Task(_Task);
             //_Task.Level = TaskLevel.TO_DO;
             _Mode = Mode.Adding;
             InitCommands();
@@ -29,6 +32,7 @@ namespace EventPlanner.ViewModels
         public TaskViewModel(Task task)
         {
             _Task = task;
+            _EventId = task.EventId;
             _Temp = new Task(_Task);
             _Mode = Mode.Viewing;
             InitCommands();
@@ -101,8 +105,13 @@ namespace EventPlanner.ViewModels
         public void AddTask()
         {
             _Temp.Level = TaskLevel.TO_DO;
+            _Temp.EventId = EventId;
             EventBoardViewModel.ToDoTasks.Add(_Temp);
             // save Task
+            var e = EventService.Singleton().GetEventInfo(EventId);
+            e.Tasks.Add(_Temp);
+            EventService.Singleton().Modify(e);
+            EventBoardViewModel.Event = EventService.Singleton().GetEventInfo(EventId);
         }
         public void EditTask()
         {
@@ -110,7 +119,13 @@ namespace EventPlanner.ViewModels
             _Task.Title = _Temp.Title;
             _Task.Description = _Temp.Description;
             _Task.Level = _Temp.Level;
-            
+
+            var e = EventService.Singleton().GetEventInfo(EventId);
+            var task = e.Tasks.First(e => e.Id == _Task.Id);
+            task.Title = _Task.Title;
+            task.Description = _Task.Description;
+            task.Level = _Task.Level;
+            EventService.Singleton().Modify(e);
         }
         public bool CanUpdate()
         {

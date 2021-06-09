@@ -71,6 +71,13 @@ namespace EventPlanner.Services
             return events;
         }
 
+        public List<Event> GetUpcomingEventsForUser(int id)
+        {
+            List<Event> events = GetUsersEvents(id);
+            events.RemoveAll(e => e.DateFrom < DateTime.Now);
+            return events;
+        }
+
         public List<Event> GetPastEventsForOrganizer(int id)
         {
             List<Event> events = GetEventsForOrganizer(id);
@@ -78,6 +85,12 @@ namespace EventPlanner.Services
             return events;
         }
 
+        public List<Event> GetPastEventsForUser(int id)
+        {
+            List<Event> events = GetUsersEvents(id);
+            events.RemoveAll(e => e.DateFrom > DateTime.Now);
+            return events;
+        }
 
         public List<Event> GetFreeEvents()
         {

@@ -63,6 +63,7 @@ namespace EventPlanner.ViewModels
         public void SaveChanges()
         {
             // Successfully got modified data (stored in User)
+            UserService.Singleton().Modify(user);
             CanUpdate = false;
         }
     }

@@ -30,14 +30,7 @@ namespace EventPlanner.ViewModels
         }
         private void AddOriginalData()
         {
-            //// Load user notifications
-            //User u1 = new User(1,"micko","micko123","Mica","Lakic");
-            //User u2 = new User(2,"stefan", "stefan123", "Stefan", "Stefan");
-
             List<Notification> notifications = NotificationService.Singleton().GetNotificationsUserTo(UserService.Singleton().CurrentUser.ID);
-            //notifications.Add(new Notification(1, u1, new NotificationElement(), NotificationType.MESSAGE_SENT));
-            //notifications.Add(new Notification(2, u1, new NotificationElement(), NotificationType.EVENT_REQUEST));
-            //notifications.Add(new Notification(3, u2, new NotificationElement(), NotificationType.EVENT_REQUEST));
             notifications.ForEach(_Notifications.Add);
         }
         
