@@ -25,35 +25,35 @@
             <ColumnDefinition />
             <ColumnDefinition Width="0.3*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Event Details" HorizontalAlignment="Center"
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="Event Details" HorizontalAlignment="Center"
          VerticalAlignment="Center" FontSize="20"/>
         <Label Grid.Row="1" Grid.Column="1" Content="Title:" />
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Name="titleTextbox" Text="{Binding EventDetails.Title}" Margin="0,7,0,0"/>
+            <TextBox IsReadOnly="True" Name="titleTextbox" Text="{Binding EventDetails.Title}" Margin="0,7,0,0"/>
         </StackPanel>
         <Label Grid.Row="2" Grid.Column="1" Content="Event type:" />
         <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Name="eventTypeTextbox" Text="{Binding EventDetails.Type}" Margin="0,7,0,0"/>
+            <TextBox  IsReadOnly="True" Name="eventTypeTextbox" Text="{Binding EventDetails.Type}" Margin="0,7,0,0"/>
         </StackPanel>
         <Label Grid.Row="3" Grid.Column="1" Content="Description:" />
         <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Name="descriptionTextbox" Text="{Binding EventDetails.Description}" Margin="0,7,0,0"/>
+            <TextBox IsReadOnly="True" Name="descriptionTextbox" Text="{Binding EventDetails.Description}" Margin="0,7,0,0"/>
         </StackPanel>
         <Label Grid.Row="4" Grid.Column="1" Content="Start date:" />
         <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Name="startDateTextbox" Text="{Binding EventDetails.DateFrom}" Margin="0,7,0,0"/>
+            <TextBox IsReadOnly="True" Name="startDateTextbox" Text="{Binding EventDetails.DateFrom}" Margin="0,7,0,0"/>
         </StackPanel>
         <Label Grid.Row="5" Grid.Column="1" Content="End date:" />
         <StackPanel Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox Name="endDateTextbox" Text="{Binding EventDetails.DateTo}" Margin="0,7,0,0"/>
+            <TextBox IsReadOnly="True" Name="endDateTextbox" Text="{Binding EventDetails.DateTo}" Margin="0,7,0,0"/>
         </StackPanel>
         <Label Grid.Row="6" Grid.Column="1" Content="User:" />
         <StackPanel Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2">
             <TextBox Name="userTextbox" Text="{Binding EventDetails.User.Username}" IsReadOnly="True" Margin="0,7,0,0"/>
         </StackPanel>
-        <Button Grid.Row="7" Grid.Column="3" Height="30" Content="Accept" VerticalAlignment="Top" Margin="10,10,10,0">
+        <Button Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Content="Accept">
             <Button.Style>
-                <Style TargetType="{x:Type Button}">
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsFree}" Value="False">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -63,9 +63,9 @@
             </Button.Style>
         </Button>
 
-        <Button Grid.Row="7" Grid.Column="3" Height="30" Content="Go to board" VerticalAlignment="Top" Margin="10,10,10,0">
+        <Button Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Content="Go to board">
             <Button.Style>
-                <Style TargetType="{x:Type Button}">
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsOrganizersEvent}" Value="False">
                             <Setter Property="Visibility" Value="Hidden"/>
