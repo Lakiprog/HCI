@@ -60,5 +60,23 @@ namespace EventPlanner.Pages
             ForgotPasswordModal forgotPasswordModal = new ForgotPasswordModal();
             forgotPasswordModal.Show();
         }
+
+        private void passwordTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                loginBtn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                loginBtn.Focus();
+            }
+        }
+
+        private void usernameTextbox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                loginBtn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                loginBtn.Focus();
+            }
+        }
     }
 }
