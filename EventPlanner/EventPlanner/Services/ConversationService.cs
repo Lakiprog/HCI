@@ -35,7 +35,7 @@ namespace EventPlanner.Services
         {
             List<Conversation> allConversations = GetConversations();
             Conversation result = null;
-            if ((result = allConversations.First(c => c.UserA_ID == userA_ID && c.UserB_ID == userB_ID || c.UserB_ID == userA_ID && c.UserA_ID == userB_ID)) != null)
+            if ((result = allConversations.FirstOrDefault(c => c.UserA_ID == userA_ID && c.UserB_ID == userB_ID || c.UserB_ID == userA_ID && c.UserA_ID == userB_ID)) != null)
             {
                 return result;
             }
