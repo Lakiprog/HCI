@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EventPlanner.Windows.User"
-      xmlns:components="clr-namespace:EventPlanner.Components" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels"
+      xmlns:components="clr-namespace:EventPlanner.Components" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="770"
       MinHeight="450"
@@ -32,7 +32,7 @@
             <ColumnDefinition />
             <ColumnDefinition MaxWidth="4.5cm" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Content="Making Request" />
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" FontSize="14" Content="Making Request" />
         <Label Grid.Row="1" Grid.Column="0" Content="Title:" VerticalAlignment="Top" />
         
         <TextBox Grid.Row="1" Grid.Column="1" Name="titleTextBox" Height="20pt" VerticalAlignment="Top" />
@@ -56,10 +56,11 @@
         <TextBox Grid.Row="1" Grid.Column="4" Name="organizerSearchTextBox" Height="20pt" VerticalAlignment="Top" Grid.ColumnSpan="2" KeyDown="organizerSearchTextBox_KeyDown" />
 
         <components:RatedOrganizerList x:Name="ratedOrganizerList" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="4" />
-        <Button Grid.Row="6" Grid.Column="3" Content="Add" Height="20pt" VerticalAlignment="Top" />
+        <Button Grid.Row="6" Grid.Column="3" Content="Add organizer" Style="{StaticResource MaterialDesignFlatButton}" Background="#e9fafc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-1,0,0">
+        </Button>
 
-        <Button Grid.Row="7" Grid.Column="0" Content="Back" Height="20pt" Name="backBtn" VerticalAlignment="Bottom" Command="{Binding Path=CancelReqCmd}"/>
-        <Button Grid.Row="7" Grid.Column="5" Content="Submit" Height="20pt" Name="submitBtn" VerticalAlignment="Bottom" Command="{Binding Path=ConfirmReqCmd}"/>
+        <Button Grid.Row="7" Grid.Column="0" Content="Back" Foreground="White" Name="backBtn" VerticalAlignment="Bottom" Command="{Binding Path=CancelReqCmd}"/>
+        <Button Grid.Row="7" Grid.Column="5" Content="Submit" Foreground="White" Name="submitBtn" VerticalAlignment="Bottom" Command="{Binding Path=ConfirmReqCmd}"/>
 
     </Grid>
 </Window>
