@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -72,9 +73,13 @@ namespace EventPlanner
             }
         }
 
-        private void Window_KeyUp(object sender, KeyEventArgs e)
+        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == Key.P && Keyboard.Modifiers == (ModifierKeys.Alt | ModifierKeys.Control))
+            if (e.Key == Key.F1)
+            {
+                Help.ShowHelp(null, "Data/help.chm");
+            }
+            else if (e.Key == Key.P && Keyboard.Modifiers == (ModifierKeys.Alt | ModifierKeys.Control))
             {
                 UserService.Singleton().Logout();
                 Services.NavigationService.Singleton().ChangePage("Pages/SigninPage.xaml");
