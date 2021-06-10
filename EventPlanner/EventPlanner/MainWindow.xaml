@@ -10,7 +10,7 @@
         MinWidth="770"
         Title="MainWindow" Height="200" Width="483"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" KeyUp="Window_KeyUp"
         >
     <Grid Name="mainGrid">
         <Grid.RowDefinitions>
