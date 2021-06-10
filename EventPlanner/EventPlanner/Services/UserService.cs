@@ -43,7 +43,7 @@ namespace EventPlanner.Services
             User user = GetUsers().SingleOrDefault(user => user.Username.Equals(username));
             if (user != null)
             {
-                user.Conversations =  ConversationService.Singleton().GetUsersConversations(user);
+                user.Conversations = ConversationService.Singleton().GetUsersConversations(user);
             }
 
             return user;
@@ -73,7 +73,7 @@ namespace EventPlanner.Services
 
         public void save(List<User> users)
         {
-            using(StreamWriter writer = new StreamWriter(PATH))
+            using (StreamWriter writer = new StreamWriter(PATH))
             {
                 string data = JsonConvert.SerializeObject(users);
                 writer.WriteLine(data);
@@ -82,6 +82,7 @@ namespace EventPlanner.Services
 
         public List<User> Modify(User user)
         {
+            bool rememberUsernameSwap = CurrentUser.ID == user.ID;
             int userId = user.ID;
             List<User> users = GetUsers();
             for (int i = 0; i < users.Count(); i++)
@@ -92,7 +93,10 @@ namespace EventPlanner.Services
                 }
             }
             save(users);
-            username = GetUsers().First(u => u.ID == userId).Username;
+            if (rememberUsernameSwap)
+            {
+                username = GetUsers().First(u => u.ID == userId).Username;
+            }
             return users;
         }
 
