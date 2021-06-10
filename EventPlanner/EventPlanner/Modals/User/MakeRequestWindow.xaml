@@ -61,8 +61,8 @@
         <components:RatedOrganizerList x:Name="ratedOrganizerList" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="4" />
         <Button Grid.Row="6" Grid.Column="3" Content="Add organizer" Command="{Binding AddPotentialOrganizerCmd}" CommandParameter="{Binding ElementName=ratedOrganizerList, Path=DataContext.SelectedOrganizer}" Style="{StaticResource MaterialDesignFlatButton}" Background="#e9fafc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-1,0,0"/>
 
-        <Button Grid.Row="7" Grid.Column="0" Content="Back" Foreground="White" Name="backBtn" VerticalAlignment="Bottom" Command="{Binding Path=CancelReqCmd}" CommandParameter="{Binding ElementName=makeRequestWindow, Path=.}"/>
-        <Button Grid.Row="7" Grid.Column="5" Content="Submit" Foreground="White" Name="submitBtn" VerticalAlignment="Bottom" Command="{Binding Path=ConfirmReqCmd}" CommandParameter="{Binding ElementName=makeRequestWindow, Path=.}"/>
+        <Button Grid.Row="7" Grid.Column="0" Content="Back" Foreground="White" Name="backBtn" VerticalAlignment="Bottom" Command="{Binding Path=CancelRequestCmd}" CommandParameter="{Binding ElementName=makeRequestWindow, Path=.}"/>
+        <Button Grid.Row="7" Grid.Column="5" Content="Submit" Foreground="White" Name="submitBtn" VerticalAlignment="Bottom" Command="{Binding Path=ConfirmRequestCmd}" CommandParameter="{Binding ElementName=makeRequestWindow, Path=.}"/>
 
 
     </Grid>
