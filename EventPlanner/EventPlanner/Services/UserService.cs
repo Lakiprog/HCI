@@ -82,6 +82,7 @@ namespace EventPlanner.Services
 
         public List<User> Modify(User user)
         {
+            int userId = user.ID;
             List<User> users = GetUsers();
             for (int i = 0; i < users.Count(); i++)
             {
@@ -91,6 +92,7 @@ namespace EventPlanner.Services
                 }
             }
             save(users);
+            username = GetUsers().First(u => u.ID == userId).Username;
             return users;
         }
 
