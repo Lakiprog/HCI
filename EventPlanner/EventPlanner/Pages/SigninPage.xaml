@@ -31,7 +31,7 @@
             <Label Content="Password:" />
             <PasswordBox Name="passwordTextBox" />
             <Label>
-                <Hyperlink>Forgot password?</Hyperlink>
+                <Hyperlink Click="Hyperlink_Click">Forgot password?</Hyperlink>
             </Label>
         </StackPanel>
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">

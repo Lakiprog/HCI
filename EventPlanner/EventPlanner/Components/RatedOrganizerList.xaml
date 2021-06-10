@@ -28,7 +28,7 @@
             <ComboBoxItem Tag="LastName" Content="Last Name" />
         </ComboBox>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2">
-            <ListBox Background="#e9fafc" Name="organizersListBox" ItemsSource="{Binding Organizers}" HorizontalContentAlignment="Stretch">
+            <ListBox Background="#e9fafc" Name="organizersListBox" ItemsSource="{Binding Organizers}" SelectedItem="{Binding SelectedOrganizer, Mode=TwoWay}"  HorizontalContentAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Organizer}">
                         <Grid>

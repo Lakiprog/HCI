@@ -26,18 +26,9 @@ namespace EventPlanner.Commands
         {
             if(parameter is Task)
             {
-                if(((Task)parameter).Type == TaskType.GENERIC)
-                {
-                    var taskModal = new Modals.TaskModal();
-                    taskModal.DataContext = new TaskViewModel((Task)parameter);
-                    taskModal.Show();
-                } else
-                {
-                    var taskModal = new Modals.SeatingPlanModal();
-                    taskModal.DataContext = new SeatingPlanViewModel(((Task)parameter).Id);
-                    taskModal.Show();
-                }
-                
+                var taskModal = new Modals.TaskModal();
+                taskModal.DataContext = new TaskViewModel((Task)parameter);
+                taskModal.Show();
             } else if (parameter is Event)
             {
                 var eventDetailsModal = new Modals.EventDetailsModal();

@@ -25,6 +25,14 @@ namespace EventPlanner.Commands
             MessageBoxImage icnMessageBox = MessageBoxImage.Question;
 
             MessageBoxResult rsltMessageBox = MessageBox.Show("Are you sure you wish to cancel your request?", "Cancel request", btnMessageBox, icnMessageBox);
+
+            if (rsltMessageBox == MessageBoxResult.Yes)
+            {
+                if (parameter is Window)
+                {
+                    (parameter as Window).Close();
+                }
+            }
         }
     }
 }

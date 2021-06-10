@@ -1,15 +1,15 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class SaveSeatingPlanCommand : ICommand
+    class DeleteInvitationCommand : ICommand
     {
-        public SaveSeatingPlanCommand(SeatingPlanViewModel viewModel)
+        public DeleteInvitationCommand(SeatingPlanViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
@@ -28,9 +28,7 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _ViewModel.SaveSeatingPlan();
-
-            (parameter as Window).Close();
+            _ViewModel.RemoveInvitation((string)parameter);
         }
     }
 }

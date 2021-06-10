@@ -18,10 +18,13 @@
             <converters:MultiValueEqualityConverter x:Key="MultiValueEqualityConverter" />
             <converters:CollaboratorTypeValueConverter x:Key="CollaboratorTypeValueConverter"/>
             <converters:BooleanToVisibilityConverter  x:Key="BooleanToVisiblityConverter" />
+            <converters:OrganizerIdListConverter x:Key="OrganizerIdListConverter" />
+            <converters:EventTypeValueConverter x:Key="EventTypeValueConverter" />
             <FontFamily x:Key="PasswordFont">./Fonts/#password</FontFamily>
             <!--<Style TargetType="TabItem">
                 <Setter Property="Padding" Value="25,7"/>
             </Style>-->
             </ResourceDictionary>
+
     </Application.Resources>
 </Application>

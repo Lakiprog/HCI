@@ -127,7 +127,14 @@ namespace EventPlanner.ViewModels
         }
         public void ChangeCurrentEvent(Event _event)
         {
-            Event = _event;
+            foreach (var e in AllUsersEvents)
+            {
+                if (e.Id == _event.Id)
+                {
+                    Event = e;
+                    break;
+                }
+            }
         }
         public void DeleteTask(Task task)
         {

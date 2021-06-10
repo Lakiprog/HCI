@@ -1,4 +1,5 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,6 +34,11 @@ namespace EventPlanner.Commands
             MessageBoxImage icnMessageBox = MessageBoxImage.Information;
 
             MessageBoxResult rsltMessageBox = MessageBox.Show("Registration successful!", "", btnMessageBox, icnMessageBox);
+
+            if (rsltMessageBox == MessageBoxResult.OK)
+            {
+                _ViewModel.RegisterUser(parameter as User);
+            }
         }
     }
 }

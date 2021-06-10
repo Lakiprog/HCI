@@ -54,8 +54,9 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Margin="0 0 1cm 0" Content="Login" Foreground="White" Name="loginBtn" Click="loginBtn_Click" />
-                <Button Grid.Column="1" Margin="1cm 0 0 0" Content="Registration" Foreground="White" Name="registrationBtn" Command="{Binding Path=RegisterUserCmd}" />
+            <Button Grid.Column="0" Margin="0 0 1cm 0" Content="Login" Foreground="White" Name="loginBtn" Click="loginBtn_Click" />
+            <Button Grid.Column="1" Margin="1cm 0 0 0" Content="Registration" Foreground="White" Name="registrationBtn" Command="{Binding Path=RegisterUserCmd}" CommandParameter="{Binding NewUser}"/>
+
         </Grid>
     </Grid>
 </Page>

@@ -16,9 +16,26 @@ namespace EventPlanner.ViewModels
         {
             InitData();
             InitCommands();
+
+            EventService.Singleton().EventsChanged += EventsViewModel_EventsChanged;
         }
+
+        private void EventsViewModel_EventsChanged(object sender, EventArgs e)
+        {
+            AddOriginalData();
+        }
+
         private ObservableCollection<Event> organizerEvents;
         private ObservableCollection<Event> upcomingEvents;
+
+        internal void AcceptEvent(Event e)
+        {
+            e.OrganizerId = UserService.Singleton().CurrentUser.ID;
+            e.PotentialOrganizers.Clear();
+            EventService.Singleton().Modify(e);
+            ConversationService.Singleton().StartNewConversation(e.UserId, e.OrganizerId);
+        }
+
         private ObservableCollection<Event> pastEvents;
         private Event selectedEvent;
         private Event newEvent;
@@ -69,8 +86,7 @@ namespace EventPlanner.ViewModels
             get;
             private set;
         }
-
-        public ICommand ConfirmReqCmd
+        public ICommand AcceptEventCmd
         {
             get;
             private set;
@@ -82,7 +98,7 @@ namespace EventPlanner.ViewModels
             SearchCmd = new SearchCommand(this);
             GoToBoardCmd = new GoToBoardCommand();
             CancelReqCmd = new CancelRequestCommand();
-            ConfirmReqCmd = new ConfirmRequestCommand();
+            AcceptEventCmd = new AcceptEventCommand(this);
         }
         private void InitData()
         {

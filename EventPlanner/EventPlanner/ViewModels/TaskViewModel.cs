@@ -22,32 +22,49 @@ namespace EventPlanner.ViewModels
             _EventBoardViewModel = eventBoardViewModel;
             _EventId = EventBoardViewModel.Event.Id;
             var e = EventService.Singleton().GetEventInfo(EventId);
-            int newId = e.Tasks.Count()+1;
+            int newId = e.Tasks.Count() + 1;
             _Task = new Task(newId, "", TaskStatus.WAITING, TaskLevel.TO_DO, EventId, "", null, TaskType.GENERIC);
             _Temp = new Task(_Task);
             //_Task.Level = TaskLevel.TO_DO;
             _Mode = Mode.Adding;
             InitCommands();
         }
+
+        internal void OpenSeatingPlan(Task task)
+        {
+            var seatingPlanModal = new Modals.SeatingPlanModal();
+            seatingPlanModal.DataContext = new SeatingPlanViewModel(task.Id);
+            seatingPlanModal.Show();
+        }
+
         public TaskViewModel(Task task)
         {
             _Task = task;
             _EventId = task.EventId;
             _Temp = new Task(_Task);
+            if (_Temp.Collaborator != null)
+            {
+                _Temp.Collaborator = AllCollaborators.First(c => c.ID == _Temp.Collaborator.ID);
+                RaisePropertyChngedEvent("Temp");
+            }
             _Mode = Mode.Viewing;
             InitCommands();
         }
         public Task Task
         {
             get => _Task;
-            set { _Task = value; RaisePropertyChngedEvent("Task"); }
+            set { _Task = value; RaisePropertyChngedEvent("Task"); RaisePropertyChngedEvent("IsSeatingPlan"); }
         }
         public int EventId
         {
             get => _EventId;
             set { _EventId = value; RaisePropertyChngedEvent("EventId"); }
         }
-        
+        private List<Collaborator> allCollaborators = null;
+        public List<Collaborator> AllCollaborators
+        {
+            get { return allCollaborators ??= CollaboratorService.Singleton().GetCollaborators(); }
+        }
         public Mode Mode
         {
             get => _Mode;
@@ -90,7 +107,15 @@ namespace EventPlanner.ViewModels
             get;
             private set;
         }
-
+        public ICommand OpenSeatingPlanCmd
+        {
+            get;
+            private set;
+        }
+        public bool IsSeatingPlan
+        {
+            get => Task.Type == TaskType.SEATING;
+        }
         public List<TaskType> TaskTypes
         {
             get => Enum.GetValues(typeof(TaskType)).Cast<TaskType>().ToList();
@@ -101,6 +126,7 @@ namespace EventPlanner.ViewModels
             EnableEditingTaskCmd = new EnableEditingTaskCommand(this);
             EditTaskCmd = new EditTaskCommand(this);
             CancelEditingTaskCmd = new CancelEditingTaskCommand(this);
+            OpenSeatingPlanCmd = new OpenSeatingPlanCommnad(this);
         }
         public void AddTask()
         {
@@ -119,12 +145,16 @@ namespace EventPlanner.ViewModels
             _Task.Title = _Temp.Title;
             _Task.Description = _Temp.Description;
             _Task.Level = _Temp.Level;
+            _Task.Type = _Temp.Type;
+            _Task.Collaborator = _Temp.Collaborator;
 
             var e = EventService.Singleton().GetEventInfo(EventId);
             var task = e.Tasks.First(e => e.Id == _Task.Id);
             task.Title = _Task.Title;
             task.Description = _Task.Description;
             task.Level = _Task.Level;
+            task.Type = _Task.Type;
+            task.Collaborator = _Task.Collaborator;
             EventService.Singleton().Modify(e);
         }
         public bool CanUpdate()

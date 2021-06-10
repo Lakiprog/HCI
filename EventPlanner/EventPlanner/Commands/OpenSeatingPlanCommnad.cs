@@ -1,19 +1,19 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class SaveSeatingPlanCommand : ICommand
+    class OpenSeatingPlanCommnad : ICommand
     {
-        public SaveSeatingPlanCommand(SeatingPlanViewModel viewModel)
+        public OpenSeatingPlanCommnad(TaskViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
-        private SeatingPlanViewModel _ViewModel;
+        private TaskViewModel _ViewModel;
 
         public event EventHandler CanExecuteChanged
         {
@@ -23,14 +23,12 @@ namespace EventPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _ViewModel.Task.Type == TaskType.SEATING;
         }
 
         public void Execute(object parameter)
         {
-            _ViewModel.SaveSeatingPlan();
-
-            (parameter as Window).Close();
+            _ViewModel.OpenSeatingPlan((Task)parameter);
         }
     }
 }

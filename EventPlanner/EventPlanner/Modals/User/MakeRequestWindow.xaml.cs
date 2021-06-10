@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner.Windows.User
+namespace EventPlanner.Modals.User
 {
     /// <summary>
     /// Interaction logic for MakeRequestPage.xaml

@@ -22,5 +22,11 @@ namespace EventPlanner.Modals
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Check your email for a reset link.", "Reset email", MessageBoxButton.OK, MessageBoxImage.Information);
+            Close();
+        }
     }
 }

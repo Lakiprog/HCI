@@ -30,7 +30,7 @@
         </Grid.ColumnDefinitions>
         
         <Label HorizontalAlignment="Left" Content="Choose event:" Margin="0,12,0,0" Style="{StaticResource MaterialDesignLabel}" FontSize="13"/>
-        <ComboBox Name="AllUsersEventsComboBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding AllUsersEvents}" Width="240" Height="25" HorizontalAlignment="Center" SelectedItem="{Binding Event}">
+            <ComboBox Name="AllUsersEventsComboBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding AllUsersEvents}" Width="240" Height="25" HorizontalAlignment="Center" SelectedItem="{Binding Event, Mode=TwoWay}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding SelectionChangedCmd}" CommandParameter="{Binding SelectedItem, ElementName=AllUsersEventsComboBox}"/>
@@ -88,17 +88,7 @@
                             </Grid.Style>
                         </Grid>
                         <Button Grid.Column="2" Content="-" HorizontalAlignment="Right" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
-                        <!--<Button Grid.Column="1" Content="Seating plan" Height="20" Width="20" HorizontalAlignment="Right" Command="{Binding ElementName=ToDoTaskListView, Path=DataContext.DeleteTaskCmd}" CommandParameter="{Binding}">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Status}" Value="{x:Static models:TaskStatus.ACCEPTED}">
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>-->
+                        
                             <Button.Style>
                                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatAccentButton}">
                                     <Style.Triggers>

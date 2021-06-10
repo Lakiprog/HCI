@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:EventPlanner.Modals"
         xmlns:viewmodels="clr-namespace:EventPlanner.ViewModels"
         mc:Ignorable="d"
+        Name="taskWindow"
         Title="TaskModal" Height="450" Width="350">
     <Grid>
         <Grid.RowDefinitions>
@@ -15,6 +16,8 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -67,12 +70,24 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+        <Label Grid.Row="5" Grid.Column="1" Content="Collaborator:" />
+        <ComboBox Grid.Column="2" Grid.Row="5" SelectedItem="{Binding Temp.Collaborator}" ItemsSource="{Binding AllCollaborators}" Grid.ColumnSpan="2" IsEnabled="{Binding IsEditing}"
+            Width="185" Height="25" HorizontalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Grid Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Content="Edit" Foreground="White" Margin="0,10,10,0" Command="{Binding EnableEditingTaskCmd}">
+
+            <Button Grid.Row="0" Foreground="White" Grid.Column="0" Content="Edit" Height="30" Margin="0,10,10,0" Command="{Binding EnableEditingTaskCmd}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                         <Style.Triggers>
@@ -83,7 +98,8 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Row="0" Grid.Column="0" Content="Save Changes" Foreground="White" Margin="0,10,10,0" Command="{Binding EditTaskCmd}">
+            <Button Grid.Row="0" Grid.Column="0" Content="Save Changes" Foreground="White" Margin="0,10,10,0" Command="{Binding EditTaskCmd}" CommandParameter="{Binding ElementName=taskWindow, Path=.}">
+
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                         <Style.Triggers>
@@ -94,7 +110,25 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Row="0" Grid.Column="1" Content="Cancel" Command="{Binding CancelEditingTaskCmd}" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Margin="10,10,0,0"/>
+
+            <Button Grid.Row="0" Grid.Column="1" Content="Cancel" Command="{Binding CancelEditingTaskCmd}" Height="30" Margin="10,10,0,0">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Mode}" Value="{x:Static viewmodels:Mode.Editing}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Mode}" Value="{x:Static viewmodels:Mode.Viewing}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=Mode}" Value="{x:Static viewmodels:Mode.Adding}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="0" Content="Seating Plan" Height="30" Margin="0,10,10,0" Visibility="{Binding IsSeatingPlan, Converter={StaticResource BooleanToVisiblityConverter}}" Command="{Binding OpenSeatingPlanCmd}" CommandParameter="{Binding Task}" />
             <Grid.Style>
                 <Style TargetType="{x:Type Grid}">
                     <Style.Triggers>

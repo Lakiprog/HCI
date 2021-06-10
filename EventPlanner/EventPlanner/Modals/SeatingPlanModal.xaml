@@ -7,6 +7,7 @@
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:helper="clr-namespace:EventPlanner.Helper" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
+        Name="seatingPlanWindow"
         Title="Seating plan" Height="450" Width="800" MouseLeftButtonUp="Window_MouseLeftButtonUp">
     <Grid>
         <Grid.RowDefinitions>
@@ -100,13 +101,14 @@
                         Style="{StaticResource MaterialDesignFlatButton}"/>
                 <TextBox KeyDown="addInvitationTextBox_KeyDown" Padding="10,0,0,0" x:Name="addInvitationTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding NewInvitationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
-            <Button Grid.Row="0" Grid.Column="1" Foreground="White" HorizontalAlignment="Right" Height="28" Content="Save plan" Padding="10,0,10,0" Command="{Binding SaveSeatingPlanCmd}"/>
+            <Button Grid.Row="0" Grid.Column="1" Foreground="White" HorizontalAlignment="Right" Height="28" Content="Save plan" Padding="10,0,10,0" Command="{Binding SaveSeatingPlanCmd}" CommandParameter="{Binding ElementName=seatingPlanWindow, Path=.}"/>
             <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Invitations}" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown"
                 MouseMove="ListView_MouseMove" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown_1">
-                            <TextBlock Grid.Row="0" Text="{Binding}" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                            <Button HorizontalAlignment="Right" Content="Delete" Command="{Binding ElementName=seatingPlanWindow, Path=DataContext.DeleteInvitationCmd}" CommandParameter="{Binding}" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -118,7 +120,7 @@
             </ListView>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="2"  Background="Azure">
-            
+            <Image Source="/Data/seatingPlan.png" />
         </Grid>
     </Grid>
 </Window>

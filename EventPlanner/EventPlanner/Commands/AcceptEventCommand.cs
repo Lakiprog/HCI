@@ -1,19 +1,19 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class SaveSeatingPlanCommand : ICommand
+    class AcceptEventCommand : ICommand
     {
-        public SaveSeatingPlanCommand(SeatingPlanViewModel viewModel)
+        public AcceptEventCommand(EventsViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
-        private SeatingPlanViewModel _ViewModel;
+        private EventsViewModel _ViewModel;
 
         public event EventHandler CanExecuteChanged
         {
@@ -28,9 +28,7 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            _ViewModel.SaveSeatingPlan();
-
-            (parameter as Window).Close();
+            _ViewModel.AcceptEvent((Event)parameter);
         }
     }
 }
