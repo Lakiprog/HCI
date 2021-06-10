@@ -40,6 +40,7 @@ namespace EventPlanner.Models
             get => lastName;
             set { lastName = value; RaisePropertyChngedEvent("LastName"); }
         }
+        [JsonIgnore]
         public List<Conversation> Conversations
         {
             get => conversations;
