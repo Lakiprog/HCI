@@ -29,10 +29,10 @@ namespace EventPlanner
             InitializeComponent();
             Services.NavigationService.Singleton().PageChanged += ChangePage;
             Services.NavigationService.Singleton().PageChangedWithModel += ChangePage;
-            MainPageFrame.Loaded += MainPageFrame_Loaded;
+            MainPageFrame.LoadCompleted += MainPageFrame_LoadCompleted; ;
         }
 
-        private void MainPageFrame_Loaded(object sender, RoutedEventArgs e)
+        private void MainPageFrame_LoadCompleted(object sender, NavigationEventArgs e)
         {
             Frame frame = sender as Frame;
             Page page = frame.Content as Page;
@@ -41,14 +41,14 @@ namespace EventPlanner
                 var vm = page.DataContext as EventBoardViewModel;
                 vm.ChangeCurrentEvent(currentModel as Event);
             }
+            currentViewModel = null;
+            currentModel = null;
         }
 
         private void ChangePage(object sender, string pagePath)
         {
             MainPageFrame.Source = new Uri($"pack://application:,,,/{pagePath}");
         }
-
-
         private void ChangePage(object sender, dynamic obj)
         {
             string pagePath = obj.page;
@@ -69,6 +69,69 @@ namespace EventPlanner
             if (e.NavigationMode == NavigationMode.Forward || e.NavigationMode == NavigationMode.Back)
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.P && Keyboard.Modifiers == (ModifierKeys.Alt | ModifierKeys.Control))
+            {
+                UserService.Singleton().Logout();
+                Services.NavigationService.Singleton().ChangePage("Pages/SigninPage.xaml");
+            }
+            else if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                if (e.Key == Key.H)
+                {
+                    User currentUser = UserService.Singleton().CurrentUser;
+                    if (currentUser == null)
+                    {
+                        return;
+                    }
+
+                    if (currentUser is Admin)
+                    {
+                        Services.NavigationService.Singleton().ChangePage("Pages/Admin/Homepage.xaml");
+                    }
+                    else if (currentUser is Organizer)
+                    {
+                        Services.NavigationService.Singleton().ChangePage("Pages/Organizer/Homepage.xaml");
+                    }
+                    else
+                    {
+                        Services.NavigationService.Singleton().ChangePage("Pages/User/Homepage.xaml");
+                    }
+                }
+                else if (e.Key == Key.P)
+                {
+                    User currentUser = UserService.Singleton().CurrentUser;
+                    if (currentUser == null)
+                    {
+                        return;
+                    }
+
+                    Services.NavigationService.Singleton().ChangePage("Pages/ProfilePage.xaml");
+                }
+                else if (e.Key == Key.M)
+                {
+                    User currentUser = UserService.Singleton().CurrentUser;
+                    if (currentUser == null || currentUser is Admin)
+                    {
+                        return;
+                    }
+
+                    Services.NavigationService.Singleton().ChangePage("Pages/MessagesPage.xaml");
+                }
+                else if (e.Key == Key.I)
+                {
+                    User currentUser = UserService.Singleton().CurrentUser;
+                    if (currentUser == null || currentUser is Admin)
+                    {
+                        return;
+                    }
+
+                    Services.NavigationService.Singleton().ChangePage("Pages/NotificationPage.xaml");
+                }
             }
         }
     }

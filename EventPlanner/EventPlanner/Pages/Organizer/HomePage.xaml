@@ -9,7 +9,7 @@
       Title="HomePage">
     
     <Grid>
-        <TabControl>
+        <TabControl x:Name="requestsTab">
             <TabControl.DataContext>
                 <ViewModels:EventsViewModel/>
             </TabControl.DataContext>
@@ -17,7 +17,7 @@
                 <TabItem.Header>
                     <TextBlock Text="Free requests" />
                 </TabItem.Header>
-                <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding UpcomingEvents}">
+                <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding OrganizerEvents}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -26,7 +26,7 @@
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{Binding Path=Title}" FontWeight="Bold" />
-                                <Button Grid.Column="1" Content="Accept"/>
+                                <Button Grid.Column="1" Content="Accept" Command="{Binding ElementName=requestsTab, Path=DataContext.AcceptEventCmd}" CommandParameter="{Binding}" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -42,7 +42,7 @@
                 <TabItem.Header>
                     <TextBlock Text="My upcoming events" />
                 </TabItem.Header>
-                <ListView x:Name="upcomingEventsComponent" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding OrganizerEvents}">
+                <ListView x:Name="upcomingEventsComponent" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding UpcomingEvents}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -52,6 +52,31 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="Bold" />
                                 <Button Grid.Column="1" Content="Go to board" Command="{Binding ElementName=upcomingEventsComponent, Path=DataContext.GoToBoardCmd}" CommandParameter="{Binding}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <EventSetter Event="MouseDoubleClick" Handler="OrganizersEventsList_MouseDoubleClick" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="My past events" />
+                </TabItem.Header>
+                <ListView x:Name="pastEventsComponent" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding PastEvents}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="Bold" />
+                                <Button Grid.Column="1" Content="Go to board" Command="{Binding ElementName=pastEventsComponent, Path=DataContext.GoToBoardCmd}" CommandParameter="{Binding}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -85,7 +110,7 @@
                         <TextBox Grid.Column="0" x:Name="SearchCollaboratorsTextBox">
                         </TextBox>
                         <Button Grid.Column="1" Content="Search" Name="searchCollaboratorsButton" 
-                            Command="{Binding UpdateListCommand}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
+                            Command="{Binding SearchCmd}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
                     </Grid>
                     <DataGrid Name="CollaboratorsDataGrid" Grid.Row="1" ItemsSource="{Binding Path=Collaborators}"
                     AlternatingRowBackground="Gainsboro" AlternationCount="2"

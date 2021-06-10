@@ -25,7 +25,7 @@ namespace EventPlanner.ViewModels
         private void InitData()
         {
             // getting logged-in user
-            newUser = new User(0, "","","","");
+            newUser = new User(UserService.Singleton().GetLastId(), "","","","");
             user = UserService.Singleton().CurrentUser;
             canUpdate = false;
         }
@@ -50,6 +50,12 @@ namespace EventPlanner.ViewModels
             EditUserCmd = new EditUserCommand(this);
             RegisterUserCmd = new RegisterCommand(this);
         }
+
+        internal void RegisterUser(User user)
+        {
+            UserService.Singleton().Add(user);
+        }
+
         public User User
         {
             get => user;

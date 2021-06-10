@@ -25,6 +25,11 @@ namespace EventPlanner.ViewModels
             InitCommands();
         }
 
+        internal void RemoveInvitation(string parameter)
+        {
+            _Invitations.Remove(parameter);
+        }
+
         public SeatingPlan SeatingPlan
         {
             get => _SeatingPlan;
@@ -66,12 +71,17 @@ namespace EventPlanner.ViewModels
         {
             get; private set;
         }
+        public ICommand DeleteInvitationCmd
+        {
+            get; private set;
+        }
         private void InitCommands()
         {
             AddTableCmd = new AddTableCommand(this);
             RemoveTableCmd = new RemoveTableCommand(this);
             SaveSeatingPlanCmd = new SaveSeatingPlanCommand(this);
             AddInvitationCmd = new AddInvitationCommand(this);
+            DeleteInvitationCmd = new DeleteInvitationCommand(this);
         }
         private void InitData(int taskId)
         {
@@ -123,6 +133,11 @@ namespace EventPlanner.ViewModels
         }
         public void SaveSeatingPlan()
         {
+            _SeatingPlan.UnsortedGuests.Clear();
+            var e = Invitations.GetEnumerator();
+            while ( e.MoveNext() ) {
+                _SeatingPlan.UnsortedGuests.Add(e.Current);
+            }
             _SeatingPlan.Tables.Clear();
             foreach (TableViewModel viewModel in _Tables)
             {

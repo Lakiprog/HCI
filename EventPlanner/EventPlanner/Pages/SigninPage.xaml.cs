@@ -1,4 +1,5 @@
-﻿using EventPlanner.Services;
+﻿using EventPlanner.Modals;
+using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -52,6 +53,12 @@ namespace EventPlanner.Pages
         private void registrationBtn_Click(object sender, RoutedEventArgs e)
         {
                 Services.NavigationService.Singleton().ChangePage("Pages/RegistrationPage.xaml");
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            ForgotPasswordModal forgotPasswordModal = new ForgotPasswordModal();
+            forgotPasswordModal.Show();
         }
     }
 }

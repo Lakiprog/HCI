@@ -1,5 +1,4 @@
-﻿using EventPlanner.Windows.User;
-using EventPlanner.Services;
+﻿using EventPlanner.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EventPlanner.Models;
+using EventPlanner.Modals.User;
 
 namespace EventPlanner.Components
 {

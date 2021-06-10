@@ -3,6 +3,7 @@ using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
@@ -37,7 +38,7 @@ namespace EventPlanner.Commands
                 // close modal
             }
 
-            _ViewModel.Mode = Mode.Viewing;
+            (parameter as Window).Close();
         }
     }
 }

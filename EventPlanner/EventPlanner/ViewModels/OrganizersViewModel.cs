@@ -12,6 +12,12 @@ namespace EventPlanner.ViewModels
 {
     class OrganizersViewModel : ObservableObject, ISearchable
     {
+        private Organizer selectedOrganizer;
+        public Organizer SelectedOrganizer
+        {
+            get => selectedOrganizer; 
+            set { selectedOrganizer = value; RaisePropertyChngedEvent("SelectedOrganizer"); }
+        }
         /// <summary>
         /// Gets the Organizer Collection instance
         /// </summary>

@@ -13,7 +13,7 @@ namespace EventPlanner.Services
     {
         private readonly string PATH = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\events.json");
         private static EventService singleton = null;
-
+        public event EventHandler EventsChanged;
 
         public static EventService Singleton()
         {
@@ -157,6 +157,7 @@ namespace EventPlanner.Services
                 string data = JsonConvert.SerializeObject(events);
                 writer.WriteLine(data);
             }
+            EventsChanged(this, null);
         }
     }
 }

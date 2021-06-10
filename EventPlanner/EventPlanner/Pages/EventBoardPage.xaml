@@ -30,7 +30,7 @@
         </Grid.ColumnDefinitions>
         
         <Label HorizontalAlignment="Left" Content="Choose event" Margin="0,12,0,0"/>
-        <ComboBox Name="AllUsersEventsComboBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding AllUsersEvents}" Width="240" Height="25" HorizontalAlignment="Center" SelectedItem="{Binding Event}">
+        <ComboBox Name="AllUsersEventsComboBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding AllUsersEvents}" Width="240" Height="25" HorizontalAlignment="Center" SelectedItem="{Binding Event, Mode=TwoWay}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding SelectionChangedCmd}" CommandParameter="{Binding SelectedItem, ElementName=AllUsersEventsComboBox}"/>
