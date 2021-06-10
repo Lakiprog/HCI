@@ -24,8 +24,10 @@
                 <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button helper:EventFocusAttachment.ElementToFocus="{Binding ElementName=addTableTextBox}" Grid.Column="0" Content="Add table" Height="28" Command="{Binding AddTableCmd}" CommandParameter="{Binding NewTableName}"/>
-            <TextBox x:Name="addTableTextBox" Grid.Column="1" Text="{Binding NewTableName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            <Button helper:EventFocusAttachment.ElementToFocus="{Binding ElementName=addTableTextBox}" Grid.Column="0" Content="Add table"  Height="28"
+                    Command="{Binding AddTableCmd}" CommandParameter="{Binding NewTableName}"
+                    Style="{StaticResource MaterialDesignFlatButton}"/>
+            <TextBox x:Name="addTableTextBox" Padding="10,0,0,0" Grid.Column="1" Text="{Binding NewTableName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
             KeyDown="addTableTextBox_KeyDown"/>
         </Grid>
         <ScrollViewer x:Name="mainScrollViewer" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
@@ -42,17 +44,19 @@
                                 <RowDefinition Height="0.2*"/>
                                 <RowDefinition MinHeight="50" />
                             </Grid.RowDefinitions>
-                            <DockPanel Grid.Row="0">
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Padding="5"/>
-                                <Button Content="Remove" Width="50" HorizontalAlignment="Right" Command="{Binding ElementName=TableViewModelsListView, Path=DataContext.RemoveTableCmd}" CommandParameter="{Binding}"/>
-                            </DockPanel>
-                            <Border VerticalAlignment="Stretch" Grid.Row="1" BorderBrush="Black" BorderThickness="0.5">
+                            <Border BorderThickness="0,0,0,2" BorderBrush="#00BCD4">
+                                <Grid Grid.Row="0">
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" HorizontalAlignment="Stretch" Padding="5"/>
+                                    <Button Content="-" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{Binding ElementName=TableViewModelsListView, Path=DataContext.RemoveTableCmd}" CommandParameter="{Binding}"/>
+                                </Grid>
+                            </Border>
+                            <Border VerticalAlignment="Stretch" Grid.Row="1" BorderBrush="white" BorderThickness="0.5">
                                 <ListView PreviewMouseWheel="ListView_PreviewMouseWheel" VerticalAlignment="Stretch" ItemsSource="{Binding Invites}" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop"
                                     PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown"
                                     MouseMove="ListView_MouseMove" >
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown_1">
+                                            <Grid Height="25" MouseLeftButtonDown="Grid_MouseLeftButtonDown_1">
                                                 <TextBlock Text="{Binding}" TextWrapping="Wrap" />
                                             </Grid>
                                         </DataTemplate>
@@ -90,10 +94,13 @@
                     <ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button helper:EventFocusAttachment.ElementToFocus="{Binding ElementName=addInvitationTextBox}" Grid.Column="0" Content="Add invitation" Height="28" Command="{Binding AddInvitationCmd}" CommandParameter="{Binding NewInvitationName}"/>
-                <TextBox KeyDown="addInvitationTextBox_KeyDown" x:Name="addInvitationTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding NewInvitationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button helper:EventFocusAttachment.ElementToFocus="{Binding ElementName=addInvitationTextBox}" Grid.Column="0" 
+                        Content="Add invitation" Height="28" Command="{Binding AddInvitationCmd}" 
+                        CommandParameter="{Binding NewInvitationName}"
+                        Style="{StaticResource MaterialDesignFlatButton}"/>
+                <TextBox KeyDown="addInvitationTextBox_KeyDown" Padding="10,0,0,0" x:Name="addInvitationTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding NewInvitationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
-            <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Height="28" Content="Save plan" Padding="10,0,10,0" Command="{Binding SaveSeatingPlanCmd}"/>
+            <Button Grid.Row="0" Grid.Column="1" Foreground="White" HorizontalAlignment="Right" Height="28" Content="Save plan" Padding="10,0,10,0" Command="{Binding SaveSeatingPlanCmd}"/>
             <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Invitations}" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown"
                 MouseMove="ListView_MouseMove" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
                 <ListView.ItemTemplate>
