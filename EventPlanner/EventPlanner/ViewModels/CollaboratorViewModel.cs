@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace EventPlanner.ViewModels
@@ -23,6 +24,7 @@ namespace EventPlanner.ViewModels
             SearchCmd = new SearchCommand(this);
             CreateEditWindowCmd = new CreateEditWindowsCommand(this);
             CreateAddWindowCmd = new CreateAddWindowsCommand();
+            DeleteCollaboratorCmd = new DeleteCollaboratorCommand(this);
         }
         private void InitData()
         {
@@ -54,6 +56,10 @@ namespace EventPlanner.ViewModels
             get;
             private set;
         }
+        public ICommand DeleteCollaboratorCmd
+        {
+            get; private set;
+        }
 
         public ICommand CreateAddWindowCmd
         {
@@ -72,6 +78,35 @@ namespace EventPlanner.ViewModels
                     collaborator.Name.Contains(search)
                     || collaborator.Address.Contains(search)
                 ).ForEach(this.collaborators.Add);
+            }
+        }
+        public void delete(Collaborator collaborator)
+        {
+            MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+            MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+            MessageBoxResult rsltMessageBox = MessageBox.Show("Are you sure you wish to delete this collaborator permanently?",
+                "Event Planner", btnMessageBox, icnMessageBox);
+
+            switch (rsltMessageBox)
+            {
+                case MessageBoxResult.Yes:
+                    CollaboratorService service = CollaboratorService.Singleton();
+                    service.Delete(collaborator);
+                    Collaborators.Clear();
+                    List<Collaborator> collaborators = service.GetCollaborators();
+                    collaborators.ForEach(Collaborators.Add);
+
+                    foreach (Window item in Application.Current.Windows)
+                    {
+                        if (item.DataContext == this) item.Close();
+                    }
+
+                    break;
+
+                case MessageBoxResult.No:
+                    /* ... */
+                    break;
             }
         }
     }

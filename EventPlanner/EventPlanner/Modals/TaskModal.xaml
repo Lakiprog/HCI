@@ -81,18 +81,15 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Grid Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
+        <Grid Grid.Row="6" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Content="Edit" Height="30" Margin="0,10,10,0" Command="{Binding EnableEditingTaskCmd}">
+
+            <Button Grid.Row="0" Foreground="White" Grid.Column="0" Content="Edit" Height="30" Margin="0,10,10,0" Command="{Binding EnableEditingTaskCmd}">
                 <Button.Style>
-                    <Style TargetType="{x:Type Button}">
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsEditing}" Value="True">
                                 <Setter Property="Visibility" Value="Hidden"/>
@@ -101,9 +98,10 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Row="0" Grid.Column="0" Content="Save Changes" Height="30" Margin="0,10,10,0" Command="{Binding EditTaskCmd}" CommandParameter="{Binding ElementName=taskWindow, Path=.}">
+            <Button Grid.Row="0" Grid.Column="0" Content="Save Changes" Foreground="White" Margin="0,10,10,0" Command="{Binding EditTaskCmd}" CommandParameter="{Binding ElementName=taskWindow, Path=.}">
+
                 <Button.Style>
-                    <Style TargetType="{x:Type Button}">
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsEditing}" Value="False">
                                 <Setter Property="Visibility" Value="Hidden"/>
@@ -112,6 +110,7 @@
                     </Style>
                 </Button.Style>
             </Button>
+
             <Button Grid.Row="0" Grid.Column="1" Content="Cancel" Command="{Binding CancelEditingTaskCmd}" Height="30" Margin="10,10,0,0">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -129,7 +128,6 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Grid.Row="1" Grid.Column="0" Content="Seating Plan" Height="30" Margin="0,10,10,0" Visibility="{Binding IsSeatingPlan, Converter={StaticResource BooleanToVisiblityConverter}}" Command="{Binding OpenSeatingPlanCmd}" CommandParameter="{Binding Task}" />
             <Grid.Style>
                 <Style TargetType="{x:Type Grid}">
                     <Style.Triggers>
@@ -140,5 +138,6 @@
                 </Style>
             </Grid.Style>
         </Grid>
+        <Button Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="Seating Plan" Height="30" Visibility="{Binding IsSeatingPlan, Converter={StaticResource BooleanToVisiblityConverter}}" Command="{Binding OpenSeatingPlanCmd}" CommandParameter="{Binding Task}" />
     </Grid>
 </Window>

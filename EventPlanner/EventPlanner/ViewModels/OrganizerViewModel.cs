@@ -39,7 +39,6 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             SaveCommand = new EditOrganizerCommand(this);
-            DeleteCommand = new DeleteOrganizerCommand(this);
         }
 
         public Organizer Temp
@@ -81,35 +80,7 @@ namespace EventPlanner.ViewModels
             }
         }
 
-        public void delete()
-        {
-            MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-            MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
-
-            MessageBoxResult rsltMessageBox = MessageBox.Show("Are you sure you wish to delete this organizer permanently?",
-                "Event Planner", btnMessageBox, icnMessageBox);
-
-            switch (rsltMessageBox)
-            {
-                case MessageBoxResult.Yes:
-                    UserService service = UserService.Singleton();
-                    service.Delete(organizer);
-                    parent.Organizers.Clear();
-                    List<Organizer> organizers = service.GetOrganizers();
-                    organizers.ForEach(parent.Organizers.Add);
-
-                    foreach (Window item in Application.Current.Windows)
-                    {
-                        if (item.DataContext == this) item.Close();
-                    }
-
-                    break;
-
-                case MessageBoxResult.No:
-                    /* ... */
-                    break;
-            }
-        }
+        
 
         public ICommand SaveCommand
         {

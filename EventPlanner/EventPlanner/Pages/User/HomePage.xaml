@@ -17,13 +17,12 @@
             </TabControl.DataContext>
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock Text="Past events"/>
+                    <TextBlock Style="{StaticResource MaterialDesignTextBlock}" Text="Past events"/>
                 </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.7cm" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.7cm" />
+                        <RowDefinition Height="0.15*" />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -34,7 +33,7 @@
                         <TextBox Grid.Column="0" x:Name="SearchPastEventsTextBox">
                         </TextBox>
                         <Button Grid.Column="1" Content="Search" Name="searchPastEventsButton" 
-                            Command="{Binding SearchCmd}" CommandParameter="{Binding Text, ElementName=SearchPastEventsTextBox}"/>
+                            Command="{Binding SearchCmd}" Foreground="White" CommandParameter="{Binding Text, ElementName=SearchPastEventsTextBox}"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -53,8 +52,8 @@
                                             <ColumnDefinition Width="5*"/>
                                             <ColumnDefinition Width="1*"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="Bold" />
-                                        <Button Grid.Column="1" Content="Go to board" Command="{Binding ElementName=PastEventList, Path=DataContext.GoToBoardCmd}" CommandParameter="{Binding}" />
+                                        <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="Bold" Padding="0,10"/>
+                                        <Button Grid.Column="1" Content="Go to board" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ElementName=PastEventList, Path=DataContext.GoToBoardCmd}" CommandParameter="{Binding}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -70,13 +69,12 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock Text="Upcoming events"/>
+                    <TextBlock Style="{StaticResource MaterialDesignTextBlock}" Text="Upcoming events"/>
                 </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.7cm" />
+                        <RowDefinition Height="0.15*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="0.7cm" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -87,7 +85,7 @@
                         <TextBox Grid.Column="0" x:Name="SearchUpcomingEventsTextBox">
                         </TextBox>
                         <Button Grid.Column="1" Content="Search" Name="searchUpcomingEventsButton" 
-                            Command="{Binding SearchCmd}" CommandParameter="{Binding Text, ElementName=SearchUpcomingEventsTextBox}"/>
+                            Command="{Binding SearchCmd}" Foreground="White" CommandParameter="{Binding Text, ElementName=SearchUpcomingEventsTextBox}"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -106,8 +104,8 @@
                                             <ColumnDefinition Width="5*"/>
                                             <ColumnDefinition Width="1*"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="Bold" />
-                                        <Button Grid.Column="1" Content="Go to board" Command="{Binding ElementName=upcomingEventsComponent, Path=DataContext.GoToBoardCmd}" CommandParameter="{Binding}" />
+                                        <TextBlock Grid.Column="0" Text="{Binding Title}" FontWeight="Bold" Padding="0,10"/>
+                                        <Button Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}" Content="Go to board" Command="{Binding ElementName=upcomingEventsComponent, Path=DataContext.GoToBoardCmd}" CommandParameter="{Binding}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -123,13 +121,12 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock Text="Collaborators"/>
+                    <TextBlock  Style="{StaticResource MaterialDesignTextBlock}" Text="Collaborators"/>
                 </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.7cm" />
+                        <RowDefinition Height="0.15*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="0.7cm" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -140,7 +137,7 @@
                         <TextBox Grid.Column="0" x:Name="SearchCollaboratorsTextBox">
                         </TextBox>
                         <Button Grid.Column="1" Content="Search" Name="searchCollaboratorsButton" 
-                            Command="{Binding ElementName=CollaboratorsDataGrid, Path=DataContext.SearchCmd}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
+                           Foreground="White" Command="{Binding ElementName=CollaboratorsDataGrid, Path=DataContext.SearchCmd}" CommandParameter="{Binding Text, ElementName=SearchCollaboratorsTextBox}"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -148,13 +145,12 @@
                             <ColumnDefinition Width="0.1*" />
                         </Grid.ColumnDefinitions>
                         <DataGrid Name="CollaboratorsDataGrid" Grid.Column="0" DataContext="{StaticResource CollaboratorsViewModelInstance}" ItemsSource="{Binding Collaborators}"
-                    AlternatingRowBackground="Gainsboro" AlternationCount="2"
                     CanUserResizeColumns="False" CanUserReorderColumns="False"
                     IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Width="0.3*" Binding="{Binding Name}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Type" Width="0.3*" Binding="{Binding Type}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Address" Width="0.3*" Binding="{Binding Address}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Type" Width="*" Binding="{Binding Type}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Address" Width="*" Binding="{Binding Address}"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                         <ScrollBar x:Name="CollaboratorsScrollbar" Grid.Column="1" Grid.RowSpan="3" Margin="0,0,0,0.3" HorizontalAlignment="Left"/>

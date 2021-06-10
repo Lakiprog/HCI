@@ -96,5 +96,13 @@ namespace EventPlanner.Models
             }
         }
         
+        public bool IsEventInformation
+        {
+            get
+            {
+                if(_Type == NotificationType.EVENT_CHANGED || _Type == NotificationType.EVENT_REQUEST) return true; 
+                return false;
+            }
+        }
     }
 }

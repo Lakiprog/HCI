@@ -20,7 +20,7 @@
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.4*"/>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.4*"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
@@ -33,11 +33,11 @@
         <Label x:Name="UsernameLabel" Content="Username" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <TextBox x:Name="UsernameRegisterOrganizerModalTextBox" Text="{Binding Path=Temp.Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" TextWrapping="Wrap"/>
         <Label x:Name="PasswordLabel" Content="Password" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
-        <Button x:Name="CancelRegisterOrganizerModalButton" Content="cancel"  Grid.Row="10" Grid.Column="1" Height="20pt" Width="50pt" Click="CancelProfileButton_Click"/>
-        <Button x:Name="SubmitRegisterOrganizerModalButton" Content="submit"  Grid.Row="10" Grid.Column="0" Height="20pt" Width="50pt" Click="SubmitProfileModalButton_Click" Command="{Binding SaveCommand}" />
-        <Label x:Name="RepeatPasswordLabel" Content="Repeat Password" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
         <TextBox x:Name="PasswordRegisterOrganizerModalPasswordBox" Text="{Binding Path=Temp.Password, UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource PasswordFont}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt" />
         <TextBox x:Name="RepeatPasswordRegisterOrganizerModalPasswordBox" FontFamily="{StaticResource PasswordFont}"  Text="{Binding Path=Repeat.Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0.3" Height="20pt"/>
+        <Label x:Name="RepeatPasswordLabel" Content="Repeat Password" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+        <Button x:Name="CancelRegisterOrganizerModalButton" Content="cancel"  Grid.Row="10" Grid.Column="1" Click="CancelProfileButton_Click" Margin="10,0,0,0" Foreground="White"/>
+        <Button x:Name="SubmitRegisterOrganizerModalButton" Content="submit"  Grid.Row="10" Grid.Column="0" Click="SubmitProfileModalButton_Click" Command="{Binding SaveCommand}" Foreground="White" Margin="0,0,10,0"/>
 
     </Grid>
 </Window>

@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EventPlanner.Pages" xmlns:ViewModels="clr-namespace:EventPlanner.ViewModels"
-      xmlns:models="clr-namespace:EventPlanner.Models"
+      xmlns:models="clr-namespace:EventPlanner.Models" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NotificationPage"
@@ -14,46 +14,51 @@
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="9*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Grid.Column="0" Grid.Row="0" Name="NotificationsListView" ItemsSource="{Binding Notifications}">
+        <ListView Style="{StaticResource MaterialDesignCardsListBox}" Grid.Column="0" Grid.Row="0" Name="NotificationsListView" ItemsSource="{Binding Notifications}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding Description}" />
                         <Grid Grid.Column="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="Go to event board" Command="{Binding ElementName=NotificationPageName, Path=DataContext.GoToEventBoardCmd}" CommandParameter="{Binding ElementId}" Padding="6,1">
+                            <Button Grid.Column="0" Content="Go to event board" FontWeight="Normal" Margin="10,0,0,0" Command="{Binding ElementName=NotificationPageName, Path=DataContext.GoToEventBoardCmd}" CommandParameter="{Binding ElementId}">
+
                                 <Button.Style>
-                                    <Style TargetType="{x:Type Button}">
+                                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Type}" Value="NotificationType.MESSAGE_SENT">
+                                            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:NotificationType.MESSAGE_SENT}">
                                                 <Setter Property="Visibility" Value="Hidden"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
                             </Button>
-                            <Button Grid.Column="0" Content="View message" Padding="6,1">
+                            <Button Grid.Column="0" Content="View message" FontWeight="Normal" Margin="20,0,0,0">
                                 <Button.Style>
-                                    <Style TargetType="{x:Type Button}">
+                                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:NotificationType.EVENT_REQUEST}">
+                                            <DataTrigger Binding="{Binding IsEventInformation}" Value="True">
                                                 <Setter Property="Visibility" Value="Hidden"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
                             </Button>
-                            <Button Grid.Column="1" Content="Delete" Command="{Binding ElementName=NotificationPageName, Path=DataContext.DeleteNotificationCmd}" CommandParameter="{Binding}" Margin="5,0,0,0" Padding="6,1"/>
+                            <Button Grid.Column="1" FontWeight="Normal" Width="50"
+                            Command="{Binding ElementName=NotificationPageName, Path=DataContext.DeleteNotificationCmd}" 
+                            CommandParameter="{Binding}" Style="{StaticResource MaterialDesignFlatMidBgButton}">
+                                <materialDesign:PackIcon Kind="Delete" Foreground="#eee"/>
+                            </Button>
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -69,7 +74,7 @@
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="Delete All"/>
+            <Button Grid.Column="1" Content="Delete All" Style="{StaticResource MaterialDesignRaisedButton}" Foreground="White"/>
         </Grid>
     </Grid>
 </Page>
