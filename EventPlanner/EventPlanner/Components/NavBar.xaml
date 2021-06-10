@@ -18,6 +18,6 @@
         <Button Name="notificationsNavBtn" Content="Notifications" Click="notificationsNavBtn_Click" Visibility="{Binding IsNotAdmin, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" Style="{StaticResource MaterialDesignFlatButton}"/>
         <Button Name="signOutNavBtn" Content="Sign out" Click="signOutNavBtn_Click" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" Style="{StaticResource MaterialDesignFlatButton}"/>
         <Button Name="profileNavBtn" Content="My Profile" Click="profileNavBtn_Click" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" Style="{StaticResource MaterialDesignFlatButton}"/>
-        <Button Name="tutorialNavBtn" Content="View Tutorial" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right"/>
+        <Button Name="tutorialNavBtn" Content="View Tutorial" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Click="tutorialNavBtn_Click"/>
     </DockPanel>
 </UserControl>

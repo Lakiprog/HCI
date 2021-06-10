@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EventPlanner.Models;
 using EventPlanner.Modals.User;
+using EventPlanner.Modals;
 
 namespace EventPlanner.Components
 {
@@ -68,6 +69,30 @@ namespace EventPlanner.Components
         private void inboxNavBtn_Click(object sender, RoutedEventArgs e)
         {
             Services.NavigationService.Singleton().ChangePage("Pages/MessagesPage.xaml");
+        }
+
+        private void tutorialNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Window modal;
+
+            Models.User currentUser = UserService.Singleton().CurrentUser;
+            if (currentUser == null)
+            {
+                modal = new GuestTutorialModal();
+            }
+            else if (currentUser is Models.Admin)
+            {
+                modal = new AdminTutorialModal();
+            }
+            else if (currentUser is Models.Organizer)
+            {
+                modal = new OrganizerTutorialModal();
+            }
+            else
+            {
+                modal = new UserTutorialModal();
+            }
+            modal.Show();
         }
     }
 }
