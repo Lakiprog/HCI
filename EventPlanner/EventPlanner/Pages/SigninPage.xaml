@@ -18,11 +18,11 @@
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18pt" Content="Sign in" />
         <StackPanel Grid.Row="1">
             <Label Content="Username:" />
-            <TextBox Name="usernameTextbox" />
+            <TextBox KeyUp="usernameTextbox_KeyUp" Name="usernameTextbox" />
         </StackPanel>
         <StackPanel Grid.Row="2">
             <Label Content="Password:" />
-            <PasswordBox Name="passwordTextBox" />
+            <PasswordBox KeyUp="passwordTextBox_KeyUp" Name="passwordTextBox" />
             <Label>
                 <Hyperlink Click="Hyperlink_Click">Forgot password?</Hyperlink>
             </Label>
