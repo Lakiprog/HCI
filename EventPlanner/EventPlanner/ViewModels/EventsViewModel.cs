@@ -32,6 +32,7 @@ namespace EventPlanner.ViewModels
         {
             e.OrganizerId = UserService.Singleton().CurrentUser.ID;
             e.PotentialOrganizers.Clear();
+            e.PotentialOrganizers.Add(UserService.Singleton().CurrentUser.ID);
             EventService.Singleton().Modify(e);
             ConversationService.Singleton().StartNewConversation(e.UserId, e.OrganizerId);
         }
@@ -132,7 +133,19 @@ namespace EventPlanner.ViewModels
         public void Search(string search)
         {
             // TODO: Implement search of events
-            throw new NotImplementedException();
+            AddOriginalData();
+            if (search.Length > 0)
+            {
+                List<Event> organizerEvents = new List<Event>(this.organizerEvents);
+                List<Event> upcomingEvents = new List<Event>(this.upcomingEvents);
+                List<Event> pastEvents = new List<Event>(this.pastEvents);
+                this.organizerEvents.Clear();
+                this.upcomingEvents.Clear();
+                this.pastEvents.Clear();
+                organizerEvents.FindAll(e => e.Title.Contains(search) || e.Description.Contains(search)).ForEach(this.organizerEvents.Add);
+                upcomingEvents.FindAll(e => e.Title.Contains(search) || e.Description.Contains(search)).ForEach(this.upcomingEvents.Add);
+                pastEvents.FindAll(e => e.Title.Contains(search) || e.Description.Contains(search)).ForEach(this.pastEvents.Add);
+            }
         }
     }
 }

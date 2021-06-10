@@ -23,7 +23,15 @@ namespace EventPlanner.Commands
 
         public void Execute(object parameter)
         {
-            NavigationService.Singleton().ChangePage("Pages/EventBoardPage.xaml", parameter as Event);
+            if (parameter is Event)
+            {
+                NavigationService.Singleton().ChangePage("Pages/EventBoardPage.xaml", parameter as Event);
+            }
+            else if (parameter is int)
+            {
+                Event e = EventService.Singleton().GetEventInfo((int)parameter);
+                NavigationService.Singleton().ChangePage("Pages/EventBoardPage.xaml", e);
+            }
         }
     }
 }

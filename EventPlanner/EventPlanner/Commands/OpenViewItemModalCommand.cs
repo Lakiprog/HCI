@@ -31,7 +31,7 @@ namespace EventPlanner.Commands
                 taskModal.Show();
             } else if (parameter is Event)
             {
-                var eventDetailsModal = new Modals.EventDetailsModal();
+                var eventDetailsModal = new Modals.User.MakeRequestWindow();
                 eventDetailsModal.DataContext = new ViewModels.EventDetailsViewModel((Event)parameter, false, false);
                 eventDetailsModal.Show();
             }

@@ -31,7 +31,8 @@
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="Go to event board" FontWeight="Normal" Margin="20,0,0,0">
+                            <Button Grid.Column="0" Content="Go to event board" FontWeight="Normal" Margin="20,0,0,0" Command="{Binding ElementName=NotificationPageName, Path=DataContext.GoToEventBoardCmd}" CommandParameter="{Binding ElementId}">
+
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
                                         <Style.Triggers>

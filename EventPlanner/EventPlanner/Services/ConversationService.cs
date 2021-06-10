@@ -39,7 +39,7 @@ namespace EventPlanner.Services
             {
                 return result;
             }
-            int newID = allConversations.OrderBy(c => c.ID) .Last().ID + 1;
+            int newID = allConversations.OrderBy(c => c.ID).Last().ID + 1;
             Conversation conversation = new Conversation(newID, new List<Message>(), userA_ID, userB_ID);
             allConversations.Add(conversation);
             WriteConversations(allConversations);
