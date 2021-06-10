@@ -21,6 +21,7 @@ namespace EventPlanner.ViewModels
         private ObservableCollection<Event> upcomingEvents;
         private ObservableCollection<Event> pastEvents;
         private Event selectedEvent;
+        private Event newEvent;
         
         public ObservableCollection<Event> OrganizerEvents
         {
@@ -42,6 +43,11 @@ namespace EventPlanner.ViewModels
             get => selectedEvent;
             set { selectedEvent = value; RaisePropertyChngedEvent("SelectedEvent"); }
         }
+        public Event NewEvent
+        {
+            get => newEvent;
+            set { newEvent = value; RaisePropertyChngedEvent("NewEvent"); }
+        }
 
         public ICommand SearchCmd
         {
@@ -58,12 +64,25 @@ namespace EventPlanner.ViewModels
             get;
             private set;
         }
+        public ICommand CancelReqCmd
+        {
+            get;
+            private set;
+        }
+
+        public ICommand ConfirmReqCmd
+        {
+            get;
+            private set;
+        }
 
         private void InitCommands()
         {
             ShowEventModalCommand = new ShowEventModalCommand();
             SearchCmd = new SearchCommand(this);
             GoToBoardCmd = new GoToBoardCommand();
+            CancelReqCmd = new CancelRequestCommand();
+            ConfirmReqCmd = new ConfirmRequestCommand();
         }
         private void InitData()
         {
@@ -77,17 +96,20 @@ namespace EventPlanner.ViewModels
             this.organizerEvents.Clear();
             List<Event> organizerEvents = new List<Event>();
             User user = UserService.Singleton().CurrentUser;
-            organizerEvents = EventService.Singleton().GetUpcomingEventsForOrganizer(user.ID);
+
+            EventService es = EventService.Singleton();
+            organizerEvents = es.GetPotentialEventsForOrganizer(user.ID);
             organizerEvents.ForEach(this.organizerEvents.Add);
 
             this.upcomingEvents.Clear();
             List<Event> upcomingEvents = new List<Event>();
-            upcomingEvents = EventService.Singleton().GetPotentialEventsForOrganizer(user.ID);
+
+            upcomingEvents = user is Organizer ? es.GetUpcomingEventsForOrganizer(user.ID) : es.GetUpcomingEventsForUser(user.ID);
             upcomingEvents.ForEach(this.upcomingEvents.Add);
 
             this.pastEvents.Clear();
             List<Event> pastEvents = new List<Event>();
-            pastEvents = EventService.Singleton().GetPastEventsForOrganizer(user.ID);
+            pastEvents = user is Organizer ? es.GetPastEventsForOrganizer(user.ID) : es.GetPastEventsForUser(user.ID);
             pastEvents.ForEach(this.pastEvents.Add);
         }
 

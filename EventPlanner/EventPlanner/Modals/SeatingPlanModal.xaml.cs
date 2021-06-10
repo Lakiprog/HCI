@@ -136,5 +136,25 @@ namespace EventPlanner.Modals
             e.Handled = true;
             mainScrollViewer.ScrollToVerticalOffset(mainScrollViewer.VerticalOffset - e.Delta);
         }
+
+        private void addTableTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SeatingPlanViewModel viewModel = (SeatingPlanViewModel)((TextBox)e.Source).DataContext;
+                if (addTableTextBox.Text == "") return;
+                viewModel.AddTable();
+            }
+        }
+
+        private void addInvitationTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SeatingPlanViewModel viewModel = (SeatingPlanViewModel)((TextBox)e.Source).DataContext;
+                if (addInvitationTextBox.Text == "") return;
+                viewModel.AddInvitation();
+            }
+        }
     }
 }

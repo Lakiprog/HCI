@@ -1,21 +1,13 @@
-﻿using EventPlanner.Models;
-using EventPlanner.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace EventPlanner.Commands
 {
-    class AddTableCommand : ICommand
+    class ConfirmRequestCommand : ICommand
     {
-        public AddTableCommand(SeatingPlanViewModel viewModel)
-        {
-            _ViewModel = viewModel;
-        }
-        private SeatingPlanViewModel _ViewModel;
-
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -24,12 +16,15 @@ namespace EventPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            return _ViewModel.CanUpdate((string)parameter);
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            _ViewModel.AddTable();
+            MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+            MessageBoxImage icnMessageBox = MessageBoxImage.Question;
+
+            MessageBoxResult rsltMessageBox = MessageBox.Show("Are you sure you wish to create your request?", "Confirm request", btnMessageBox, icnMessageBox);
         }
     }
 }
