@@ -16,11 +16,30 @@ namespace EventPlanner.ViewModels
         {
             InitData();
             InitCommands();
+
+            EventService.Singleton().EventsChanged += EventsViewModel_EventsChanged;
         }
+
+        private void EventsViewModel_EventsChanged(object sender, EventArgs e)
+        {
+            AddOriginalData();
+        }
+
         private ObservableCollection<Event> organizerEvents;
         private ObservableCollection<Event> upcomingEvents;
+
+        internal void AcceptEvent(Event e)
+        {
+            e.OrganizerId = UserService.Singleton().CurrentUser.ID;
+            e.PotentialOrganizers.Clear();
+            e.PotentialOrganizers.Add(UserService.Singleton().CurrentUser.ID);
+            EventService.Singleton().Modify(e);
+            ConversationService.Singleton().StartNewConversation(e.UserId, e.OrganizerId);
+        }
+
         private ObservableCollection<Event> pastEvents;
         private Event selectedEvent;
+        private Event newEvent;
         
         public ObservableCollection<Event> OrganizerEvents
         {
@@ -42,6 +61,11 @@ namespace EventPlanner.ViewModels
             get => selectedEvent;
             set { selectedEvent = value; RaisePropertyChngedEvent("SelectedEvent"); }
         }
+        public Event NewEvent
+        {
+            get => newEvent;
+            set { newEvent = value; RaisePropertyChngedEvent("NewEvent"); }
+        }
 
         public ICommand SearchCmd
         {
@@ -58,12 +82,24 @@ namespace EventPlanner.ViewModels
             get;
             private set;
         }
+        public ICommand CancelReqCmd
+        {
+            get;
+            private set;
+        }
+        public ICommand AcceptEventCmd
+        {
+            get;
+            private set;
+        }
 
         private void InitCommands()
         {
             ShowEventModalCommand = new ShowEventModalCommand();
             SearchCmd = new SearchCommand(this);
             GoToBoardCmd = new GoToBoardCommand();
+            CancelReqCmd = new CancelRequestCommand();
+            AcceptEventCmd = new AcceptEventCommand(this);
         }
         private void InitData()
         {
@@ -77,37 +113,39 @@ namespace EventPlanner.ViewModels
             this.organizerEvents.Clear();
             List<Event> organizerEvents = new List<Event>();
             User user = UserService.Singleton().CurrentUser;
-            organizerEvents.Add(new Event("Resourceful project manager with 10 years of experience", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            organizerEvents.Add(new Event("Engaging high school teacher skilled in ESL and IEPS", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            organizerEvents.Add(new Event("Multi-lingual licensed RN with 5+ years of experience in pediatrics", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            organizerEvents.Add(new Event("Hard-working CNA and Nightingale Award recipient", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
 
+            EventService es = EventService.Singleton();
+            organizerEvents = es.GetPotentialEventsForOrganizer(user.ID);
             organizerEvents.ForEach(this.organizerEvents.Add);
 
             this.upcomingEvents.Clear();
             List<Event> upcomingEvents = new List<Event>();
-            upcomingEvents.Add(new Event("Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            upcomingEvents.Add(new Event("System.Runtime.Serialization.Formatters.dll", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            upcomingEvents.Add(new Event("EventPlanner.exe", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            upcomingEvents.Add(new Event("Title 24", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
 
+            upcomingEvents = user is Organizer ? es.GetUpcomingEventsForOrganizer(user.ID) : es.GetUpcomingEventsForUser(user.ID);
             upcomingEvents.ForEach(this.upcomingEvents.Add);
-
 
             this.pastEvents.Clear();
             List<Event> pastEvents = new List<Event>();
-            pastEvents.Add(new Event("Event 1", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            pastEvents.Add(new Event("Event 2", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            pastEvents.Add(new Event("EventPlanner.exe", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-            pastEvents.Add(new Event("Event 24", EventType.WEDDING, "desc1", DateTime.ParseExact("2021-06-05 13:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), DateTime.ParseExact("2021-06-05 18:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture), user));
-
+            pastEvents = user is Organizer ? es.GetPastEventsForOrganizer(user.ID) : es.GetPastEventsForUser(user.ID);
             pastEvents.ForEach(this.pastEvents.Add);
         }
 
         public void Search(string search)
         {
             // TODO: Implement search of events
-            throw new NotImplementedException();
+            AddOriginalData();
+            if (search.Length > 0)
+            {
+                List<Event> organizerEvents = new List<Event>(this.organizerEvents);
+                List<Event> upcomingEvents = new List<Event>(this.upcomingEvents);
+                List<Event> pastEvents = new List<Event>(this.pastEvents);
+                this.organizerEvents.Clear();
+                this.upcomingEvents.Clear();
+                this.pastEvents.Clear();
+                organizerEvents.FindAll(e => e.Title.Contains(search) || e.Description.Contains(search)).ForEach(this.organizerEvents.Add);
+                upcomingEvents.FindAll(e => e.Title.Contains(search) || e.Description.Contains(search)).ForEach(this.upcomingEvents.Add);
+                pastEvents.FindAll(e => e.Title.Contains(search) || e.Description.Contains(search)).ForEach(this.pastEvents.Add);
+            }
         }
     }
 }

@@ -24,8 +24,8 @@ namespace EventPlanner.Commands
         {
             Event selectedEvent = (Event) parameter;
 
-            var eventDetailsModal = new Modals.EventDetailsModal();
-            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true);
+            var eventDetailsModal = new Modals.User.MakeRequestWindow();
+            eventDetailsModal.DataContext = new EventDetailsViewModel(selectedEvent, true, false);
             eventDetailsModal.ShowDialog();
         }
     }

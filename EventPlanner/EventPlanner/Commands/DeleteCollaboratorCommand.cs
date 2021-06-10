@@ -1,4 +1,5 @@
-﻿using EventPlanner.ViewModels;
+﻿using EventPlanner.Models;
+using EventPlanner.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +9,11 @@ namespace EventPlanner.Commands
 {
     class DeleteCollaboratorCommand : ICommand
     {
-        public DeleteCollaboratorCommand(OneCollaboratorViewModel viewModel)
+        public DeleteCollaboratorCommand(CollaboratorViewModel viewModel)
         {
             _ViewModel = viewModel;
         }
-        private OneCollaboratorViewModel _ViewModel;
+        private CollaboratorViewModel _ViewModel;
 
         public event EventHandler CanExecuteChanged
         {
@@ -28,7 +29,7 @@ namespace EventPlanner.Commands
         public void Execute(object parameter)
         {
 
-            _ViewModel.delete();
+            _ViewModel.delete((Collaborator)parameter);
         }
     }
 }

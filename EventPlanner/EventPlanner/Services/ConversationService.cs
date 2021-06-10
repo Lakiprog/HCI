@@ -34,7 +34,12 @@ namespace EventPlanner.Services
         public Conversation StartNewConversation(int userA_ID, int userB_ID)
         {
             List<Conversation> allConversations = GetConversations();
-            int newID = allConversations.OrderBy(c => c.ID) .Last().ID + 1;
+            Conversation result = null;
+            if ((result = allConversations.FirstOrDefault(c => c.UserA_ID == userA_ID && c.UserB_ID == userB_ID || c.UserB_ID == userA_ID && c.UserA_ID == userB_ID)) != null)
+            {
+                return result;
+            }
+            int newID = allConversations.OrderBy(c => c.ID).Last().ID + 1;
             Conversation conversation = new Conversation(newID, new List<Message>(), userA_ID, userB_ID);
             allConversations.Add(conversation);
             WriteConversations(allConversations);

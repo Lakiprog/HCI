@@ -18,11 +18,16 @@ namespace EventPlanner.Services
         {
             return singleton ??= new UserService();
         }
+        public event EventHandler LoggedInUserChanged;
         public User CurrentUser { get { return GetCurrentUser(); } }
         public bool Login(string username, string password)
         {
             User user = GetUsers().SingleOrDefault(user => user.Username.Equals(username) && user.Password.Equals(password));
             this.username = user?.Username ?? string.Empty;
+            if (this.username.Length > 0)
+            {
+                LoggedInUserChanged?.Invoke(this, null);
+            }
 
             return this.username.Length != 0;
         }
@@ -30,6 +35,7 @@ namespace EventPlanner.Services
         public void Logout()
         {
             username = string.Empty;
+            LoggedInUserChanged?.Invoke(this, null);
         }
 
         private User GetCurrentUser()
@@ -37,7 +43,7 @@ namespace EventPlanner.Services
             User user = GetUsers().SingleOrDefault(user => user.Username.Equals(username));
             if (user != null)
             {
-                user.Conversations =  ConversationService.Singleton().GetUsersConversations(user);
+                user.Conversations = ConversationService.Singleton().GetUsersConversations(user);
             }
 
             return user;
@@ -67,7 +73,7 @@ namespace EventPlanner.Services
 
         public void save(List<User> users)
         {
-            using(StreamWriter writer = new StreamWriter(PATH))
+            using (StreamWriter writer = new StreamWriter(PATH))
             {
                 string data = JsonConvert.SerializeObject(users);
                 writer.WriteLine(data);
@@ -76,6 +82,8 @@ namespace EventPlanner.Services
 
         public List<User> Modify(User user)
         {
+            bool rememberUsernameSwap = CurrentUser.ID == user.ID;
+            int userId = user.ID;
             List<User> users = GetUsers();
             for (int i = 0; i < users.Count(); i++)
             {
@@ -85,6 +93,10 @@ namespace EventPlanner.Services
                 }
             }
             save(users);
+            if (rememberUsernameSwap)
+            {
+                username = GetUsers().First(u => u.ID == userId).Username;
+            }
             return users;
         }
 

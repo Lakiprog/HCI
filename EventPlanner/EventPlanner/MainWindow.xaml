@@ -8,7 +8,10 @@
         mc:Ignorable="d"
         MinHeight="450"
         MinWidth="770"
-        Title="MainWindow" Height="200" Width="483">
+        Title="MainWindow" Height="200" Width="483"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" KeyUp="Window_KeyUp"
+        >
     <Grid Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5cm" />
@@ -16,7 +19,7 @@
         </Grid.RowDefinitions>
         <components:NavBar Grid.Row="0" />
 
-        <Frame Padding="0.3cm" Grid.Row="1" Source="/Pages/Admin/HomePage.xaml" />
+        <Frame Navigating="MainPageFrame_Navigating" x:Name="MainPageFrame" NavigationUIVisibility="Hidden" Padding="0.3cm" Grid.Row="1" Source="/Pages/SigninPage.xaml" />
     </Grid>
 </Window>
                                                 
