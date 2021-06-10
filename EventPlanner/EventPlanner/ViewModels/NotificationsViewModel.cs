@@ -27,6 +27,7 @@ namespace EventPlanner.ViewModels
         private void InitCommands()
         {
             DeleteNotificationCmd = new DeleteNotificationCommand(this);
+            GoToEventBoardCmd = new GoToBoardCommand();
         }
         private void AddOriginalData()
         {
@@ -40,6 +41,11 @@ namespace EventPlanner.ViewModels
             set { _Notifications = value; RaisePropertyChngedEvent("NotificationViewModels"); }
         }
         public ICommand DeleteNotificationCmd
+        {
+            get; private set;
+        }
+
+        public ICommand GoToEventBoardCmd
         {
             get; private set;
         }

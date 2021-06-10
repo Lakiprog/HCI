@@ -31,7 +31,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="Go to event board" Padding="6,1">
+                            <Button Grid.Column="0" Content="Go to event board" Command="{Binding ElementName=NotificationPageName, Path=DataContext.GoToEventBoardCmd}" CommandParameter="{Binding ElementId}" Padding="6,1">
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Style.Triggers>
