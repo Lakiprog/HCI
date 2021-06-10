@@ -10,29 +10,14 @@
     <UserControl.DataContext>
         <viewModels:NavBarViewModel />
     </UserControl.DataContext>
-    <Grid>
-        <Grid.Resources>
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="Margin" Value="0.5cm,0,0.5cm,0" />
-            </Style>
-        </Grid.Resources>
+    <DockPanel>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-
-        <Button Grid.Column="0" Name="homeNavBtn" Content="Homepage" Click="homeNavBtn_Click" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" />
-        <Button Grid.Column="1" Name="makeRequestNavBtn" Content="Make Request" Click="makeRequestNavBtn_Click" Visibility="{Binding IsUser, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsUser}" />
-        <Button Grid.Column="2" Name="inboxNavBtn" Content="Inbox" Click="inboxNavBtn_Click" Visibility="{Binding IsNotAdmin, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" />
-        <Button Grid.Column="3" Name="notificationsNavBtn" Content="Notifications" Click="notificationsNavBtn_Click" Visibility="{Binding IsNotAdmin, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" />
-        <Button Grid.Column="4" Name="signOutNavBtn" Content="Sign out" Click="signOutNavBtn_Click" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" />
-        <Button Grid.Column="5" Name="profileNavBtn" Content="My Profile" Click="profileNavBtn_Click" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" />
-        <Button Grid.Column="6" Name="tutorialNavBtn" Content="View Tutorial" />
-    </Grid>
+        <Button Name="homeNavBtn" Content="Homepage" Click="homeNavBtn_Click" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" Style="{StaticResource MaterialDesignFlatButton}"/>
+        <Button Name="makeRequestNavBtn" Content="Make Request" Click="makeRequestNavBtn_Click" Visibility="{Binding IsUser, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsUser}" Style="{StaticResource MaterialDesignFlatButton}"/>
+        <Button Name="inboxNavBtn" Content="Inbox" Click="inboxNavBtn_Click" Visibility="{Binding IsNotAdmin, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" Style="{StaticResource MaterialDesignFlatButton}"/>
+        <Button Name="notificationsNavBtn" Content="Notifications" Click="notificationsNavBtn_Click" Visibility="{Binding IsNotAdmin, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" Style="{StaticResource MaterialDesignFlatButton}"/>
+        <Button Name="signOutNavBtn" Content="Sign out" Click="signOutNavBtn_Click" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" Style="{StaticResource MaterialDesignFlatButton}"/>
+        <Button Name="profileNavBtn" Content="My Profile" Click="profileNavBtn_Click" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisiblityConverter}}" IsEnabled="{Binding IsLoggedIn}" Style="{StaticResource MaterialDesignFlatButton}"/>
+        <Button Name="tutorialNavBtn" Content="View Tutorial" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right"/>
+    </DockPanel>
 </UserControl>
