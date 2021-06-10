@@ -48,7 +48,7 @@
                             <Border BorderThickness="0,0,0,2" BorderBrush="#00BCD4">
                                 <Grid Grid.Row="0">
                                     <TextBlock Text="{Binding Name}" FontWeight="Bold" HorizontalAlignment="Stretch" Padding="5"/>
-                                    <Button Content="-" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{Binding ElementName=TableViewModelsListView, Path=DataContext.RemoveTableCmd}" CommandParameter="{Binding}"/>
+                                    <Button Content="Delete" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{Binding ElementName=TableViewModelsListView, Path=DataContext.RemoveTableCmd}" CommandParameter="{Binding}"/>
                                 </Grid>
                             </Border>
                             <Border VerticalAlignment="Stretch" Grid.Row="1" BorderBrush="white" BorderThickness="0.5">
@@ -108,7 +108,7 @@
                     <DataTemplate>
                         <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown_1">
                             <TextBlock Text="{Binding}" TextWrapping="Wrap" />
-                            <Button HorizontalAlignment="Right" Content="Delete" Command="{Binding ElementName=seatingPlanWindow, Path=DataContext.DeleteInvitationCmd}" CommandParameter="{Binding}" />
+                            <Button HorizontalAlignment="Right" Content="Delete" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ElementName=seatingPlanWindow, Path=DataContext.DeleteInvitationCmd}" CommandParameter="{Binding}" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

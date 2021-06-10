@@ -17,7 +17,7 @@
     "ID": 3,
     "UserFromId": 2,
     "UserToId": 1,
-    "ElementId": 3,
+    "ElementId": 2,
     "Type": "EVENT_CHANGED"
   }
 ]
